@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout 
+  title="Fechadura Biométrica | Avaliações, Guias e Preços" 
+  description="Encontre a melhor fechadura biométrica para sua casa. Guias, avaliações honestas e comparativos especializados de segurança eletrônica residencial."
+>
+  <div class="bg-blue-600 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Segurança Inteligente para o Seu Lar</h1>
+      <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+        Analisamos e comparamos as melhores opções de fechaduras digitais, biométricas e eletrônicas do mercado.
+      </p>
+    </div>
+  </div>
+
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-8 border-b pb-4">Artigos Recentes</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <article class="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition-shadow">
+          <div class="p-6">
+            <div class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-2">
+              {post.data.type}
+            </div>
+            <h3 class="text-xl font-bold text-neutral-900 mb-3 leading-tight">
+              <a href={`/blog/${post.slug}`} class="hover:text-blue-600">
+                {post.data.title}
+              </a>
+            </h3>
+            <p class="text-neutral-600 text-sm mb-4 line-clamp-3">
+              {post.data.description}
+            </p>
+            <div class="flex items-center justify-between text-sm text-neutral-500">
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('pt-BR')}
+              </time>
+              <a href={`/blog/${post.slug}`} class="text-blue-600 font-medium hover:underline">Ler mais &rarr;</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,104 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ProsCons from '../components/ProsCons.astro';
+import CTA from '../components/CTA.astro';
+import { generateArticleSchema, generateReviewSchema, generateBreadcrumbSchema } from '../schema/jsonld';
+import { SITE } from '../config/site';
+
+const { frontmatter, url } = Astro.props;
+const type = frontmatter.type || 'informativo';
+
+// Criando SEO LD+JSON dinâmico baseado no tipo
+const articleData = {
+  title: frontmatter.seoTitle || frontmatter.title,
+  description: frontmatter.seoDescription || frontmatter.description,
+  url: `${SITE.url}${url || Astro.url.pathname}`,
+  publishedDate: new Date(frontmatter.date),
+  modifiedDate: frontmatter.updated ? new Date(frontmatter.updated) : new Date(frontmatter.date),
+  // imageUrl poderia vir do frontmatter (ex: frontmatter.image?.src)
+};
+
+let jsonLdSchema;
+if (type === 'review') {
+  jsonLdSchema = generateReviewSchema(
+    articleData,
+    frontmatter.title,
+    5, // Hardcoded rating para review, no futuro pode ser pego do frontmatter
+    frontmatter.pros,
+    frontmatter.cons
+  );
+} else {
+  // Para outros, default Article
+  jsonLdSchema = generateArticleSchema(articleData);
+}
+
+const breadcrumbSchema = generateBreadcrumbSchema(articleData.url, frontmatter.title);
+---
+
+<BaseLayout 
+  title={frontmatter.seoTitle || frontmatter.title} 
+  description={frontmatter.seoDescription || frontmatter.description} 
+  type="article"
+>
+  <!-- Injeção dos JSON-LDs na HEAD através de um slot ou block via renderização inline -->
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <article class="max-w-3xl mx-auto px-4 py-12">
+    <!-- Breadcrumbs visuais -->
+    <nav class="text-sm text-neutral-500 mb-8" aria-label="Breadcrumb">
+      <ol class="list-none p-0 inline-flex flex-wrap items-center">
+        <li class="flex items-center">
+          <a href="/" class="hover:text-blue-600">Home</a>
+          <span class="mx-2">/</span>
+        </li>
+        <li class="flex items-center">
+          <a href="/blog" class="hover:text-blue-600">Blog</a>
+          <span class="mx-2">/</span>
+        </li>
+        <li class="flex items-center text-neutral-900" aria-current="page">
+          {frontmatter.title}
+        </li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4">{frontmatter.title}</h1>
+      <p class="text-xl text-neutral-600 mb-6">{frontmatter.description}</p>
+      
+      {frontmatter.highlight && (
+        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+          ⭐ Destaque: {frontmatter.highlight}
+        </span>
+      )}
+      
+      <div class="flex items-center text-sm text-neutral-500">
+        <time datetime={articleData.publishedDate.toISOString()}>
+          {articleData.publishedDate.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </time>
+        {frontmatter.updated && (
+          <span class="ml-2 pl-2 border-l border-neutral-300">
+            Atualizado: {articleData.modifiedDate.toLocaleDateString('pt-BR')}
+          </span>
+        )}
+      </div>
+    </header>
+
+    <div class="prose prose-lg prose-blue max-w-none text-neutral-800">
+      <slot /> <!-- Renderiza o conteúdo MDX aqui -->
+    </div>
+
+    <!-- Features de Layout Dinâmicas de acordo com o `type` -->
+    {type === 'review' && (
+      <div class="mt-12 pt-8 border-t border-neutral-200">
+        <ProsCons pros={frontmatter.pros} cons={frontmatter.cons} />
+        {frontmatter.affiliateLink && (
+          <CTA link={frontmatter.affiliateLink} priceText={frontmatter.priceText} />
+        )}
+      </div>
+    )}
+
+  </article>
+</BaseLayout>

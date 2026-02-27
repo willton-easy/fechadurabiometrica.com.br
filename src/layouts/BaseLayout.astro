@@ -1,0 +1,48 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  disableIndexing?: boolean;
+}
+
+const { title, description, image, type, disableIndexing = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <SEO title={title} description={description} image={image} type={type} />
+    {disableIndexing && <meta name="robots" content="noindex, nofollow" />}
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-neutral-50 text-neutral-900 font-sans antialiased">
+    <!-- Navbar placeholder -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="/" class="font-bold text-xl text-neutral-800">Fechadura Biométrica</a>
+        <nav>
+          <ul class="flex gap-4 text-sm font-medium">
+            <li><a href="/blog" class="hover:text-blue-600 transition-colors">Blog</a></li>
+            <li><a href="/sobre" class="hover:text-blue-600 transition-colors">Sobre</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="w-full">
+      <slot />
+    </main>
+
+    <footer class="bg-neutral-900 text-neutral-300 py-12 mt-24">
+      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+        <p>&copy; {new Date().getFullYear()} Fechadura Biométrica. Todos os direitos reservados.</p>
+        <p class="mt-2 text-neutral-500">Desenvolvido com foco em informações especializadas de segurança residencial.</p>
+      </div>
+    </footer>
+  </body>
+</html>
