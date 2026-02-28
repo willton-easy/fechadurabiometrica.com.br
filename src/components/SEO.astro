@@ -1,49 +1,92 @@
 ---
-import { SITE } from '../config/site';
+// ============================================================
+// ARQUIVO: src/components/SEO.astro
+// O QUE FAZ: Coloca na <head> da página todas as "tags mágicas"
+// que ajudam o Google, Facebook e Twitter a entender o site.
+//
+// SEO = Search Engine Optimization = Otimização para Buscadores.
+// Em simples: SEO é a arte de aparecer bem no Google!
+//
+// Este componente gera:
+//   - O TÍTULO da aba do navegador
+//   - A DESCRIÇÃO que aparece no resultado do Google
+//   - Tags de COMPARTILHAMENTO: quando alguém compartilha
+//     o link no WhatsApp, o site aparece bonito com imagem
+// ============================================================
 
+// Importamos as configurações padrão do site (nome, título, etc.)
+import { SITE } from "../config/site";
+
+// Definimos os dados que o componente pode receber.
+// O '?' indica que o campo é opcional.
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-  type?: 'website' | 'article';
+  title?: string; // Título da página
+  description?: string; // Descrição da página
+  image?: string; // Imagem de destaque (para compartilhamento)
+  url?: string; // Endereço (URL) da página atual
+  type?: "website" | "article"; // Tipo: site geral ou artigo
 }
 
+// Recebemos as propriedades com valores padrão (fallback).
+// Se nenhum título for passado, usa o título geral do SITE.
+// Se nenhuma imagem for passada, usa /og-image.jpg.
 const {
   title = SITE.title,
   description = SITE.description,
   image = `${SITE.url}/og-image.jpg`,
-  url = Astro.url.href,
-  type = 'website'
+  url = Astro.url.href, // pega o endereço atual automaticamente
+  type = "website", // padrão: página de site (não artigo)
 } = Astro.props;
 
-// Criando SEO Title composto se não for a home
+// Montamos o título final para o SEO.
+// Na página inicial: usa só o título (ex: "Fechadura Biométrica - Avaliações")
+// Em outras páginas: adiciona " | Fechadura Biométrica" no final
+// Exemplo: "Review Intelbras FR 101 | Fechadura Biométrica"
 const isHome = url === SITE.url || url === `${SITE.url}/`;
 const seoTitle = isHome ? title : `${title} | ${SITE.name}`;
 ---
 
-<!-- Global Metadata -->
+{/* --- Configurações Gerais da Página --- */}
+
+{/* Define o conjunto de caracteres (UTF-8 suporta português com acentos) */}
 <meta charset="utf-8" />
+
+{/* Faz o site aparecer bonito no celular (responsivo) */}
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+{/* Ícone pequeno que aparece na aba do navegador (favicon) */}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+{/* Informa qual ferramenta gerou o site */}
 <meta name="generator" content={Astro.generator} />
 
-<!-- Canonical URL -->
+{/* --- URL Canônica --- */}
+{
+  /*
+  Diz ao Google qual é o endereço "oficial" desta página.
+  Evita problemas quando a mesma página tem URLs diferentes
+  (ex: com ou sem "www.").
+*/
+}
 <link rel="canonical" href={url} />
 
-<!-- Primary Meta Tags -->
+{/* --- Tags Principais (Google) --- */}
+{/* Título que aparece na aba e no resultado do Google */}
 <title>{seoTitle}</title>
 <meta name="title" content={seoTitle} />
+{/* Descrição que aparece abaixo do título no Google */}
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
+{/* --- Open Graph (Facebook, WhatsApp, LinkedIn) --- */}
+{/* Essas tags controlam como a página aparece quando é compartilhada */}
 <meta property="og:type" content={type} />
 <meta property="og:url" content={url} />
 <meta property="og:title" content={seoTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={image} />
 
-<!-- Twitter -->
+{/* --- Twitter/X Cards --- */}
+{/* Igual ao Open Graph, mas específico para o Twitter/X */}
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={url} />
 <meta property="twitter:title" content={seoTitle} />

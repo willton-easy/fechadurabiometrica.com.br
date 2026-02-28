@@ -1,53 +1,119 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import ProsCons from '../components/ProsCons.astro';
-import CTA from '../components/CTA.astro';
-import { generateArticleSchema, generateReviewSchema, generateBreadcrumbSchema } from '../schema/jsonld';
-import { SITE } from '../config/site';
+// ============================================================
+// ARQUIVO: src/layouts/BlogLayout.astro
+// O QUE FAZ: É o molde específico para ARTIGOS do blog.
+// Enquanto o BaseLayout é o esqueleto geral do site,
+// este layout é especializado para exibir posts/artigos.
+//
+// Funcionalidades:
+// 1. Gera dados estruturados JSON-LD para o Google
+//    → o Google usa isso para exibir "rich results" (estrelas, etc.)
+// 2. Mostra o "rastro de navegação": Home > Blog > Artigo
+// 3. Exibe título, descrição, data e badge de destaque
+// 4. Renderiza o conteúdo MDX do artigo
+// 5. Em reviews: mostra Prós/Contras e botão de compra
+// ============================================================
 
+// Layout base do site (cabeçalho, rodapé, etc.)
+import BaseLayout from "./BaseLayout.astro";
+// Componente de Prós e Contras (verde/vermelho)
+import ProsCons from "../components/ProsCons.astro";
+// Componente do botão de compra (Call to Action)
+import CTA from "../components/CTA.astro";
+// Funções que geram os dados JSON-LD para o Google
+import {
+  generateArticleSchema,
+  generateReviewSchema,
+  generateBreadcrumbSchema,
+} from "../schema/jsonld";
+// Configurações gerais do site (nome, URL, etc.)
+import { SITE } from "../config/site";
+
+// Pegamos as propriedades:
+//   frontmatter → dados do cabeçalho do artigo (título, data, type, etc.)
+//   url         → o endereço deste artigo
 const { frontmatter, url } = Astro.props;
-const type = frontmatter.type || 'informativo';
 
-// Criando SEO LD+JSON dinâmico baseado no tipo
+// Tipo do artigo (review, guia, etc.).
+// Se não houver tipo, usa 'informativo' como padrão.
+const type = frontmatter.type || "informativo";
+
+// ============================================================
+// Montagem dos dados para o JSON-LD.
+// JSON-LD é um código invisível que o Google lê para entender
+// melhor o conteúdo da página. É como dar um "roteiro" ao Google.
+// ============================================================
 const articleData = {
-  title: frontmatter.seoTitle || frontmatter.title,
-  description: frontmatter.seoDescription || frontmatter.description,
-  url: `${SITE.url}${url || Astro.url.pathname}`,
-  publishedDate: new Date(frontmatter.date),
-  modifiedDate: frontmatter.updated ? new Date(frontmatter.updated) : new Date(frontmatter.date),
-  // imageUrl poderia vir do frontmatter (ex: frontmatter.image?.src)
+  title: frontmatter.seoTitle || frontmatter.title, // título do artigo
+  description: frontmatter.seoDescription || frontmatter.description, // descrição
+  url: `${SITE.url}${url || Astro.url.pathname}`, // endereço completo
+  publishedDate: new Date(frontmatter.date), // data de publicação
+  // Se tiver data de atualização, usa ela. Se não, usa a data de publicação.
+  modifiedDate: frontmatter.updated
+    ? new Date(frontmatter.updated)
+    : new Date(frontmatter.date),
 };
 
+// ============================================================
+// Escolhendo o tipo de schema JSON-LD:
+//   type === 'review' → schema de Review (mostra estrelas no Google)
+//   outros tipos      → schema de Article (artigo padrão)
+// ============================================================
 let jsonLdSchema;
-if (type === 'review') {
+if (type === "review") {
   jsonLdSchema = generateReviewSchema(
     articleData,
-    frontmatter.title,
-    5, // Hardcoded rating para review, no futuro pode ser pego do frontmatter
-    frontmatter.pros,
-    frontmatter.cons
+    frontmatter.title, // nome do produto avaliado
+    5, // nota: 5 estrelas (pode ser dinâmico no futuro)
+    frontmatter.pros, // lista de vantagens
+    frontmatter.cons, // lista de desvantagens
   );
 } else {
-  // Para outros, default Article
+  // Para guias, comparativos e informativos: schema de artigo padrão
   jsonLdSchema = generateArticleSchema(articleData);
 }
 
-const breadcrumbSchema = generateBreadcrumbSchema(articleData.url, frontmatter.title);
+// Gera o schema de Breadcrumb para o Google.
+// Isso ajuda o Google a mostrar "Site > Blog > Artigo" nos resultados de busca.
+const breadcrumbSchema = generateBreadcrumbSchema(
+  articleData.url,
+  frontmatter.title,
+);
 ---
 
-<BaseLayout 
-  title={frontmatter.seoTitle || frontmatter.title} 
-  description={frontmatter.seoDescription || frontmatter.description} 
+{
+  /*
+  Usamos o BaseLayout como "embrulho".
+  type="article" informa ao SEO que é uma página de artigo (não um site geral).
+*/
+}
+<BaseLayout
+  title={frontmatter.seoTitle || frontmatter.title}
+  description={frontmatter.seoDescription || frontmatter.description}
   type="article"
 >
-  <!-- Injeção dos JSON-LDs na HEAD através de um slot ou block via renderização inline -->
+  {
+    /*
+    Injetamos os dados JSON-LD invisíveis dentro do <head>.
+    O slot="head" envia esse conteúdo para o <head> do BaseLayout.
+    O Google lê esses dados para mostrar resultados enriquecidos (estrelas, etc.)
+  */
+  }
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLdSchema)}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbSchema)}
+    />
   </Fragment>
 
+  {/* max-w-3xl centraliza e limita a largura para boa legibilidade */}
   <article class="max-w-3xl mx-auto px-4 py-12">
-    <!-- Breadcrumbs visuais -->
+    {/* ===== BREADCRUMB (RASTRO DE NAVEGAÇÃO) ===== */}
+    {/* Mostra o caminho: Home / Blog / Nome do Artigo */}
     <nav class="text-sm text-neutral-500 mb-8" aria-label="Breadcrumb">
       <ol class="list-none p-0 inline-flex flex-wrap items-center">
         <li class="flex items-center">
@@ -58,47 +124,109 @@ const breadcrumbSchema = generateBreadcrumbSchema(articleData.url, frontmatter.t
           <a href="/blog" class="hover:text-blue-600">Blog</a>
           <span class="mx-2">/</span>
         </li>
+        {
+          /* aria-current="page" indica ao leitor de tela que é a página atual */
+        }
         <li class="flex items-center text-neutral-900" aria-current="page">
           {frontmatter.title}
         </li>
       </ol>
     </nav>
 
+    {/* ===== CABEÇALHO DO ARTIGO ===== */}
     <header class="mb-10">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4">{frontmatter.title}</h1>
+      {/* Título principal do artigo — tag H1 para SEO */}
+      <h1
+        class="text-3xl md:text-5xl font-extrabold text-neutral-900 leading-tight mb-4"
+      >
+        {frontmatter.title}
+      </h1>
+      {/* Subtítulo/descrição do artigo */}
       <p class="text-xl text-neutral-600 mb-6">{frontmatter.description}</p>
-      
-      {frontmatter.highlight && (
-        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-          ⭐ Destaque: {frontmatter.highlight}
-        </span>
-      )}
-      
-      <div class="flex items-center text-sm text-neutral-500">
-        <time datetime={articleData.publishedDate.toISOString()}>
-          {articleData.publishedDate.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}
-        </time>
-        {frontmatter.updated && (
-          <span class="ml-2 pl-2 border-l border-neutral-300">
-            Atualizado: {articleData.modifiedDate.toLocaleDateString('pt-BR')}
+
+      {
+        /*
+        Badge de destaque — aparece SOMENTE se o artigo tiver
+        a propriedade 'highlight' no frontmatter (ex: "Melhor Custo Benefício").
+        O && funciona como "SE existir, ENTÃO mostra".
+      */
+      }
+      {
+        frontmatter.highlight && (
+          <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            ⭐ Destaque: {frontmatter.highlight}
           </span>
-        )}
+        )
+      }
+
+      {/* Data de publicação e atualização */}
+      <div class="flex items-center text-sm text-neutral-500">
+        {
+          /*
+          <time> é uma tag especial que o Google entende.
+          datetime= guarda a data em formato internacional (ISO).
+          O texto dentro é o que o usuário vê, em português.
+        */
+        }
+        <time datetime={articleData.publishedDate.toISOString()}>
+          {
+            articleData.publishedDate.toLocaleDateString("pt-BR", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          }
+        </time>
+        {/* Se o artigo foi atualizado, mostra a data de atualização */}
+        {
+          frontmatter.updated && (
+            <span class="ml-2 pl-2 border-l border-neutral-300">
+              Atualizado: {articleData.modifiedDate.toLocaleDateString("pt-BR")}
+            </span>
+          )
+        }
       </div>
     </header>
 
+    {/* ===== CONTEÚDO DO ARTIGO ===== */}
+    {
+      /*
+      'prose' é uma classe especial do Tailwind que formata
+      textos longos automaticamente (parágrafos, títulos, listas...).
+      O <slot /> é onde o conteúdo MDX real do artigo aparece.
+    */
+    }
     <div class="prose prose-lg prose-blue max-w-none text-neutral-800">
-      <slot /> <!-- Renderiza o conteúdo MDX aqui -->
+      <slot />
+      {/* ← O texto do artigo aparece aqui */}
     </div>
 
-    <!-- Features de Layout Dinâmicas de acordo com o `type` -->
-    {type === 'review' && (
-      <div class="mt-12 pt-8 border-t border-neutral-200">
-        <ProsCons pros={frontmatter.pros} cons={frontmatter.cons} />
-        {frontmatter.affiliateLink && (
-          <CTA link={frontmatter.affiliateLink} priceText={frontmatter.priceText} />
-        )}
-      </div>
-    )}
+    {/* ===== SEÇÃO EXTRA PARA REVIEWS ===== */}
+    {
+      /*
+      SOMENTE se o tipo for 'review', exibe:
+      1. O componente de Prós e Contras
+      2. O botão de compra (CTA) com o link de afiliado
+    */
+    }
+    {
+      type === "review" && (
+        <div class="mt-12 pt-8 border-t border-neutral-200">
+          {/* Prós e Contras — vantagens e desvantagens do produto avaliado */}
+          <ProsCons pros={frontmatter.pros} cons={frontmatter.cons} />
 
+          {/*
+          Botão de compra — só aparece se o artigo tiver 'affiliateLink'
+          no frontmatter (link de afiliado da Amazon, etc.)
+        */}
+          {frontmatter.affiliateLink && (
+            <CTA
+              link={frontmatter.affiliateLink}
+              priceText={frontmatter.priceText}
+            />
+          )}
+        </div>
+      )
+    }
   </article>
 </BaseLayout>

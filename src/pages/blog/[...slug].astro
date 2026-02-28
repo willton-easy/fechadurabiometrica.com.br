@@ -1,18 +1,69 @@
 ---
-import { getCollection } from 'astro:content';
-import BlogLayout from '../../layouts/BlogLayout.astro';
+// ============================================================
+// ARQUIVO: src/pages/blog/[...slug].astro
+// O QUE FAZ: Esta é a página que exibe UM ARTIGO do blog.
+//
+// O nome "[...slug].astro" é especial — o Astro entende que
+// as "[...]" são um parâmetro dinâmico (variável na URL).
+//
+// Exemplos de URLs geradas automaticamente:
+//   "teste-review.md"       → /blog/teste-review
+//   "guia-fechaduras.md"    → /blog/guia-fechaduras
+//
+// É como um molde: um único arquivo gera VÁRIAS páginas,
+// uma para cada artigo que você criar em content/blog/!
+// ============================================================
 
+// Importamos a função para buscar todos os artigos
+import { getCollection } from "astro:content";
+// Importamos o layout específico para artigos do blog
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+// ============================================================
+// getStaticPaths — função obrigatória para rotas dinâmicas.
+//
+// Como o Astro gera o site de forma ESTÁTICA (arquivos HTML prontos),
+// ele precisa saber de antemão quais páginas existem.
+//
+// Esta função lista todos os artigos e diz ao Astro:
+// "Crie uma página para cada um desses slugs."
+// ============================================================
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  // Busca todos os arquivos da coleção 'blog'
+  const blogEntries = await getCollection("blog");
+
+  // Para cada artigo, devolve as informações para gerar a página:
+  //   params.slug → define a URL: /blog/[slug]
+  //   props.entry → passa os dados do artigo para a página
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
+// Pegamos o artigo ('entry') das propriedades.
+// 'entry' contém todos os dados do frontmatter e o conteúdo do arquivo.
 const { entry } = Astro.props;
+
+// render() transforma o conteúdo MDX em HTML.
+// 'Content' é um componente que, quando usado abaixo,
+// renderiza o texto do artigo já formatado e pronto.
 const { Content } = await entry.render();
 ---
 
+{
+  /*
+  Usamos o BlogLayout como template do artigo.
+  - frontmatter: os metadados do arquivo (título, data, type, etc.)
+  - url: o endereço desta página (/blog/nome-do-artigo)
+*/
+}
 <BlogLayout frontmatter={entry.data} url={`/blog/${entry.slug}`}>
+  {
+    /*
+    <Content /> renderiza todo o texto do artigo.
+    É aqui que o Markdown/MDX vira HTML visível para o leitor.
+  */
+  }
   <Content />
 </BlogLayout>

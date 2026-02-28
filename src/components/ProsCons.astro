@@ -1,46 +1,115 @@
 ---
+// ============================================================
+// ARQUIVO: src/components/ProsCons.astro
+// O QUE FAZ: Exibe as VANTAGENS (Prós) e DESVANTAGENS (Contras)
+// de um produto em dois cards coloridos lado a lado:
+//   - Card VERDE  → Prós (vantagens)
+//   - Card VERMELHO → Contras (desvantagens)
+//
+// Este componente é usado em artigos do tipo 'review'.
+// Recebe listas de pros e cons vindas do frontmatter do artigo.
+// Exemplo de uso: <ProsCons pros={["Bom preço"]} cons={["Sem biometria"]} />
+// ============================================================
+
+// Definimos quais dados este componente recebe
 interface Props {
-  pros?: string[];
-  cons?: string[];
+  pros?: string[]; // Lista de vantagens (array de textos) — opcional
+  cons?: string[]; // Lista de desvantagens (array de textos) — opcional
 }
 
+// Pegamos as propriedades. Se não vier nada, usamos listas vazias [].
+// Isso evita erros caso alguém esqueça de passar pros ou cons.
 const { pros = [], cons = [] } = Astro.props;
 ---
 
-{(pros.length > 0 || cons.length > 0) && (
-  <div class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-    {pros.length > 0 && (
-      <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-        <h3 class="text-green-800 font-bold text-lg mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-          Prós
-        </h3>
-        <ul class="space-y-2">
-          {pros.map(pro => (
-            <li class="flex items-start gap-2 text-green-900 text-sm">
-              <span class="mt-1 text-green-600 block">&bull;</span>
-              <span>{pro}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+{
+  /*
+  Só mostramos o componente se existir pelo menos 1 pró OU 1 contra.
+  Se ambos estiverem vazios, não mostra nada (economiza espaço).
+  O && funciona como: "SE a condição for verdadeira, ENTÃO mostra isso".
+*/
+}
+{
+  (pros.length > 0 || cons.length > 0) && (
+    <div class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+      {/* ========== CARD DE VANTAGENS (VERDE) ========== */}
+      {/* Só aparece se existir pelo menos 1 vantagem */}
+      {pros.length > 0 && (
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          {/* Título do card com ícone de check (✓) */}
+          <h3 class="text-green-800 font-bold text-lg mb-4 flex items-center gap-2">
+            {/* Ícone SVG de "check" (marca de seleção verde) */}
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            Prós
+          </h3>
 
-    {cons.length > 0 && (
-      <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-        <h3 class="text-red-800 font-bold text-lg mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-          Contras
-        </h3>
-        <ul class="space-y-2">
-          {cons.map(con => (
-            <li class="flex items-start gap-2 text-red-900 text-sm">
-              <span class="mt-1 text-red-600 block">&bull;</span>
-              <span>{con}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </div>
-)}
+          {/* Lista de todas as vantagens */}
+          <ul class="space-y-2">
+            {/*
+            .map() percorre cada item da lista 'pros' e
+            cria um <li> para cada vantagem automaticamente.
+            'pro' representa o texto de cada vantagem.
+          */}
+            {pros.map((pro) => (
+              <li class="flex items-start gap-2 text-green-900 text-sm">
+                <span class="mt-1 text-green-600 block">&bull;</span>
+                <span>{pro}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* ========== CARD DE DESVANTAGENS (VERMELHO) ========== */}
+      {/* Só aparece se existir pelo menos 1 desvantagem */}
+      {cons.length > 0 && (
+        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+          {/* Título do card com ícone de X (✗) */}
+          <h3 class="text-red-800 font-bold text-lg mb-4 flex items-center gap-2">
+            {/* Ícone SVG de "X" (cruz vermelha) */}
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+            Contras
+          </h3>
+
+          {/* Lista de todas as desvantagens */}
+          <ul class="space-y-2">
+            {/*
+            Igual ao de cima, mas para desvantagens.
+            'con' representa o texto de cada desvantagem.
+          */}
+            {cons.map((con) => (
+              <li class="flex items-start gap-2 text-red-900 text-sm">
+                <span class="mt-1 text-red-600 block">&bull;</span>
+                <span>{con}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}

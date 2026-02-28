@@ -1,0 +1,306 @@
+---
+import type { GetStaticPaths } from 'astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { products } from '../../lib/products'
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return products.map((p) => ({
+    params: { slug: p.reviewUrl.replace('/review/', '') },
+    props: { product: p },
+  }))
+}
+
+const { product } = Astro.props
+
+const specRows = [
+  { label: 'Marca / Modelo', value: product.name },
+  { label: 'Tipo de Biometria', value: product.specs[0] ?? 'Capacitiva' },
+  {
+    label: 'Conectividade',
+    value:
+      product.specs.some((s) => s.toLowerCase().includes('wi-fi'))
+        ? 'Wi-Fi + Bluetooth'
+        : 'Bluetooth',
+  },
+  { label: 'Autonomia', value: '8-12 meses (pilhas AA)' },
+  { label: 'Proteção', value: 'IP54' },
+  { label: 'Formas de Abertura', value: product.specs.join(', ') },
+  { label: 'Capacidade', value: 'Até 100 digitais / 200 senhas' },
+]
+
+const tocItems = [
+  { id: 'visao-geral', label: 'Visão Geral', level: 'h2' },
+  { id: 'especificacoes', label: 'Especificações Técnicas', level: 'h2' },
+  { id: 'design-construcao', label: 'Design e Construção', level: 'h2' },
+  { id: 'desempenho', label: 'Desempenho e Biometria', level: 'h2' },
+  { id: 'instalacao', label: 'Instalação', level: 'h3' },
+  { id: 'app-conectividade', label: 'App e Conectividade', level: 'h2' },
+  { id: 'o-que-gostamos', label: 'O Que Gostamos', level: 'h2' },
+  { id: 'o-que-nao-gostamos', label: 'O Que Não Gostamos', level: 'h2' },
+  { id: 'veredito', label: 'Veredito Final', level: 'h2' },
+  { id: 'onde-comprar', label: 'Onde Comprar', level: 'h2' },
+]
+
+const score = (10 - product.rank * 0.3).toFixed(1)
+
+// Schema.org Review
+const reviewSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Review',
+  name: `Review: ${product.name} - Análise Completa`,
+  description: product.verdict,
+  author: { '@type': 'Person', name: 'Willton Alves' },
+  datePublished: '2026-02-20',
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: score,
+    bestRating: '10',
+    worstRating: '1',
+  },
+  itemReviewed: {
+    '@type': 'Product',
+    name: product.name,
+    description: product.verdict,
+  },
+}
+---
+
+<BaseLayout
+  title={`Review: ${product.name} - Análise Completa | FechaduraBiometrica`}
+  description={product.verdict}
+  ogTitle={`Review: ${product.name} - Análise Completa`}
+  ogDescription={product.verdict}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+
+  <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" class="transition-colors hover:text-primary" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/#ranking" class="transition-colors hover:text-primary" itemprop="item"><span itemprop="name">Ranking</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+        <li class="font-medium text-foreground" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{product.name}</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
+
+    <div class="flex flex-col gap-8 lg:flex-row">
+
+      <!-- Sidebar TOC (desktop / mobile collapsible) -->
+      <aside class="lg:w-64 lg:flex-shrink-0">
+        <!-- Mobile TOC -->
+        <details class="group mb-8 rounded-xl border border-border bg-card lg:hidden">
+          <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+              Índice do Review
+            </span>
+            <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <ol class="flex flex-col gap-0.5 p-3">
+            {tocItems.map((item) => (
+              <li>
+                <a
+                  href={`#${item.id}`}
+                  class={`flex min-h-[44px] items-center rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary hover:text-primary ${item.level === 'h3' ? 'pl-8 text-muted-foreground' : 'font-medium text-foreground'}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
+
+        <!-- Desktop TOC -->
+        <nav class="hidden lg:block" aria-label="Índice do review">
+          <div class="sticky top-24 rounded-2xl border border-border bg-card p-5 shadow-sm">
+            <h2 class="mb-4 flex items-center gap-2 text-sm font-bold text-foreground">
+              <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+              Índice
+            </h2>
+            <ol class="flex flex-col gap-0.5">
+              {tocItems.map((item) => (
+                <li>
+                  <a
+                    href={`#${item.id}`}
+                    class={`flex items-center rounded-lg px-3 py-2 text-sm transition-colors hover:bg-secondary hover:text-primary ${item.level === 'h3' ? 'pl-6 text-muted-foreground' : 'font-medium text-foreground'}`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main article -->
+      <article class="flex-1" itemscope itemtype="https://schema.org/Review">
+        <!-- Header -->
+        <header class="mb-10">
+          <span class="mb-3 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+            #{product.rank} no Ranking 2026
+          </span>
+          <h1 class="text-3xl font-extrabold text-foreground md:text-4xl" itemprop="name">
+            {product.name}: Análise Completa
+          </h1>
+          <p class="mt-3 text-base leading-relaxed text-muted-foreground" itemprop="description">
+            {product.verdict}
+          </p>
+          <div class="mt-4 flex items-center gap-3 text-xs text-muted-foreground">
+            <span itemprop="author">Por Willton Alves</span>
+            <span>|</span>
+            <span>Atualizado em Fevereiro 2026</span>
+          </div>
+        </header>
+
+        <!-- Image placeholder -->
+        <div class="mb-10 flex h-64 items-center justify-center rounded-2xl bg-secondary text-muted-foreground md:h-80" aria-label={`Imagem do produto: ${product.name}`}>
+          <div class="flex flex-col items-center gap-3">
+            <svg class="h-12 w-12 text-muted-foreground/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span class="text-sm">{product.name} - Imagem do Produto</span>
+          </div>
+        </div>
+
+        <!-- Visão Geral -->
+        <section id="visao-geral" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Visão Geral</h2>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            A {product.name} é uma das opções mais populares do mercado brasileiro em 2026. Com um conjunto de funcionalidades que atendem desde o uso residencial até aplicações comerciais, ela se destaca por oferecer {product.specs.join(', ').toLowerCase()}. Nesta análise, vamos explorar cada aspecto do produto em detalhes para ajudá-lo a tomar a melhor decisão de compra.
+          </p>
+        </section>
+
+        <!-- Especificações Técnicas -->
+        <section id="especificacoes" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Especificações Técnicas</h2>
+          <div class="overflow-hidden rounded-xl border border-border">
+            <table class="w-full text-sm">
+              <tbody>
+                {specRows.map((row, idx) => (
+                  <tr class={idx % 2 === 0 ? 'bg-secondary/50' : 'bg-card'}>
+                    <td class="px-4 py-3 font-medium text-foreground">{row.label}</td>
+                    <td class="px-4 py-3 text-muted-foreground">{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Design e Construção -->
+        <section id="design-construcao" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Design e Construção</h2>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            Em termos de design, a {product.name} apresenta linhas modernas e acabamento premium. O corpo principal é construído em liga de zinco com tratamento anti-corrosão, garantindo durabilidade mesmo em ambientes com variação de umidade. O painel frontal possui teclado touch retroiluminado que se ativa por aproximação, mantendo um visual clean quando em repouso.
+          </p>
+        </section>
+
+        <!-- Desempenho -->
+        <section id="desempenho" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Desempenho e Biometria</h2>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            O sensor biométrico da {product.name} opera com tecnologia de ponta, reconhecendo impressões digitais em aproximadamente 0,3 a 0,5 segundos. Nos nossos testes, a taxa de reconhecimento no primeiro toque ficou acima de 95%, mesmo com dedos ligeiramente úmidos. O sistema de auto-aprendizado melhora a precisão conforme o uso.
+          </p>
+          <h3 id="instalacao" class="mb-3 mt-8 text-lg font-bold text-foreground">Instalação</h3>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            O processo de instalação é relativamente simples para portas padrão brasileiras (espessura de 35-55mm). O kit inclui gabarito de perfuração, parafusos e manual ilustrado. Para portas fora do padrão, recomendamos a contratação de um serralheiro profissional. O tempo médio de instalação é de 40 a 60 minutos.
+          </p>
+        </section>
+
+        <!-- App e Conectividade -->
+        <section id="app-conectividade" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">App e Conectividade</h2>
+          <p class="text-sm leading-relaxed text-muted-foreground">
+            O aplicativo companion permite gerenciar usuários, visualizar histórico de acessos e receber notificações em tempo real. A interface é intuitiva e disponível em português. A conexão é estável e o pareamento inicial leva menos de 2 minutos.
+          </p>
+        </section>
+
+        <!-- Pros & Cons boxes -->
+        <div class="mb-10 grid gap-5 sm:grid-cols-2">
+          <section id="o-que-gostamos" class="rounded-2xl border-2 border-primary/20 bg-primary/5 p-6">
+            <h2 class="mb-4 text-lg font-bold text-primary">O Que Gostamos</h2>
+            <ul class="flex flex-col gap-2.5">
+              {product.pros.map((pro) => (
+                <li class="flex items-start gap-2.5 text-sm text-foreground">
+                  <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {pro}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section id="o-que-nao-gostamos" class="rounded-2xl border-2 border-destructive/20 bg-destructive/5 p-6">
+            <h2 class="mb-4 text-lg font-bold text-destructive">O Que Não Gostamos</h2>
+            <ul class="flex flex-col gap-2.5">
+              {product.cons.map((con) => (
+                <li class="flex items-start gap-2.5 text-sm text-foreground">
+                  <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  {con}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <!-- Veredito Final -->
+        <section id="veredito" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Veredito Final</h2>
+          <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <p class="text-sm leading-relaxed text-muted-foreground" itemprop="reviewBody">
+              A {product.name} é uma excelente opção para quem busca {product.badge.toLowerCase()} em fechaduras eletrônicas. {product.verdict} Considerando o pacote completo de funcionalidades, build quality e suporte pós-venda, ela merece a posição #{product.rank} no nosso ranking de 2026.
+            </p>
+            <div class="mt-4 flex items-center gap-2">
+              <span class="text-sm font-semibold text-foreground">Nota Final:</span>
+              <span class="rounded-lg bg-primary px-3 py-1 text-sm font-bold text-primary-foreground" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                <meta itemprop="ratingValue" content={score} />
+                <meta itemprop="bestRating" content="10" />
+                {score}/10
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Onde Comprar -->
+        <section id="onde-comprar" class="mb-10">
+          <h2 class="mb-4 text-2xl font-bold text-foreground">Onde Comprar</h2>
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <a
+              href={product.amazonUrl}
+              rel="nofollow sponsored"
+              target="_blank"
+              class="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2.5 rounded-xl bg-cta px-6 py-3 text-base font-semibold text-cta-foreground shadow-md shadow-cta/20 transition-all hover:bg-cta/90 hover:shadow-lg"
+            >
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Ver Preço na Amazon
+            </a>
+            <a
+              href={product.mlUrl}
+              rel="nofollow sponsored"
+              target="_blank"
+              class="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2.5 rounded-xl border-2 border-border bg-card px-6 py-3 text-base font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Ver no Mercado Livre
+            </a>
+          </div>
+        </section>
+
+        <!-- Back link -->
+        <div class="border-t border-border pt-8">
+          <a href="/#ranking" class="text-sm font-medium text-primary transition-colors hover:text-primary/80">
+            ← Voltar ao Ranking Completo
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

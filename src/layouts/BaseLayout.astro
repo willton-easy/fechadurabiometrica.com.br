@@ -1,48 +1,268 @@
 ---
-import SEO from '../components/SEO.astro';
-import '../styles/global.css';
+// BaseLayout.astro — Layout principal com Header, Footer e SEO
+import type { CollectionEntry } from 'astro:content'
+import '../styles/global.css'
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  type?: 'website' | 'article';
-  disableIndexing?: boolean;
+  title?: string
+  description?: string
+  canonical?: string
+  ogTitle?: string
+  ogDescription?: string
 }
 
-const { title, description, image, type, disableIndexing = false } = Astro.props;
+const {
+  title = 'Fechadura Biometrica - Guia Definitivo de Fechaduras Eletrônicas',
+  description = 'Análises detalhadas, comparativos e ranking das melhores fechaduras biométricas, digitais e eletrônicas de 2026. Testado por especialistas.',
+  canonical,
+  ogTitle,
+  ogDescription,
+} = Astro.props
+
+const siteUrl = 'https://www.fechadurabiometrica.com.br'
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
 ---
 
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <SEO title={title} description={description} image={image} type={type} />
-    {disableIndexing && <meta name="robots" content="noindex, nofollow" />}
-    <slot name="head" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2563EB" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="fechadura biométrica, fechadura digital, fechadura eletrônica, fechadura wifi, fechadura inteligente, smart lock" />
+    <meta name="author" content="Willton Alves" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Fechadura Biometrica" />
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle ?? title} />
+    <meta name="twitter:description" content={ogDescription ?? description} />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Fechadura Biometrica",
+        "url": "https://www.fechadurabiometrica.com.br",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.fechadurabiometrica.com.br/busca?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
-  <body class="min-h-screen bg-neutral-50 text-neutral-900 font-sans antialiased">
-    <!-- Navbar placeholder -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="/" class="font-bold text-xl text-neutral-800">Fechadura Biométrica</a>
-        <nav>
-          <ul class="flex gap-4 text-sm font-medium">
-            <li><a href="/blog" class="hover:text-blue-600 transition-colors">Blog</a></li>
-            <li><a href="/sobre" class="hover:text-blue-600 transition-colors">Sobre</a></li>
-          </ul>
+  <body>
+    <!-- Header -->
+    <header
+      id="site-header"
+      class="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur-md"
+      style="supports-backdrop-filter: backdrop-filter: blur(12px);"
+    >
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-6">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5" aria-label="Ir para página inicial">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" aria-hidden="true">
+            <path d="M30 3L54.25 17V45L30 59L5.75 45V17L30 3Z" fill="#2563EB" stroke="#2563EB" stroke-width="2"/>
+            <text x="20" y="40" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="24" fill="white">F</text>
+            <text x="32" y="40" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="24" fill="white" opacity="0.85">B</text>
+          </svg>
+          <span class="hidden text-lg font-bold text-foreground sm:inline-block">
+            Fechadura<span class="text-primary">Biometrica</span>
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+          <!-- Categories dropdown (pure CSS) -->
+          <div class="group relative">
+            <button
+              class="flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary"
+              aria-haspopup="true"
+            >
+              Categorias
+              <svg class="h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="invisible absolute left-0 top-full mt-1 w-52 rounded-xl border border-border bg-card p-2 shadow-lg opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+              <a href="/categorias/biometricas" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">
+                <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+                Biométricas
+              </a>
+              <a href="/categorias/digitais" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">
+                <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                Digitais
+              </a>
+              <a href="/categorias/wifi" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">
+                <svg class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+                Wi-Fi
+              </a>
+            </div>
+          </div>
+
+          <a href="/guias" class="flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Guias</a>
+          <a href="/sobre" class="flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Sobre</a>
+          <a href="/ofertas" class="flex min-h-[44px] items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Ofertas</a>
         </nav>
+
+        <!-- Right: search + mobile toggle -->
+        <div class="flex items-center gap-2">
+          <!-- Search button -->
+          <button
+            id="search-btn"
+            class="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            aria-label="Abrir busca"
+          >
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </button>
+
+          <!-- Mobile hamburger -->
+          <button
+            id="mobile-menu-btn"
+            class="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground lg:hidden"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+          >
+            <svg id="icon-menu" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
       </div>
+
+      <!-- Mobile nav -->
+      <nav id="mobile-nav" class="hidden border-t border-border bg-card px-4 pb-6 pt-4 lg:hidden" aria-label="Navegação mobile">
+        <p class="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Categorias</p>
+        <a href="/categorias/biometricas" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Biométricas</a>
+        <a href="/categorias/digitais" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Digitais</a>
+        <a href="/categorias/wifi" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Wi-Fi</a>
+        <div class="my-3 border-t border-border"></div>
+        <a href="/guias" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Guias</a>
+        <a href="/sobre" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Sobre</a>
+        <a href="/ofertas" class="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary hover:text-primary">Ofertas</a>
+      </nav>
     </header>
 
-    <main class="w-full">
+    <main>
       <slot />
     </main>
 
-    <footer class="bg-neutral-900 text-neutral-300 py-12 mt-24">
-      <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-        <p>&copy; {new Date().getFullYear()} Fechadura Biométrica. Todos os direitos reservados.</p>
-        <p class="mt-2 text-neutral-500">Desenvolvido com foco em informações especializadas de segurança residencial.</p>
+    <!-- Footer -->
+    <footer class="border-t border-border bg-foreground text-primary-foreground">
+      <div class="mx-auto max-w-7xl px-4 py-12 lg:px-6">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Brand -->
+          <div class="flex flex-col gap-4">
+            <a href="/" class="flex items-center gap-2.5" aria-label="Ir para página inicial">
+              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" aria-hidden="true">
+                <path d="M30 3L54.25 17V45L30 59L5.75 45V17L30 3Z" fill="#2563EB" stroke="#2563EB" stroke-width="2"/>
+                <text x="20" y="40" font-family="Inter, system-ui" font-weight="700" font-size="24" fill="white">F</text>
+                <text x="32" y="40" font-family="Inter, system-ui" font-weight="700" font-size="24" fill="white" opacity="0.85">B</text>
+              </svg>
+              <span class="text-lg font-bold">Fechadura<span class="text-primary">Biometrica</span></span>
+            </a>
+            <p class="text-sm leading-relaxed text-primary-foreground/70">
+              O guia definitivo sobre fechaduras eletrônicas, digitais e biométricas no Brasil. Análises independentes e imparciais.
+            </p>
+          </div>
+
+          <!-- Navegação -->
+          <div>
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/50">Navegação</h3>
+            <ul class="flex flex-col gap-2.5">
+              <li><a href="/" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Home</a></li>
+              <li><a href="/sobre" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Sobre</a></li>
+              <li><a href="/contato" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Contato</a></li>
+              <li><a href="/categorias/biometricas" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Análises</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/50">Legal</h3>
+            <ul class="flex flex-col gap-2.5">
+              <li><a href="/privacidade" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Privacidade</a></li>
+              <li><a href="/termos" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Termos de Uso</a></li>
+              <li><a href="/sobre#etica" class="text-sm text-primary-foreground/70 transition-colors hover:text-primary">Ética de Reviews</a></li>
+            </ul>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-primary-foreground/50">Grupos de Ofertas</h3>
+            <ul class="flex flex-col gap-2.5">
+              <li>
+                <a href="#" class="flex items-center gap-2 text-sm text-primary-foreground/70 transition-colors hover:text-primary" target="_blank" rel="noopener noreferrer">
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.121 1.527 5.855L.057 23.8a.5.5 0 00.642.642l5.945-1.47A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-2 text-sm text-primary-foreground/70 transition-colors hover:text-primary" target="_blank" rel="noopener noreferrer">
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                  Telegram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-primary-foreground/10">
+        <div class="mx-auto max-w-7xl px-4 py-5 lg:px-6">
+          <p class="text-center text-xs leading-relaxed text-primary-foreground/50">
+            O fechadurabiometrica.com.br faz parte do Programa de Associados da Amazon e do Programa de Afiliados do Mercado Livre. Ao comprar através de nossos links, podemos receber uma comissão sem custo adicional para você.
+          </p>
+          <p class="mt-2 text-center text-xs text-primary-foreground/40">
+            &copy; 2026 FechaduraBiometrica.com.br &middot; Editado por Willton Alves
+          </p>
+        </div>
       </div>
     </footer>
+
+    <!-- Mobile menu script (vanilla JS — zero JS frameworks needed) -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn')
+      const nav = document.getElementById('mobile-nav')
+      const iconMenu = document.getElementById('icon-menu')
+      const iconClose = document.getElementById('icon-close')
+
+      btn?.addEventListener('click', () => {
+        const isOpen = nav?.classList.toggle('hidden') === false
+        btn.setAttribute('aria-expanded', String(isOpen))
+        iconMenu?.classList.toggle('hidden', isOpen)
+        iconClose?.classList.toggle('hidden', !isOpen)
+      })
+    </script>
   </body>
 </html>
