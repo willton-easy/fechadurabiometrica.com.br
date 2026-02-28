@@ -1,0 +1,30 @@
+# ============================================================
+# robots.txt — FechaduraBiometrica.com.br
+# Controla quais bots podem rastrear o site
+# ============================================================
+
+# Permitir todos os rastreadores legítimos
+User-agent: *
+Allow: /
+
+# Bloquear bots de scraping conhecidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://www.fechadurabiometrica.com.br/sitemap-index.xml

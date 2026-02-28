@@ -1,6 +1,5 @@
 ---
 // BaseLayout.astro — Layout principal com Header, Footer e SEO
-import type { CollectionEntry } from 'astro:content'
 import '../styles/global.css'
 
 interface Props {
@@ -32,6 +31,13 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Segurança: impede que o browser envie Referer para sites de terceiros -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!-- Impede que o site seja carregado em iframe (redundante com header X-Frame-Options) -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <!-- Impede detecção de MIME type incorreto -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -52,11 +58,14 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
     <meta name="twitter:title" content={ogTitle ?? title} />
     <meta name="twitter:description" content={ogDescription ?? description} />
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter (display=optional minimiza layout shift e falhas) -->
+    <!-- dns-prefetch antes do preconnect melhora performance em redes lentas -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&display=optional"
       rel="stylesheet"
     />
 
