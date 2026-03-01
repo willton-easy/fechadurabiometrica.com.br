@@ -111,9 +111,9 @@ const badgeClass = {
     </div>
 
     <div class="mt-4">
-      <div class="mb-3 sm:mb-4 text-center">
-        <span class="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-muted-foreground">Ler Preview</span>
-      </div>
+      <a href={product.reviewUrl} class="mb-3 sm:mb-4 flex w-full items-center justify-center rounded-xl border border-primary/20 bg-primary/5 py-3 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-widest text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
+        Ler Preview da Análise
+      </a>
       <div class="grid grid-cols-2 gap-3 sm:gap-4">
         <a
           href={product.mlUrl}
