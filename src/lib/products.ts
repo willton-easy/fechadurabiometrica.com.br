@@ -12,6 +12,7 @@ export interface Product {
   amazonUrl: string;
   mlUrl: string;
   reviewUrl: string;
+  brand?: string;
 }
 
 export const products: Product[] = [
@@ -274,7 +275,7 @@ export const products: Product[] = [
     name: "Pado FDV-200",
     badge: "Melhor Biometria para Vidro",
     badgeColor: "accent",
-    image: "/images/products/pado-fdv200.png",
+    image: "/images/products/pado-fdv200.webp",
     specs: ["Biometria (200 digitais)", "Senha", "Sobrepor", "Voz em PT-BR"],
     verdict:
       "A Pado FDV-200 traz a alta capacidade biométrica da marca para o vidro. É um dos poucos modelos de sobrepor para vidro que suporta até 200 digitais.",
@@ -285,7 +286,7 @@ export const products: Product[] = [
       "Instalação limpa de sobrepor",
     ],
     cons: ["Preço superior aos modelos de senha", "Design mais volumoso"],
-    amazonUrl: "https://www.amazon.com.br/dp/B09G3F1CH9",
+    amazonUrl: "https://amzn.to/4lbhE28",
     mlUrl: "https://www.mercadolivre.com.br/fechadura-digital-biometrica-pado-fdv-200-p-portas-de-vidro/p/MLB21411054",
     reviewUrl: "/review/pado-fdv-200",
     brand: "Pado",
