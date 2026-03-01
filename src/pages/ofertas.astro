@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { products } from '../lib/products';
+
+const title = "Ofertas Fechaduras Digitais: Melhores Descontos Hoje (2026)";
+const description = "Economize até 40% nas fechaduras Intelbras, Samsung e Yale. Monitoramos preços na Amazon e Mercado Livre diariamente.";
+
+// Simular ofertas baseadas em modelos custo-benefício
+const dealProducts = products.filter(p => 
+  p.badgeColor === 'cta' || p.badgeColor === 'accent' || p.rank <= 3
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-foreground py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary-foreground mb-6">
+        🔥 Ofertas do Dia: <span class="text-cta">Até 40% de Desconto</span>
+      </h1>
+      <p class="text-lg text-primary-foreground/70 leading-relaxed">
+        Não precisa garimpar o dia todo. Nossa equipe monitora os maiores e-commerces do Brasil para trazer os descontos Reais em fechaduras biométricas testadas.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {dealProducts.map(product => (
+        <article class="bg-card border border-cta/30 rounded-3xl p-6 shadow-lg shadow-cta/5 flex flex-col items-center">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-cta/10 text-cta rounded-full text-xs font-extrabold mb-4 animate-pulse">
+            OFERTA ATIVA
+          </div>
+          <div class="h-44 w-full bg-white rounded-2xl mb-6 p-4">
+             <img src={product.image} alt={product.name} class="h-full w-full object-contain" />
+          </div>
+          <h3 class="font-bold text-xl text-foreground mb-2 text-center">{product.name}</h3>
+          <p class="text-xs text-muted-foreground mb-6 text-center line-clamp-2">{product.verdict}</p>
+          <div class="mt-auto flex flex-col w-full gap-3">
+            <a href={product.amazonUrl} target="_blank" class="w-full bg-[#FF9900] text-black font-bold py-3 px-4 rounded-xl text-center hover:bg-[#FF8A00] transition-colors">
+              Menor Preço na Amazon
+            </a>
+            <a href={product.mlUrl} target="_blank" class="w-full bg-[#FFE600] text-[#2D3277] font-bold py-3 px-4 rounded-xl text-center border-b-4 border-[#2D3277] hover:bg-[#FFE600]/90">
+              Ver no Mercado Livre
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products } from '../../lib/products';
+
+const title = "Fechadura Digital Intelbras: Todos os Modelos em 2026";
+const description = "Reviews e comparativo detalhado de todas as fechaduras eletrônicas Intelbras: FR 220, FR 201, IFR 7000 e muito mais.";
+
+// Filtrar produtos da marca Intelbras
+const intelbrasProducts = products.filter(p => 
+  p.name.toLowerCase().includes('intelbras') || 
+  p.specs.some(s => s.toLowerCase().includes('intelbras')) ||
+  p.verdict.toLowerCase().includes('intelbras')
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-foreground py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary-foreground mb-6">
+        Fechadura Digital <span class="text-primary">Intelbras</span>
+      </h1>
+      <p class="text-lg text-primary-foreground/70 leading-relaxed">
+        Líder absoluta no Brasil, a Intelbras une garantia nacional com facilidade de instalação. Em 2026, a marca se consolidou com modelos biométricos imbatíveis em custo-benefício.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      {intelbrasProducts.map(product => (
+        <a href={`/#produto-${product.rank}`} class="group border border-border rounded-2xl p-6 bg-card transition-all hover:border-primary/50">
+          <div class="h-40 w-full mb-4 overflow-hidden rounded-xl bg-white p-4">
+             <img src={product.image} alt={product.name} class="h-full w-full object-contain group-hover:scale-105 transition-transform" />
+          </div>
+          <h3 class="font-bold text-lg mb-2">{product.name}</h3>
+          <p class="text-xs text-muted-foreground line-clamp-2">{product.verdict}</p>
+        </a>
+      ))}
+      
+      {intelbrasProducts.length === 0 && (
+        <div class="col-span-full text-center p-12 bg-secondary/10 rounded-3xl">
+          <p class="text-xl font-bold mb-4">Estamos atualizando o catálogo da Intelbras!</p>
+          <a href="/" class="text-primary hover:underline">Ir para Ranking Principal</a>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products } from '../../lib/products';
+
+const title = "Fechadura Eletrônica para Portão de Ferro e Externo (2026)";
+const description = "Tudo sobre fechaduras digitais para portão externo. Resistência à chuva (IP65) e controle por Tag RFID.";
+
+// Filtrar produtos de portão
+const gateProducts = products.filter(p => 
+  p.name.toLowerCase().includes('portão') || 
+  p.specs.some(s => s.toLowerCase().includes('portão')) ||
+  p.verdict.toLowerCase().includes('portão')
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-foreground py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary-foreground mb-6">
+        Fechadura Eletrônica para <span class="text-primary">Portão Externo</span>
+      </h1>
+      <p class="text-lg text-primary-foreground/70 leading-relaxed">
+        Não basta ser eletrônica, ela precisa sobreviver ao sol e à chuva. Em 2026, as fechaduras de portão externo (IP65) levam a comodidade da biometria para a entrada da sua casa ou condomínio.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <div class="grid gap-8">
+      <div class="prose prose-invert max-w-none">
+        <h2 class="text-3xl font-bold text-foreground">Robustez é a palavra de ordem</h2>
+        <p class="text-muted-foreground">
+          Diferente das fechaduras internas, uma <strong>fechadura eletrônica portão externo</strong> enfrenta poeira, sol e umidade. A certificação IP65 é o padrão mínimo para garantir que o sensor biométrico não falhe na primeira chuva.
+        </p>
+      </div>
+      
+      <div class="flex flex-col items-center justify-center border border-border p-12 rounded-3xl bg-secondary/10">
+        <p class="text-xl font-bold mb-4">Em breve: Ranking Completo de Portões 2026</p>
+        <a href="/" class="text-primary hover:underline">Voltar para Home</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
