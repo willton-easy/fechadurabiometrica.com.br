@@ -302,7 +302,7 @@ const badgeClass = {
                    <img 
                     src={product.image} 
                     alt={product.name}
-                    class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    class="h-full w-full object-contain transition-all duration-300 hover-float"
                     loading={product.rank <= 3 ? "eager" : "lazy"}
                   />
                 </div>
@@ -519,3 +519,29 @@ const badgeClass = {
   </section>
 
 </BaseLayout>
+
+<style>
+  @keyframes float-effect {
+    0% {
+      transform: translateY(0) scale(1.05);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+    }
+    50% {
+      transform: translateY(-10px) scale(1.05);
+      filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.15));
+    }
+    100% {
+      transform: translateY(0) scale(1.05);
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+    }
+  }
+
+  .hover-float {
+    transform: scale(1); /* Estado inicial */
+  }
+
+  /* Quando houver hover no 'article' .group, anima a imagem .hover-float */
+  .group:hover .hover-float {
+    animation: float-effect 4s ease-in-out infinite;
+  }
+</style>
