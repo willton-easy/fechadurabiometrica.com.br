@@ -210,10 +210,10 @@ export const products: Product[] = [
     name: "Pado FDE-600",
     badge: "Qualidade Nacional",
     badgeColor: "primary",
-    image: "https://m.media-amazon.com/images/I/5196zKjY8hL._AC_UL320_.jpg",
+    image: "/pado-fde-600-bio.webp",
     specs: ["Biometria", "Senha", "Tag", "Maçaneta Reversível"],
     verdict:
-      "A Pado trouxe sua experiência em fechadeiras mecânicas para o digital. Acabamento impecável e sensação de segurança no toque.",
+      "A Pado trouxe sua experiência em fechaduras mecânicas para o digital. Acabamento impecável e sensação de segurança no toque.",
     pros: [
       "Excelente assistência técnica Pado",
       "Múltiplos modos de abertura",
@@ -221,8 +221,8 @@ export const products: Product[] = [
       "Voz de orientação em PT-BR",
     ],
     cons: ["Mecanismo um pouco pesado", "Interface do app datada"],
-    amazonUrl: "https://www.amazon.com.br/dp/B09TS851V5",
-    mlUrl: "https://meli.la/33zcCzb",
+    amazonUrl: "https://amzn.to/4clSgnQ",
+    mlUrl: "https://meli.la/2HH1UDL",
     reviewUrl: "/review/pado-fde-600",
   },
   {
