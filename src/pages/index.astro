@@ -3,45 +3,42 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import { products } from '../lib/products'
 
 const tocItems = [
-  { label: 'Ranking: Top 15 Fechaduras', href: '#ranking' },
-  { label: 'Melhor Custo-Benefício', href: '#produto-3' },
-  { label: 'Melhor Premium', href: '#produto-1' },
-  { label: 'Melhor com Wi-Fi', href: '#produto-5' },
+  { label: 'O que é Biometria e por que usar?', href: '#o-que-e-biometria' },
+  { label: 'Sensor Óptico vs Semicondutor', href: '#sensores' },
+  { label: 'Ranking: As 10 Melhores de 2026', href: '#ranking' },
+  { label: 'Análise Detalhada (Reviews)', href: '#reviews' },
+  { label: 'Intelbras vs Samsung vs Yale', href: '#marcas' },
+  { label: 'Fechadura para Porta de Vidro', href: '#porta-vidro' },
+  { label: 'Fechadura para Portão Externo', href: '#portao' },
   { label: 'Guia de Compra', href: '#guia' },
-  { label: 'Perguntas Frequentes', href: '#faq' },
-  { label: 'Últimas Dicas de Segurança', href: '#ultimas-dicas' },
+  { label: 'Perguntas Frequentes (FAQ)', href: '#faq' },
 ]
 
 const faqs = [
   {
-    question: 'Fechaduras biométricas são seguras?',
+    question: 'A fechadura digital pode ser hackeada?',
     answer:
-      'Sim. As fechaduras biométricas modernas utilizam sensores capacitivos ou 3D que são extremamente difíceis de burlar. Além disso, elas contam com sistemas anti-arrombamento, alarmes e criptografia de dados. São consideradas mais seguras que fechaduras mecânicas tradicionais.',
+      'Em teoria, qualquer dispositivo eletrônico pode. Na prática, marcas como Yale e Samsung usam criptografia AES de nível militar. É infinitamente mais fácil alguém arrombar uma fechadura mecânica tradicional do que hackear o sistema de uma fechadura de elite em 2026.',
   },
   {
     question: 'E se a bateria acabar e eu estiver do lado de fora?',
     answer:
-      'Pânico desnecessário! A fechadura vai te avisar semanas antes com bipes chatos. Mas se você ignorar tudo e ela morrer, basta encostar uma bateria 9V (ou cabo USB, dependendo do modelo) nos contatos externos e digitar sua senha para entrar. É simples assim.',
+      'Pânico desnecessário! A fechadura vai te avisar semanas antes com bipes. Mas se você ignorar tudo e ela morrer, basta encostar uma bateria 9V (ou cabo USB, dependendo do modelo) nos contatos externos e digitar sua senha para entrar. É simples assim.',
   },
   {
-    question: 'Posso instalar a fechadura biométrica sozinho?',
+    question: 'Crianças e idosos conseguem usar a biometria?',
     answer:
-      'Depende do modelo e da sua porta. Modelos mais simples podem ser instalados com ferramentas básicas seguindo o manual. Porém, recomendamos contratar um profissional, especialmente para portas de vidro, pivotantes ou que precisem de adaptações estruturais.',
+      'Sim, mas idosos com digitais muito desgastadas podem ter dificuldade com sensores ópticos. Nesses casos, recomendamos sensores semicondutores (capacitivos) ou o uso de Tags RFID, que acompanham muitos modelos da Intelbras e Pado.',
   },
   {
-    question: 'Qual a diferença entre fechadura digital e biométrica?',
+    question: 'Qual a diferença entre sensor óptico e semicondutor?',
     answer:
-      'Fechaduras digitais utilizam senhas numéricas e/ou cartões RFID para desbloqueio. Fechaduras biométricas adicionam o reconhecimento por impressão digital ou facial. Toda biométrica é digital, mas nem toda digital é biométrica.',
+      'O óptico tira uma "foto" da digital (como a FR 220), enquanto o semicondutor lê a eletricidade da pele (como na Yale YMF 40A). Semicondutores são mais rápidos, precisos e seguros contra moldes falsos.',
   },
   {
-    question: 'As fechaduras Wi-Fi podem ser hackeadas?',
+    question: 'Dura quanto tempo a bateria?',
     answer:
-      'As melhores marcas utilizam criptografia AES-128 ou AES-256 e protocolos de segurança avançados. O risco de invasão digital é muito baixo em modelos de marcas reconhecidas. Recomendamos sempre manter o firmware atualizado e usar senhas fortes no app.',
-  },
-  {
-    question: 'Quanto tempo dura a bateria de uma fechadura eletrônica?',
-    answer:
-      'Em média, de 6 a 12 meses dependendo do modelo e da frequência de uso. Modelos mais avançados com Wi-Fi podem consumir mais. A maioria usa 4 pilhas AA alcalinas, facilmente substituíveis.',
+      'Depende do uso e se tem Wi-Fi. Em média, 4 pilhas AA duram de 6 a 12 meses. Modelos com Wi-Fi nativo tendem a consumir um pouco mais, por isso alguns usam até 8 pilhas.',
   },
 ]
 
@@ -182,33 +179,73 @@ const badgeClass = {
   </section>
 
   <!-- ============================================================ -->
-  <!-- NARRATIVE SECTION                                            -->
+  <!-- NARRATIVE SECTION — O QUE É BIOMETRIA                      -->
   <!-- ============================================================ -->
-  <section class="mx-auto max-w-4xl px-4 py-12 lg:px-6 prose prose-invert prose-blue">
-    <h2 class="text-3xl font-bold text-foreground">Por que você deveria migrar para a Biometria agora?</h2>
-    <p class="text-muted-foreground leading-relaxed">
+  <section id="o-que-e-biometria" class="mx-auto max-w-4xl px-4 py-12 lg:px-6 prose prose-invert prose-blue">
+    <h2 class="text-3xl font-bold text-foreground">O que é uma Fechadura Biométrica e por que ela é o futuro da Segurança?</h2>
+    <p class="text-muted-foreground leading-relaxed text-lg">
       Não é só "frescura" tecnológica. O ano de 2026 marcou a chegada da biometria 3D e capacitiva para o grande público. Sabe aquela cena de filme onde o cara encosta o dedo e a porta abre em milissegundos? <strong>Isso agora é a realidade na porta da sua casa.</strong>
     </p>
     <p class="text-muted-foreground leading-relaxed">
-      Migrar para uma fechadura biométrica resolve três problemas de uma vez:
+      Uma <strong>fechadura biométrica</strong> é, em essência, uma fechadura digital que utiliza características biológicas únicas — como sua impressão digital ou reconhecimento facial — para liberar o acesso. No entanto, em 2026, ela se tornou muito mais do que um gadget de luxo. 
     </p>
-    <ul class="text-muted-foreground space-y-2">
-      <li><strong>Amnésia de chaves:</strong> Você nunca mais vai ficar trancado para fora porque esqueceu o molho na mesa do escritório.</li>
-      <li><strong>Controle Total:</strong> Se a diarista ou o encanador chegar e você não estiver, você abre a porta pelo celular ou cria uma senha que só funciona por 2 horas.</li>
-      <li><strong>Segurança Real:</strong> É muito mais fácil alguém perder ou clonar uma chave física do que burlar um sensor de impressão digital de última geração.</li>
-    </ul>
+    <p class="text-muted-foreground leading-relaxed">
+       Diferente da <strong>fechadura eletrônica</strong> convencional, que depende apenas de senhas numéricas, a biometria elimina o risco de alguém observar você digitando o código. É o padrão ouro de conveniência: sua chave é o seu dedo, e ela está sempre com você.
+    </p>
+    <div class="my-8 rounded-xl bg-primary/5 p-6 border border-primary/10">
+      <h3 class="text-xl font-semibold text-primary mb-4">Por que migrar agora?</h3>
+      <ul class="text-muted-foreground space-y-3">
+        <li><strong class="text-foreground">Conveniência Extrema:</strong> Imagine chegar com as mãos ocupadas por sacolas e abrir a porta em menos de 0.3 segundos com apenas um toque.</li>
+        <li><strong class="text-foreground">Gestão via Smartphone:</strong> A maioria dos modelos agora se integra nativamente ao Wi-Fi, permitindo gerar senhas temporárias para visitas ou prestadores de serviço à distância.</li>
+        <li><strong class="text-foreground">Segurança Reforçada:</strong> Sensores de alta precisão impedem o uso de moldes de silicone ou fotos, garantindo que apenas dedos "vivos" destravem o sistema.</li>
+        <li><strong class="text-foreground">Integração com Alexa:</strong> "Alexa, a porta da frente está trancada?" virou um comando padrão.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- TECHNICAL SECTION — SENSORES                                -->
+  <!-- ============================================================ -->
+  <section id="sensores" class="mx-auto max-w-4xl px-4 py-12 lg:px-6">
+    <div class="rounded-3xl border border-border bg-card p-8 shadow-sm">
+      <h2 class="text-3xl font-bold text-foreground mb-6">Sensor Óptico vs Semicondutor: Qual o mais seguro?</h2>
+      <p class="text-muted-foreground mb-8">
+        Se você busca a <strong>melhor fechadura digital com biometria</strong>, precisa entender o que está "sob o capô". Existem dois tipos principais de sensores no mercado hoje:
+      </p>
+      
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex flex-col gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-500">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Sensores Ópticos</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Funcionam como uma câmera que tira uma foto da sua digital. São comuns em modelos de entrada (como a Intelbras FR 220). São robustos, mas podem ser "enganados" por moldes de altíssima qualidade.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/10 text-orange-500">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-foreground">Sensores Semicondutores (Capacitivos)</h3>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Medem a corrente elétrica da sua pele. São os mesmos usados nos smartphones de elite. São virtualmente impossíveis de burlar. <strong>Em 2026, este é o padrão recomendado.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============================================================ -->
   <!-- TABLE OF CONTENTS                                            -->
   <!-- ============================================================ -->
-  <nav class="mx-auto max-w-7xl px-4 pb-8 lg:px-6" aria-label="Índice do conteúdo">
+  <nav class="mx-auto max-w-7xl px-4 pb-12 lg:px-6" aria-label="Índice do conteúdo">
     <div class="rounded-2xl border border-border bg-card p-6 shadow-sm">
       <div class="mb-4 flex items-center gap-2.5">
         <svg class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
-        <h2 class="text-base font-bold text-foreground">Neste Guia</h2>
+        <h2 class="text-base font-bold text-foreground">O que você vai ler:</h2>
       </div>
-      <ol class="grid gap-1.5 sm:grid-cols-2">
+      <ol class="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
         {tocItems.map((item, idx) => (
           <li>
             <a
@@ -235,8 +272,8 @@ const badgeClass = {
         <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
       </div>
       <div>
-        <h2 class="text-2xl font-bold text-foreground">Ranking: Top 15 Fechaduras de 2026</h2>
-        <p class="text-sm text-muted-foreground">Atualizado em Fevereiro de 2026</p>
+        <h2 class="text-2xl font-bold text-foreground">O Ranking Definitivo: Melhores de 2026</h2>
+        <p class="text-sm text-muted-foreground">O ranking abaixo reflete o equilíbrio entre durabilidade, segurança e integração (Alexa/Google).</p>
       </div>
     </div>
 
@@ -321,30 +358,31 @@ const badgeClass = {
                 </div>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-wrap gap-3 pt-1">
+                <div class="flex flex-wrap gap-3 pt-2">
                   <a
                     href={product.amazonUrl}
                     rel="nofollow sponsored"
                     target="_blank"
-                    class="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-cta px-5 py-2.5 text-sm font-semibold text-cta-foreground shadow-sm transition-all hover:bg-cta/90 hover:shadow-md"
+                    class="group/btn inline-flex min-h-[46px] items-center gap-2.5 rounded-xl bg-[#FF9900] px-5 py-2.5 text-sm font-bold text-[#111] shadow-sm transition-all hover:bg-[#FF8A00] hover:shadow-md"
                   >
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    Ver Preço na Amazon
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.012 13.52c-.544.408-1.564.51-2.245.51-1.224 0-2.585-.306-2.585-2.04 0-1.734 1.326-2.04 2.585-2.04 1.054 0 2.245.102 2.245.51v3.06zm.645-7.394c-.645-.272-1.7-.374-2.585-.374-2.484 0-4.66.884-6.02 2.38-1.428 1.565-1.939 3.537-1.939 5.85 0 3.74 2.143 5.95 5.374 5.95.885 0 1.939-.102 2.585-.374V17.8c-.645.272-1.224.374-1.939.374-2.143 0-3.367-.816-3.367-3.945 0-3.13 1.224-3.946 3.367-3.946l1.939.102.585-3.264zm3.095 8.94c0 3.74-2.143 4.931-4.728 4.931-1.054 0-2.245-.204-2.925-.51v-1.6c.68.306 1.837.51 2.925.51 1.734 0 3.095-.51 3.095-2.653v-.714c-.68.408-1.633.612-2.72.612-2.109 0-3.98-1.122-3.98-3.47 0-2.346 1.871-3.468 3.98-3.468 1.087 0 2.04.204 2.72.612V8.958h1.633v6.108z"/></svg>
+                    Comprar na Amazon
                   </a>
                   <a
                     href={product.mlUrl}
                     rel="nofollow sponsored"
                     target="_blank"
-                    class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                    class="group/btn inline-flex min-h-[46px] items-center gap-2.5 rounded-xl border-b-4 border-[#2D3277] bg-[#FFE600] px-5 py-2.5 text-sm font-bold text-[#2D3277] shadow-sm transition-all hover:bg-[#F5DC00] active:translate-y-1 active:border-b-0"
                   >
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    Ver no Mercado Livre
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    Mercado Livre
                   </a>
                   <a
                     href={product.reviewUrl}
-                    class="inline-flex min-h-[44px] items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/5"
+                    class="inline-flex min-h-[46px] items-center gap-2 text-sm font-semibold text-primary/80 transition-colors hover:text-primary"
                   >
-                    Ler Review Completo
+                    Ler Review
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                   </a>
                 </div>
               </div>
@@ -390,43 +428,93 @@ const badgeClass = {
   </section>
 
   <!-- ============================================================ -->
-  <!-- LATEST TIPS SECTION                                          -->
+  <!-- MARCAS SECTION                                               -->
   <!-- ============================================================ -->
-  <section id="ultimas-dicas" class="mx-auto max-w-7xl px-4 pb-16 lg:px-6">
-    <div class="mb-8 flex items-center gap-3">
-      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-        <svg class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+  <section id="marcas" class="mx-auto max-w-4xl px-4 py-16 lg:px-6 prose prose-invert">
+    <h2 class="text-3xl font-bold text-foreground">Batalha de Gigantes: Intelbras vs Samsung vs Yale</h2>
+    <p class="text-muted-foreground">Muitos leitores nos perguntam: "Qual marca é melhor?". A resposta depende do seu objetivo.</p>
+    <div class="grid gap-6 md:grid-cols-3 not-prose mt-8">
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="font-bold text-lg mb-2">Intelbras</h3>
+        <p class="text-xs text-primary font-semibold mb-3 uppercase tracking-wider">Líder em Custo-Benefício</p>
+        <p class="text-sm text-muted-foreground leading-relaxed">A marca para quem quer garantia fácil e preço justo. Modelos como a <strong>fechadura digital Intelbras</strong> FR 201 são imbatíveis no Brasil.</p>
       </div>
-      <h2 class="text-2xl font-bold text-foreground">Últimas Dicas de Segurança</h2>
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="font-bold text-lg mb-2">Samsung</h3>
+        <p class="text-xs text-accent font-semibold mb-3 uppercase tracking-wider">Design e Inovação</p>
+        <p class="text-sm text-muted-foreground leading-relaxed">Foca no visual futurista e sistemas "Push-Pull". É a escolha de quem quer uma casa inteligente com status e tecnologia IoT.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-card p-6">
+        <h3 class="font-bold text-lg mb-2">Yale</h3>
+        <p class="text-xs text-orange-400 font-semibold mb-3 uppercase tracking-wider">Segurança Bancária</p>
+        <p class="text-sm text-muted-foreground leading-relaxed">Para quem quer silêncio absoluto e durabilidade extrema. A Yale foca em engenharia de precisão e confiança de longo prazo.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {articles.map((article) => (
-        <a
-          href={article.href}
-          class="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
-        >
-          <h3 class="text-base font-bold text-foreground transition-colors group-hover:text-primary">
-            {article.title}
-          </h3>
-          <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-            {article.excerpt}
-          </p>
-          <div class="mt-4 flex items-center justify-between">
-            <div class="flex items-center gap-3 text-xs text-muted-foreground">
-              <span>{article.date}</span>
-              <span class="flex items-center gap-1">
-                <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                {article.readTime}
-              </span>
-            </div>
-            <span class="flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-              Ler
-              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </span>
-          </div>
-        </a>
-      ))}
+  <!-- ============================================================ -->
+  <!-- PORTA DE VIDRO SECTION                                       -->
+  <!-- ============================================================ -->
+  <section id="porta-vidro" class="mx-auto max-w-4xl px-4 py-8 lg:px-6">
+    <div class="bg-gradient-to-br from-blue-600/10 to-primary/10 rounded-3xl p-8 border border-primary/20">
+      <h2 class="text-3xl font-bold text-foreground mb-4">Fechadura Eletrônica para Porta de Vidro</h2>
+      <p class="text-muted-foreground leading-relaxed mb-6">
+        Esta é a dúvida campeã de buscas. Se você tem um escritório ou varanda, a <strong>fechadura eletrônica para porta de vidro</strong> é vital. Modelos como a <strong>Intelbras FD 2000</strong> não exigem troca do vidro, sendo instalados por pressão ou encaixe em vidros de 8mm a 12mm.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <div class="bg-card/50 px-4 py-2 rounded-full text-xs font-medium border border-border">KD 12% — Oportunidade Única</div>
+        <div class="bg-card/50 px-4 py-2 rounded-full text-xs font-medium border border-border">Instalação sem Furos</div>
+        <div class="bg-card/50 px-4 py-2 rounded-full text-xs font-medium border border-border">Ideal para Vidro Temperado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PORTÃO SECTION                                               -->
+  <!-- ============================================================ -->
+  <section id="portao" class="mx-auto max-w-4xl px-4 py-16 lg:px-6">
+     <h2 class="text-3xl font-bold text-foreground mb-6">Fechadura Eletrônica para Portão: Segurança Externa</h2>
+     <p class="text-muted-foreground leading-relaxed mb-8">
+        Não é só a sala que merece tecnologia. A <strong>fechadura eletrônica portão</strong> é essencial para quem busca conforto ao chegar de carro ou bicicleta. O critério aqui é a certificação IP65 (resistência a sol e chuva).
+     </p>
+     <div class="grid gap-6 sm:grid-cols-2">
+        <div class="p-6 border border-border rounded-2xl bg-secondary/30">
+           <h4 class="font-bold mb-2">Resistência Máxima</h4>
+           <p class="text-sm text-muted-foreground">Modelos externos precisam suportar umidade e poeira sem travar o motor.</p>
+        </div>
+        <div class="p-6 border border-border rounded-2xl bg-secondary/30">
+           <h4 class="font-bold mb-2">Acesso por Tag</h4>
+           <p class="text-sm text-muted-foreground">O uso de Tags (RFID) é muito mais prático para portões externos do que digitar senhas na chuva.</p>
+        </div>
+     </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- GUIA DE COMPRA SECTION                                       -->
+  <!-- ============================================================ -->
+  <section id="guia" class="mx-auto max-w-7xl px-4 py-16 lg:px-6">
+    <h2 class="text-3xl font-bold text-foreground text-center mb-12">Guia de Compra: Critérios para não errar em 2026</h2>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="flex flex-col items-center text-center">
+        <div class="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4 font-bold text-2xl">1</div>
+        <h4 class="font-bold mb-2">Espessura da Porta</h4>
+        <p class="text-xs text-muted-foreground leading-relaxed">A maioria exige entre 35mm e 50mm. Meça antes de passar o cartão!</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <div class="h-16 w-16 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-4 font-bold text-2xl">2</div>
+        <h4 class="font-bold mb-2">Embutir vs Sobrepor</h4>
+        <p class="text-xs text-muted-foreground leading-relaxed">Sobrepor é fácil e vapt-vupt. Embutir é elegante e exige um marceneiro.</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <div class="h-16 w-16 bg-orange-400/10 rounded-full flex items-center justify-center text-orange-400 mb-4 font-bold text-2xl">3</div>
+        <h4 class="font-bold mb-2">Energia Emergência</h4>
+        <p class="text-xs text-muted-foreground leading-relaxed">Certifique-se de que há entrada para bateria 9V ou USB externa.</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <div class="h-16 w-16 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 mb-4 font-bold text-2xl">4</div>
+        <h4 class="font-bold mb-2">Memória do Usuário</h4>
+        <p class="text-xs text-muted-foreground leading-relaxed">Para prédios ou Airbnb, mire em modelos com capacidade para 100+ digitais.</p>
+      </div>
     </div>
   </section>
 
