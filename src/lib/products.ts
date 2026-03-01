@@ -63,7 +63,7 @@ export const products: Product[] = [
     name: "Intelbras IFR 7000",
     badge: "Melhor Integração e Design",
     badgeColor: "primary",
-    image: "https://http2.mlstatic.com/D_NQ_NP_908323-MLU73663953460_122023-O.jpg",
+    image: "https://m.media-amazon.com/images/I/61BypIl8SRL.jpg",
     specs: ["Wi-Fi Nativo", "Push-Pull", "Alexa", "App Izy"],
     verdict:
       "A alternativa perfeita para quem busca acabamento premium e o prático sistema Push-Pull (empurre e entre). Além disso, integra-se de forma impecável à casa inteligente pelo app Izy.",
@@ -74,7 +74,7 @@ export const products: Product[] = [
       "Até 100 impressões digitais",
     ],
     cons: ["Exige o hub ICA 1001 para uso remoto", "Instalação exige especialista"],
-    amazonUrl: "https://www.amazon.com.br/dp/B08V8R3R3P",
+    amazonUrl: "https://www.amazon.com.br/dp/B0BXB7419R",
     mlUrl: "https://lista.mercadolivre.com.br/intelbras-ifr-7000#D[A:intelbras%20ifr%207000]",
     reviewUrl: "/review/intelbras-ifr-7000",
   },
