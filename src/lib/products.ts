@@ -225,5 +225,26 @@ export const products: Product[] = [
     mlUrl: "https://meli.la/33zcCzb",
     reviewUrl: "/review/pado-fde-600",
   },
+  {
+    id: 11,
+    rank: 11,
+    name: "Fechadura Slim Inteligente (Sem Marca)",
+    badge: "Custo Acessível",
+    badgeColor: "primary",
+    image: "https://m.media-amazon.com/images/I/51wij2Il5ZL.jpg",
+    specs: ["Wi-Fi Tuya", "Biometria", "App Smartphone", "Resistente à Água"],
+    verdict:
+      "Uma indicação extra para quem quer entrar no mundo das fechaduras inteligentes sem pagar pela marca. Usa a plataforma Tuya — a mesma base de marcas globais renomadas — e entrega recursos surpreendentes pelo preço.",
+    pros: [
+      "Integração com app Tuya / Smart Life",
+      "Resistência a água e poeira",
+      "Abertura por digital, senha ou app",
+      "Custo-benefício surpreendente",
+    ],
+    cons: ["Suporte técnico limitado (sem marca)", "App pode estar em inglês"],
+    amazonUrl: "https://www.amazon.com.br/dp/B0F1KTWXVW",
+    mlUrl: "https://lista.mercadolivre.com.br/fechadura-inteligente-biometrica-tuya#D[A:fechadura%20inteligente%20tuya]",
+    reviewUrl: "/review/fechadura-slim-generica",
+  },
 ];
 
