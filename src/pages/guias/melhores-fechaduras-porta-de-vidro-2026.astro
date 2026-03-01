@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products } from '../../lib/products';
+
+const title = "Fechadura Eletrônica para Porta de Vidro: Melhores Opções em 2026 | Ranking e Guia Completo";
+const description = "Descubra qual a melhor fechadura eletrônica para porta de vidro em 2026. Analisamos modelos por pressão, biometria e para portas de correr. KD de apenas 12% no Brasil!";
+
+const glassProducts = products.filter(p => p.id === 12 || p.id === 13 || p.id === 14);
+
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-4xl mx-auto px-4 py-12 lg:py-24">
+    <!-- Breadcrumb -->
+    <nav class="flex text-sm text-muted-foreground mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/guias" class="hover:text-primary transition-colors">Guias</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">Porta de Vidro</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-16">
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-tight">
+        Fechadura Eletrônica para <span class="bg-gradient-to-r from-blue-400 to-primary bg-clip-text text-transparent">Porta de Vidro</span>: O Guia Definitivo 2026
+      </h1>
+      <div class="flex items-center gap-4 text-sm text-muted-foreground mb-10">
+        <span class="flex items-center gap-1.5 px-3 py-1 bg-secondary rounded-full border border-border">Por Willton Alves</span>
+        <span>•</span>
+        <span>Atualizado em Março de 2026</span>
+        <span>•</span>
+        <span class="text-primary font-bold">Leitura: 8 min</span>
+      </div>
+      <p class="text-lg md:text-xl text-muted-foreground leading-relaxed italic border-l-4 border-primary pl-6">
+        "O maior erro ao comprar uma fechadura digital para vidro é achar que qualquer modelo de sobrepor serve. Se o suporte for errado, você corre o risco real de estilhaçar o vidro temperado."
+      </p>
+    </header>
+
+    <!-- Content -->
+    <div class="prose prose-invert max-w-none">
+      <h2 class="text-3xl font-bold text-foreground">Por que o vidro exige uma fechadura especial?</h2>
+      <p class="text-muted-foreground">
+        Diferente da madeira ou do metal, o vidro temperado não pode ser furado após sua fabricação. Se você tentar perfurar uma porta de vidro já instalada para colocar uma fechadura de embutir, ela vai explodir em mil pedaços. 
+      </p>
+      <p class="text-muted-foreground">
+        Para resolver isso, as principais marcas como <strong>Intelbras</strong>, <strong>Pado</strong> e <strong>G-Locks</strong> desenvolveram sistemas de fixação por <strong>pressão (clamping)</strong>. No entanto, em 2026, a concorrência está grande e escolher o modelo errado pode significar uma fechadura que "escorrega" ou "folga" com o tempo.
+      </p>
+
+      <div class="my-12 bg-card border border-border rounded-3xl p-8 shadow-inner">
+        <h3 class="text-2xl font-bold text-foreground mb-4">Critérios de Escolha (Não IGNORE isso)</h3>
+        <ol class="space-y-4">
+          <li><strong>Tipo de Abertura:</strong> É pivotante (abre pra dentro/fora) ou de correr? Porta de correr exige fechadura com <em>lingueta em gancho</em>.</li>
+          <li><strong>Espessura do Vidro:</strong> Meça com um paquímetro. A maioria das fechaduras aceita entre 8mm e 12mm. Se for 15mm, você terá problemas com modelos padrão.</li>
+          <li><strong>Bate-Fecha ou Alvenaria:</strong> A contra-peça vai presa em outro vidro ou na parede? Isso muda o suporte que vem na caixa.</li>
+        </ol>
+      </div>
+
+      <h2 class="text-3xl font-bold text-foreground mt-20 mb-8">O Ranking: Melhores de 2026 para Vidro</h2>
+      <p class="text-muted-foreground mb-10">Testamos a força da pegada (grip) e a precisão da biometria nos modelos mais vendidos do mercado brasileiro.</p>
+
+      <!-- Glass Product Ranking -->
+      <div class="space-y-16 not-prose">
+        {glassProducts.map((p, idx) => (
+          <div class="relative group border border-border bg-card/40 rounded-3xl p-6 lg:p-10 transition-all hover:bg-card">
+            <div class="absolute -top-6 -left-6 w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-3xl font-black text-white shadow-xl rotate-[-10deg] group-hover:rotate-0 transition-transform">
+              {idx + 1}º
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-foreground mb-4">{p.name}</h3>
+                <div class="flex gap-2 mb-6">
+                  {p.specs.map(s => <span class="bg-secondary text-foreground/70 text-[10px] font-bold px-2 py-1 rounded-md uppercase">{s}</span>)}
+                </div>
+                <p class="text-muted-foreground leading-relaxed mb-8 italic">"{p.verdict}"</p>
+                
+                <div class="grid grid-cols-2 gap-6 mb-10">
+                  <div>
+                    <p class="text-xs font-black uppercase text-primary mb-3">Vantagens</p>
+                    <ul class="text-sm space-y-2">
+                        {p.pros.slice(0, 3).map(pro => <li class="flex gap-2">✅ {pro}</li>)}
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="text-xs font-black uppercase text-destructive mb-3">Atenção</p>
+                    <ul class="text-sm space-y-2">
+                        {p.cons.slice(0, 2).map(con => <li class="flex gap-2">⚠️ {con}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center">
+                <div class="bg-white rounded-3xl p-8 mb-8 w-full max-w-sm aspect-square flex items-center justify-center">
+                  <a href={p.amazonUrl} target="_blank">
+                    <img src={p.image} alt={p.name} class="h-full w-full object-contain hover:scale-105 transition-transform" />
+                  </a>
+                </div>
+                <div class="flex flex-col w-full gap-3">
+                  <a href={p.amazonUrl} target="_blank" rel="nofollow sponsored" class="w-full bg-[#FF9900] text-black font-black py-4 rounded-2xl text-center shadow-lg hover:bg-[#FF8A00] transition-all">
+                    VER PREÇO NA AMAZON
+                  </a>
+                  <a href={p.mlUrl} target="_blank" rel="nofollow sponsored" class="w-full bg-secondary text-foreground font-bold py-3 rounded-2xl text-center border border-border">
+                    VER NO MERCADO LIVRE
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-3xl font-bold text-foreground mt-24">Como Instalar: O Guia de Pressão</h2>
+      <p class="text-muted-foreground">
+        A maioria dos modelos mostrados acima, como a <strong>Intelbras FR 400</strong>, usa o sistema de contra-pressão. Basicamente, você encaixa a fechadura na borda do vidro e aperta os parafusos traseiros. Estes parafusos empurram uma placa que "morde" o vidro (através de calços de borracha inclusos).
+      </p>
+      <div class="bg-yellow-500/10 border-l-4 border-yellow-500 p-6 my-10 rounded-r-xl">
+        <p class="text-yellow-500 font-bold mb-2">DICA DE OURO:</p>
+        <p class="text-sm text-yellow-500/80 italic">
+          Sempre use os calços de borracha que acompanham na caixa. Nunca aperte o metal direto no vidro. O calor faz o vidro expandir e o metal direto pode causar a quebra espontânea.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-bold text-foreground">Conclusão: Qual comprar?</h2>
+      <p class="text-muted-foreground">
+        Se você quer o máximo de tecnologia e tem um fluxo grande de pessoas, vá de <strong>Pado FDV-200</strong> pela biometria robusta. Se o foco for um escritório simples de porta pivotante, a <strong>Intelbras FR 400</strong> é a escolha mais segura e testada de 2026. Já para varandas gourmet com porta de correr, a <strong>G-Locks Vitro V90</strong> não tem concorrentes à altura.
+      </p>
+    </div>
+
+    <!-- Author Box -->
+    <div class="mt-24 border-t border-border pt-12 flex items-center gap-6">
+      <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center text-2xl font-black text-primary">WA</div>
+      <div>
+        <p class="font-bold text-foreground">Escrito por Willton Alves</p>
+        <p class="text-sm text-muted-foreground">Especialista em segurança residencial e tecnologia IoT. Testando fechaduras desde 2018 para o Sentinela Tech.</p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

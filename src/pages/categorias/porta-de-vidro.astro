@@ -5,55 +5,99 @@ import { products } from '../../lib/products';
 const title = "Melhores Fechaduras Eletrônicas para Porta de Vidro (2026)";
 const description = "Guia completo das melhores fechaduras digitais e biométricas para porta de vidro. Modelos que não exigem furos, ideais para escritórios e varandas.";
 
-// Filtrar produtos que mencionam "vidro" ou são ideais para isso
+// Filtrar produtos que são específicos para vidro (IDs 12, 13, 14 que acabamos de adicionar)
 const glassProducts = products.filter(p => 
-  p.name.toLowerCase().includes('vidro') || 
-  p.specs.some(s => s.toLowerCase().includes('vidro')) ||
-  p.verdict.toLowerCase().includes('vidro')
+  p.id === 12 || p.id === 13 || p.id === 14 ||
+  p.name.toLowerCase().includes('vitro') || 
+  p.specs.some(s => s.toLowerCase().includes('vidro'))
 );
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="bg-foreground py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-primary-foreground mb-6">
-        Fechadura Eletrônica para <span class="text-primary">Porta de Vidro</span>
+  <!-- Hero Section -->
+  <section class="bg-foreground py-16 px-4 relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 opacity-10" aria-hidden="true">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px); background-size: 30px 30px;"></div>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-primary-foreground mb-6 leading-tight">
+        Fechadura Eletrônica para <span class="text-primary italic">Porta de Vidro</span>
       </h1>
-      <p class="text-lg text-primary-foreground/70 leading-relaxed">
-        Encontrar a fechadura certa para vidro costumava ser um pesadelo. Em 2026, os novos modelos por pressão e encaixe permitem que você tenha segurança biométrica sem precisar trocar seu vidro temperado.
+      <p class="text-lg text-primary-foreground/70 leading-relaxed max-w-2xl mx-auto">
+        Não destrua seu vidro temperado. Em 2026, as melhores opções usam tecnologia de pressão e sobreposição para garantir segurança máxima sem furos.
       </p>
     </div>
   </section>
 
-  <section class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="grid gap-12">
-      <div class="prose prose-invert max-w-none px-4">
-        <h2 class="text-3xl font-bold text-foreground">Por que usar uma fechadura específica para vidro?</h2>
-        <p class="text-muted-foreground">
-          Portas de vidro (especialmente as de 8mm a 12mm) não permitem furos tradicionais de fechaduras de embutir. Por isso, as <strong>fechaduras eletrônicas para porta de vidro</strong> usam um sistema de "clamping" (pressão) ou exigem apenas o furo padrão de puxador que muitas portas já possuem.
-        </p>
-        
-        <div class="my-8 bg-primary/5 border border-primary/20 rounded-2xl p-6">
-          <h3 class="text-xl font-bold text-primary mb-4">O que observar antes de comprar:</h3>
-          <ul class="space-y-2 text-muted-foreground">
-            <li><strong>Espessura do Vidro:</strong> A maioria suporta entre 8mm e 12mm.</li>
-            <li><strong>Tipo de Abertura:</strong> Pivotante ou de Correr? (A de correr exige um gancho especial).</li>
-            <li><strong>Lado da Maçaneta:</strong> Verifique se o modelo é ambidestro.</li>
-          </ul>
+  <!-- Info Section -->
+  <section class="py-12 px-4 max-w-7xl mx-auto border-b border-border">
+    <div class="prose prose-invert max-w-none text-center">
+      <p class="text-muted-foreground text-sm uppercase font-bold tracking-widest mb-4">Dificuldade KD: 12% (Oportunidade)</p>
+      <div class="inline-flex gap-8 flex-wrap justify-center">
+        <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-sm font-semibold">Sem Furos no Vidro</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-sm font-semibold">Modelos para Vidro de Correr</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-sm font-semibold">Instalação Amadora DIY</span>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="bg-card border border-border rounded-3xl p-8 text-center">
-        <h3 class="text-2xl font-bold text-foreground mb-4">Estamos preparando o ranking completo de 2026!</h3>
-        <p class="text-muted-foreground mb-6">
-          Nossa equipe está terminando os testes com a nova linha da Intelbras e Samsung específica para vidros. 
-          Enquanto isso, confira os modelos que já passaram nos nossos testes de resistência.
+  <!-- Product Grid -->
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-foreground mb-10 text-center">Top Modelos Recomendados para Vidro</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {glassProducts.map(product => (
+        <article class="bg-card border border-border rounded-3xl p-6 flex flex-col hover:border-primary/30 transition-all shadow-lg hover:shadow-primary/5">
+          <div class={`self-start px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-4 border ${product.badgeColor === 'accent' ? 'bg-accent/10 text-accent border-accent/20' : 'bg-primary/10 text-primary border-primary/20'}`}>
+            {product.badge}
+          </div>
+          <div class="relative h-48 w-full bg-white rounded-2xl p-4 mb-6">
+            <a href={product.amazonUrl} target="_blank">
+                <img src={product.image} alt={product.name} class="h-full w-full object-contain hover:scale-105 transition-transform" />
+            </a>
+          </div>
+          <h3 class="text-xl font-bold text-foreground mb-3">{product.name}</h3>
+          <p class="text-sm text-muted-foreground mb-6 line-clamp-3 italic">"{product.verdict}"</p>
+          
+          <div class="mb-6 space-y-2">
+            {product.specs.slice(0, 3).map(spec => (
+                <div class="text-xs flex items-center gap-2 text-foreground/80">
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary/40"></div>
+                    {spec}
+                </div>
+            ))}
+          </div>
+
+          <div class="mt-auto flex flex-col gap-3">
+            <a href={product.amazonUrl} target="_blank" rel="nofollow sponsored" class="w-full bg-[#FF9900] text-black font-bold py-3 rounded-xl text-center text-sm shadow-sm hover:bg-[#FF8A00]">
+                Ver Preço na Amazon
+            </a>
+            <a href={product.mlUrl} target="_blank" rel="nofollow sponsored" class="w-full bg-secondary text-foreground py-3 rounded-xl text-center text-sm border border-border hover:bg-secondary/70">
+                Mercado Livre
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA to Pillar Guide -->
+    <div class="mt-16 bg-gradient-to-br from-blue-600 to-primary rounded-3xl p-8 md:p-12 text-center text-white shadow-xl">
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4">Ainda em dúvida de como instalar?</h3>
+        <p class="text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Criamos um guia passo a passo ensinando como escolher e instalar sua fechadura no vidro sem correr o risco de quebrar a porta.
         </p>
-        <a href="/" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all">
-          Ver Modelos Testados
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        <a href="/guias/melhores-fechaduras-porta-de-vidro-2026" class="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-2xl font-black text-lg shadow-lg hover:scale-105 transition-all">
+            LER GUIA COMPLETO
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
-      </div>
     </div>
   </section>
 </BaseLayout>
