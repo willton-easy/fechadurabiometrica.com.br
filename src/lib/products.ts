@@ -249,8 +249,8 @@ export const products: Product[] = [
   },
   {
     id: 12,
-    rank: 1,
-    name: "Intelbras FR 400",
+    rank: 11,
+    name: "Intelbras FR 400 (Porta de Vidro)",
     badge: "Melhor Escolha 2026",
     badgeColor: "primary",
     image: "/images/products/intelbras-fr400.png",
@@ -271,8 +271,8 @@ export const products: Product[] = [
   },
   {
     id: 13,
-    rank: 2,
-    name: "Pado FDV-200",
+    rank: 12,
+    name: "Pado FDV-200 (Porta de Vidro)",
     badge: "Melhor Biometria para Vidro",
     badgeColor: "accent",
     image: "/images/products/pado-fdv200.webp",
@@ -293,8 +293,8 @@ export const products: Product[] = [
   },
   {
     id: 15,
-    rank: 3,
-    name: "Primebras Athenas Vidro",
+    rank: 13,
+    name: "Primebras Athenas Vidro (Porta de Vidro)",
     badge: "Melhor Custo-Benefício 2026",
     badgeColor: "cta",
     image: "/images/products/primebras-athenas.png",
