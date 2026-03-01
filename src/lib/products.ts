@@ -231,7 +231,7 @@ export const products: Product[] = [
     name: "Fechadura Slim Inteligente (Sem Marca)",
     badge: "Custo Acessível",
     badgeColor: "primary",
-    image: "https://m.media-amazon.com/images/I/51wij2Il5ZL.jpg",
+    image: "/fechadura-slim-generica.png",
     specs: ["Wi-Fi Tuya", "Biometria", "App Smartphone", "Resistente à Água"],
     verdict:
       "Uma indicação extra para quem quer entrar no mundo das fechaduras inteligentes sem pagar pela marca. Usa a plataforma Tuya — a mesma base de marcas globais renomadas — e entrega recursos surpreendentes pelo preço.",
