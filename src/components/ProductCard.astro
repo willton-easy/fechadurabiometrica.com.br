@@ -1,0 +1,134 @@
+---
+import ReviewSchema from './ReviewSchema.astro';
+
+interface Product {
+  rank: number;
+  name: string;
+  badge: string;
+  badgeColor: "primary" | "accent" | "cta";
+  image: string;
+  specs: string[];
+  verdict: string;
+  pros: string[];
+  cons: string[];
+  amazonUrl: string;
+  mlUrl: string;
+  reviewUrl: string;
+  brand?: string;
+}
+
+interface Props {
+  product: Product;
+  showSchema?: boolean;
+}
+
+const { product, showSchema = true } = Astro.props;
+
+const badgeClass = {
+  primary: "bg-primary/10 text-primary border-primary/20",
+  accent: "bg-accent/10 text-accent border-accent/20",
+  cta: "bg-cta/10 text-cta border-cta/20",
+};
+---
+
+<div class="relative flex flex-col gap-6 rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/30 hover:shadow-md lg:flex-row lg:gap-8 lg:p-8" id={`produto-${product.rank}`} itemscope itemtype="https://schema.org/Product">
+  {showSchema && <ReviewSchema 
+    name={product.name} 
+    description={product.verdict} 
+    image={product.image} 
+    brand={product.brand}
+  />}
+  
+  <div class="flex flex-col items-center gap-4 lg:w-64 lg:flex-shrink-0">
+    <div class="flex items-center gap-3 self-start">
+      <div class={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl text-lg font-extrabold ${product.rank <= 3 ? 'bg-primary text-primary-foreground shadow-md shadow-primary/25' : 'bg-secondary text-muted-foreground'}`}>
+        {product.rank}
+      </div>
+      <span class={`rounded-full border px-3 py-1 text-xs font-semibold ${badgeClass[product.badgeColor]}`}>
+        {product.badge}
+      </span>
+    </div>
+    
+    <a 
+      href={product.amazonUrl} 
+      target="_blank" 
+      rel="nofollow sponsored"
+      class="relative flex h-56 w-full items-center justify-center overflow-hidden rounded-xl bg-white p-4 lg:h-52 lg:w-60 transition-all hover:ring-2 hover:ring-primary/20"
+      aria-label={`Ver ${product.name} na Amazon`}
+    >
+       <img 
+        src={product.image} 
+        alt={product.name}
+        class="h-full w-full object-contain transition-all duration-300 hover:scale-110 cursor-pointer"
+        loading={product.rank <= 3 ? "eager" : "lazy"}
+        itemprop="image"
+      />
+    </a>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-4">
+    <h3 class="text-xl font-bold text-foreground" itemprop="name">
+      <a href={product.reviewUrl} class="transition-colors hover:text-primary">
+        {product.name}
+      </a>
+    </h3>
+
+    <div class="flex flex-wrap gap-2">
+      {product.specs.map((spec) => (
+        <span class="rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground">
+          {spec}
+        </span>
+      ))}
+    </div>
+
+    <p class="text-sm leading-relaxed text-muted-foreground" itemprop="description">
+      {product.verdict}
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">O que gostamos</p>
+        <ul class="flex flex-col gap-1.5 line-clamp-4 overflow-hidden h-28">
+          {product.pros.map((pro) => (
+            <li class="flex items-start gap-2 text-[13px] text-foreground">
+              <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              {pro}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-destructive">Pontos de atenção</p>
+        <ul class="flex flex-col gap-1.5 line-clamp-4 overflow-hidden h-28">
+          {product.cons.map((con) => (
+            <li class="flex items-start gap-2 text-[13px] text-foreground">
+              <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              {con}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-4 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={product.amazonUrl}
+        target="_blank"
+        rel="nofollow sponsored"
+        class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#FF9900] py-3 text-sm font-bold text-black transition-all hover:bg-[#E68A00]"
+      >
+        Ver na Amazon
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+      </a>
+      <a
+        href={product.mlUrl}
+        target="_blank"
+        rel="nofollow sponsored"
+        class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-secondary py-3 text-sm font-bold text-foreground border border-border transition-all hover:bg-secondary/70"
+      >
+        Mercado Livre
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+      </a>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,21 @@
 User-agent: *
 Allow: /
 
-# Bloquear bots de scraping conhecidos
+# IA Crawler Management 2026 (SEO-Technical Skill)
+# Bloquear robôs de treinamento, mas permitir citação em tempo real se necessário
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Bloquear ferramentas de espionagem competitiva
 User-agent: AhrefsBot
 Disallow: /
 
