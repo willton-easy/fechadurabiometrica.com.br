@@ -55,9 +55,14 @@ const description = "Análise profunda da Intelbras FR 400. Vale a pena instalar
       <div class="my-10 rounded-3xl bg-primary p-8 text-center text-primary-foreground">
         <h4 class="text-2xl font-black mb-4">Oferta Verificada Mercado Livre</h4>
         <p class="mb-6 opacity-90">Modelo original com garantia e nota fiscal.</p>
-        <a href={product.mlUrl} target="_blank" class="inline-block bg-white text-primary font-black px-10 py-4 rounded-xl shadow-lg hover:scale-105 transition-transform">
-          VER PREÇO AGORA (R$ 1.349,00*)
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={product.mlUrl} target="_blank" rel="nofollow sponsored" class="inline-block bg-[#FFE600] text-[#2d3277] font-black px-10 py-4 rounded-xl shadow-lg hover:scale-105 transition-transform flex-1">
+            VER NO MERCADO LIVRE (R$ 1.349,00*)
+          </a>
+          <a href={product.amazonUrl} target="_blank" rel="nofollow sponsored" class="inline-block bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-black px-10 py-4 rounded-xl transition-colors flex-1">
+            VER NA AMAZON
+          </a>
+        </div>
         <p class="text-[10px] mt-4 opacity-50">*Preço consultado via SerpApi em Março/2026. Pode variar.</p>
       </div>
 

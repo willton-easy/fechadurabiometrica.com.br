@@ -112,21 +112,21 @@ const badgeClass = {
 
     <div class="mt-4 flex flex-col gap-3 sm:flex-row">
       <a
-        href={product.amazonUrl}
-        target="_blank"
-        rel="nofollow sponsored"
-        class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#FF9900] py-3 text-sm font-bold text-black transition-all hover:bg-[#E68A00]"
-      >
-        Ver na Amazon
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-      </a>
-      <a
         href={product.mlUrl}
         target="_blank"
         rel="nofollow sponsored"
-        class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-secondary py-3 text-sm font-bold text-foreground border border-border transition-all hover:bg-secondary/70"
+        class="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#FFE600] py-3 text-sm font-black text-[#2d3277] shadow-sm transition-transform hover:scale-105"
       >
         Mercado Livre
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+      </a>
+      <a
+        href={product.amazonUrl}
+        target="_blank"
+        rel="nofollow sponsored"
+        class="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-foreground bg-transparent py-3 text-sm font-black text-foreground transition-colors hover:bg-foreground hover:text-background"
+      >
+        Ver na Amazon
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
       </a>
     </div>
