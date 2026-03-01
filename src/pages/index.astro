@@ -298,14 +298,20 @@ const badgeClass = {
                   </span>
                 </div>
                 <!-- Product image -->
-                <div class="relative flex h-56 w-full items-center justify-center overflow-hidden rounded-xl bg-white p-4 lg:h-52 lg:w-60">
+                <a 
+                  href={product.amazonUrl} 
+                  target="_blank" 
+                  rel="nofollow sponsored"
+                  class="relative flex h-56 w-full items-center justify-center overflow-hidden rounded-xl bg-white p-4 lg:h-52 lg:w-60 transition-all hover:ring-2 hover:ring-primary/20"
+                  aria-label={`Ver ${product.name} na Amazon`}
+                >
                    <img 
                     src={product.image} 
                     alt={product.name}
-                    class="h-full w-full object-contain transition-all duration-300 hover-float"
+                    class="h-full w-full object-contain transition-all duration-300 hover-float cursor-pointer"
                     loading={product.rank <= 3 ? "eager" : "lazy"}
                   />
-                </div>
+                </a>
               </div>
 
               <!-- Right: content -->
