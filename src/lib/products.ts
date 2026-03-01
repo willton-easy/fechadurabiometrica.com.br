@@ -147,7 +147,7 @@ export const products: Product[] = [
     name: "Papaiz SL140 Bio",
     badge: "Elegância Máxima",
     badgeColor: "primary",
-    image: "https://m.media-amazon.com/images/I/41G6Cq9f0XL._AC_UL320_.jpg",
+    image: "/papaiz-sl140-bio.jpg",
     specs: ["Design Slim", "Biometria", "Maçaneta Reversível", "Senha"],
     verdict:
       "A Papaiz SL140 é para quem não quer que a fechadura 'grite' na porta. É discreta, fina e muito bem construída.",
@@ -158,7 +158,7 @@ export const products: Product[] = [
       "Alta durabilidade mecânica",
     ],
     cons: ["App básico", "Teclado menor que o padrão"],
-    amazonUrl: "https://www.amazon.com.br/dp/B0BWK7JHLW",
+    amazonUrl: "https://amzn.to/4aFCLG8",
     mlUrl: "https://meli.la/2vP9w7b",
     reviewUrl: "/review/papaiz-sl140",
   },
