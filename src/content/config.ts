@@ -79,8 +79,28 @@ const blogCollection = defineCollection({
   })
 });
 
+// A nossa NOVA coleção "Assadeira Mágica" para os REVIEWS rápidos
+const reviewsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // ID do Produto cadastrado em lib/products.ts
+    idProduto: z.number(),
+    
+    // O título H1 da página e do SEO
+    titulo: z.string(),
+    
+    // O subtítulo que fica embaixo do título principal no Hero
+    heroSubtitle: z.string(),
+
+    // (Opcional) Data de publicação, SEO description
+    date: z.date().optional(),
+    description: z.string().optional(),
+  })
+});
+
 // Exportamos todas as coleções para o Astro reconhecer.
 // Se criar uma nova coleção (ex: 'produtos'), adiciona aqui também!
 export const collections = {
-  blog: blogCollection, // a coleção 'blog' usa as regras definidas acima
+  blog: blogCollection, 
+  reviews: reviewsCollection, // Nossa nova coleção de reviews!
 };

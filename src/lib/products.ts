@@ -22,7 +22,7 @@ export const products: Product[] = [
     name: "Yale YMF 40A RL",
     badge: "Melhor Escolha Premium",
     badgeColor: "accent",
-    image: "https://m.media-amazon.com/images/I/51ligr6wW3L._AC_SX569_.jpg",
+    image: "/combo.webp",
     specs: ["Biometria (20 digitais)", "Senha PIN", "Chave Mecânica", "App Yale Home"],
     verdict:
       "A Yale YMF 40A RL é o tanque de guerra das fechaduras. Extremamente silenciosa (mecanismo rolete) e com uma das biometrias mais precisas que já testamos.",
