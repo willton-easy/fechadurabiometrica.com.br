@@ -528,35 +528,35 @@ const badgeClass = {
   <!-- ============================================================ -->
   <!-- MOBILE BOTTOM DRAWER: LIVE RANKING                           -->
   <!-- ============================================================ -->
-  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/90 backdrop-blur-xl border-t border-border shadow-[0_-10px_40px_rgba(0,0,0,0.15)] rounded-t-3xl transition-transform duration-300 ease-in-out will-change-transform translate-y-[calc(100%-60px)] w-full lg:hidden" style="height: 65vh; visibility: visible;">
+  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform translate-y-[calc(100%-60px)] w-full lg:hidden" style="height: 60vh; visibility: visible;">
     
     <!-- Drag Handle & Closed State Header -->
-    <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-4 cursor-grab active:cursor-grabbing touch-none h-[60px] shrink-0 outline-none select-none">
-      <div class="w-12 h-1.5 bg-muted-foreground/30 rounded-full mb-2 pointer-events-none"></div>
+    <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-5 cursor-grab active:cursor-grabbing touch-none h-[60px] shrink-0 outline-none select-none">
+      <div class="w-10 h-1.5 bg-muted-foreground/20 rounded-full mb-2 pointer-events-none"></div>
       <div class="flex items-center justify-between w-full pointer-events-none">
         <div class="flex items-center gap-2.5">
           <span class="relative flex h-2.5 w-2.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span class="text-[13px] font-bold tracking-wide text-foreground uppercase">Ver Ranking c/ Estoque Real</span>
+          <span class="text-[13px] font-black tracking-widest text-foreground uppercase">TOP ESCOLHAS 2026</span>
         </div>
         <svg class="w-5 h-5 text-muted-foreground transition-transform duration-300" id="ml-drawer-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
       </div>
     </div>
 
     <!-- Scrollable Content -->
-    <div class="flex-1 overflow-y-auto px-4 py-2 overscroll-contain pb-10 border-t border-border/10">
+    <div class="flex-1 overflow-y-auto px-4 py-2 overscroll-contain pb-8 border-t border-border/10">
       <div class="flex flex-col gap-3">
         {products.map((product) => (
           product.mlbId && (
-            <div class="flex items-center gap-3 p-3 rounded-2xl border border-border bg-card/50 hover:bg-card transition-colors shadow-sm" data-ml-live-card={product.mlbId} data-ml-url={product.mlUrl} data-ml-rank={product.rank}>
-              <div class="w-12 h-12 shrink-0 bg-white rounded-xl overflow-hidden flex items-center justify-center p-1 border border-border/50">
+            <div class="flex items-center gap-3 p-3 rounded-2xl border border-border bg-card/60 hover:bg-card transition-colors shadow-sm" data-ml-live-card={product.mlbId} data-ml-url={product.mlUrl} data-ml-rank={product.rank}>
+              <div class="w-12 h-12 shrink-0 bg-white rounded-xl overflow-hidden flex items-center justify-center p-1.5 border border-border/50">
                 <img src={product.image} alt={product.name} class="w-full h-full object-contain" loading="lazy" />
               </div>
-              <div class="flex-1 min-w-0 flex flex-col justify-center gap-0.5">
-                <h4 class="text-xs font-bold text-foreground truncate max-w-[90%]">{product.name}</h4>
-                <div class="flex items-center gap-1.5 mt-0.5" id={`ml-rating-container-${product.mlbId}`}>
+              <div class="flex-1 min-w-0 flex flex-col justify-center gap-1">
+                <h4 class="text-[11px] leading-tight font-extrabold text-foreground truncate max-w-[90%]">{product.name}</h4>
+                <div class="flex items-center gap-1.5" id={`ml-rating-container-${product.mlbId}`}>
                   <div class="flex text-amber-400">
                     {[...Array(5)].map((_, i) => (
                       <svg class="w-3 h-3 fill-current opacity-20" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -564,14 +564,14 @@ const badgeClass = {
                   </div>
                   <span class="text-[9px] font-bold text-muted-foreground animate-pulse" id={`ml-rating-text-${product.mlbId}`}>Buscando...</span>
                 </div>
-                <!-- Badge and Price row -->
-                <div class="flex items-center gap-2 mt-1">
+                <!-- Badge row -->
+                <div class="flex items-center gap-2">
                   <div class="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 text-[8px] font-black uppercase tracking-wider border border-emerald-500/20" id={`ml-stock-badge-${product.mlbId}`} style="display:none;">
                     Stock: <span id={`ml-stock-count-${product.mlbId}`} class="ml-1">...</span>
                   </div>
                 </div>
               </div>
-              <a href={product.mlUrl} target="_blank" rel="nofollow sponsored" class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 hover:bg-primary hover:text-primary-foreground transform active:scale-95 transition-all" aria-label="Comprar Produto">
+              <a href={product.mlUrl} target="_blank" rel="nofollow sponsored" class="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 hover:scale-105 active:scale-95 transition-all shadow-md shadow-primary/20" aria-label="Comprar Produto">
                 <svg class="w-4 h-4 translate-x-[1px]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
               </a>
             </div>
@@ -581,7 +581,7 @@ const badgeClass = {
     </div>
   </div>
   
-  <div id="ml-drawer-overlay" class="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+  <div id="ml-drawer-overlay" class="fixed inset-0 bg-background/70 backdrop-blur-md z-40 transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -638,8 +638,12 @@ const badgeClass = {
         const deltaY = currentY - startY;
         
         if (isExpanded) {
+            // Se estiver descendo (deltaY > 0), deixa arrastar livremente
             if (deltaY > 0) drawer.style.transform = `translateY(${deltaY}px)`;
+            // Efeito resistência se tentar puxar pra cima da tela inteira
+            if (deltaY < 0) drawer.style.transform = `translateY(${deltaY * 0.2}px)`;
         } else {
+            // Puxando pra cima a partir do fechado
             if (deltaY < 0) drawer.style.transform = `translateY(calc(100% - 60px + ${deltaY}px))`;
         }
       }, {passive:true});
@@ -652,13 +656,16 @@ const badgeClass = {
         
         const deltaY = currentY - startY;
         if (isExpanded) {
-           if (deltaY > 50) closeDrawer();
+           // Se puxou pelo menos 40px pra baixo, fecha
+           if (deltaY > 40) closeDrawer();
            else openDrawer();
         } else {
-           if (deltaY < -40) openDrawer();
+           // Se puxou pelo menos 30px pra cima, abre
+           if (deltaY < -30) openDrawer();
            else closeDrawer();
         }
       });
+
 
       // --- ML LIVE RANKING DATA FETCH ---
       const liveCards = drawer.querySelectorAll('[data-ml-live-card]');
