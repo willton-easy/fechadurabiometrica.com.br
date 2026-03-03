@@ -528,20 +528,20 @@ const badgeClass = {
   <!-- ============================================================ -->
   <!-- MOBILE BOTTOM DRAWER: LIVE RANKING                           -->
   <!-- ============================================================ -->
-  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform w-full lg:hidden" style="height: 60vh; transform: translateY(calc(100% - 60px));">
+  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-[100] flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform w-full lg:hidden" style="height: 65vh; transform: translateY(calc(100% - 70px)); touch-action: pan-y; -webkit-tap-highlight-color: transparent;">
     
     <!-- Drag Handle & Closed State Header -->
-    <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-5 cursor-pointer h-[60px] shrink-0 outline-none select-none">
-      <div class="w-10 h-1.5 bg-muted-foreground/20 rounded-full mb-2 pointer-events-none"></div>
-      <div class="flex items-center justify-between w-full pointer-events-none">
+    <div id="ml-drawer-header" class="w-full flex flex-col items-center py-4 px-5 cursor-pointer h-[70px] shrink-0" style="-webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;">
+      <div class="w-12 h-1.5 bg-muted-foreground/30 rounded-full mb-3 pointer-events-none"></div>
+      <div class="flex items-center justify-between w-full pointer-events-none select-none">
         <div class="flex items-center gap-2.5">
-          <span class="relative flex h-2.5 w-2.5">
+          <span class="relative flex h-3 w-3 pointer-events-none">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
           </span>
-          <span class="text-[13px] font-black tracking-widest text-foreground uppercase">TOP ESCOLHAS 2026</span>
+          <span class="text-[14px] font-black tracking-widest text-foreground uppercase select-none" style="pointer-events: none; user-select: none; -webkit-user-select: none;">TOP ESCOLHAS 2026</span>
         </div>
-        <svg class="w-5 h-5 text-muted-foreground transition-transform duration-300" id="ml-drawer-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+        <svg class="w-6 h-6 text-muted-foreground transition-transform duration-300 select-none" id="ml-drawer-icon" style="pointer-events: none;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
       </div>
     </div>
 
@@ -609,7 +609,7 @@ const badgeClass = {
       function closeDrawer() {
         if (!isExpanded) return;
         isExpanded = false;
-        drawer.style.transform = 'translateY(calc(100% - 60px))';
+        drawer.style.transform = 'translateY(calc(100% - 70px))';
         icon.style.transform = 'rotate(0deg)';
         overlay.classList.add('opacity-0');
         document.body.style.overflow = '';
@@ -621,42 +621,44 @@ const badgeClass = {
         if (!isExpanded) openDrawer();
       });
 
-      // Tocar no header (topo) fecha a gaveta se ela estiver aberta
+      // Tocar no header alterna
       header.addEventListener('click', (e) => {
+        e.stopPropagation(); // Impede o `drawer click` geral de agir
         if (isExpanded) {
-           e.stopPropagation();
            closeDrawer();
+        } else {
+           openDrawer();
         }
       });
 
       // Clicar fora fecha a gaveta
       overlay.addEventListener('click', closeDrawer);
 
-      // Lógica de Gesto (Arrastar/Swipe)
-      drawer.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
+      // GESTOS NO HEADER - Apenas Header controla abertura total ou fechamento firme por swipe.
+      let headerStartY = 0;
+      header.addEventListener('touchstart', (e) => {
+          headerStartY = e.touches[0].clientY;
       }, {passive: true});
-
-      drawer.addEventListener('touchend', (e) => {
-        const currentY = e.changedTouches[0].clientY;
-        const deltaY = currentY - startY;
-
-        if (!isExpanded) {
-           // Se a gaveta estava FECHADA e arrastamos para CIMA
-           if (deltaY < -threshold) {
-               openDrawer();
-           }
-        } else {
-           // Se a gaveta estava ABERTA e arrastamos para BAIXO
-           if (deltaY > threshold) {
-               // Apenas fechar se a lista estiver no topo
-               const scrollContainer = drawer.querySelector('.overflow-y-auto');
-               if (!scrollContainer || scrollContainer.scrollTop <= 0) {
-                  closeDrawer();
-               }
-           }
-        }
+      header.addEventListener('touchend', (e) => {
+          let delta = e.changedTouches[0].clientY - headerStartY;
+          if (isExpanded && delta > 30) closeDrawer();
+          if (!isExpanded && delta < -30) openDrawer();
       });
+
+      // GESTOS NA LISTA - Permite fechar a gaveta se arrastar muito pra baixo e já estiver no topo do scroll.
+      const scrollArea = drawer.querySelector('.overflow-y-auto') as HTMLElement | null;
+      if (scrollArea) {
+          let listStartY = 0;
+          scrollArea.addEventListener('touchstart', (e) => {
+              listStartY = e.touches[0].clientY;
+          }, {passive: true});
+          scrollArea.addEventListener('touchend', (e) => {
+              let delta = e.changedTouches[0].clientY - listStartY;
+              if (isExpanded && delta > 50 && scrollArea.scrollTop <= 0) {
+                  closeDrawer();
+              }
+          });
+      }
 
       // --- ML LIVE RANKING DATA FETCH ---
       const liveCards = drawer.querySelectorAll('[data-ml-live-card]');
