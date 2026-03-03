@@ -528,10 +528,10 @@ const badgeClass = {
   <!-- ============================================================ -->
   <!-- MOBILE BOTTOM DRAWER: LIVE RANKING                           -->
   <!-- ============================================================ -->
-  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform translate-y-[calc(100%-60px)] w-full lg:hidden" style="height: 60vh; visibility: visible;">
+  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform w-full lg:hidden translate-y-[calc(100%-60px)]" style="height: 60vh;">
     
     <!-- Drag Handle & Closed State Header -->
-    <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-5 cursor-grab active:cursor-grabbing touch-none h-[60px] shrink-0 outline-none select-none">
+    <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-5 cursor-pointer h-[60px] shrink-0 outline-none select-none">
       <div class="w-10 h-1.5 bg-muted-foreground/20 rounded-full mb-2 pointer-events-none"></div>
       <div class="flex items-center justify-between w-full pointer-events-none">
         <div class="flex items-center gap-2.5">
@@ -591,105 +591,74 @@ const badgeClass = {
       const overlay = document.getElementById('ml-drawer-overlay');
       const icon = document.getElementById('ml-drawer-icon');
       
-      if (!drawer || !header || !overlay) return;
+      if (!drawer || !header || !overlay || !icon) return;
 
       let isExpanded = false;
       let startY = 0;
-      let currentY = 0;
-      let isDragging = false;
-      
-      const COLLAPSED_Y = 'calc(100% - 60px)';
-      const EXPANDED_Y = '0px';
+      let threshold = 40; // Pixels to drag to trigger state change
 
       function openDrawer() {
+        if (isExpanded) return;
         isExpanded = true;
-        drawer.style.transform = `translateY(${EXPANDED_Y})`;
+        drawer.classList.remove('translate-y-[calc(100%-60px)]');
+        drawer.classList.add('translate-y-0');
         icon.style.transform = 'rotate(180deg)';
-        overlay.classList.remove('pointer-events-none');
-        overlay.classList.remove('opacity-0');
+        overlay.classList.remove('pointer-events-none', 'opacity-0');
+        document.body.style.overflow = 'hidden'; 
       }
 
       function closeDrawer() {
+        if (!isExpanded) return;
         isExpanded = false;
-        drawer.style.transform = `translateY(${COLLAPSED_Y})`;
+        drawer.classList.add('translate-y-[calc(100%-60px)]');
+        drawer.classList.remove('translate-y-0');
         icon.style.transform = 'rotate(0deg)';
         overlay.classList.add('opacity-0');
+        document.body.style.overflow = '';
         setTimeout(() => { if (!isExpanded) overlay.classList.add('pointer-events-none'); }, 300);
       }
 
-      let touchTargetMatchesHeader = false;
-
-      // Click: qualquer toque na gaveta fechada irá abri-la
-      drawer.addEventListener('click', (e) => {
-        if (!isExpanded) {
-           openDrawer();
-        }
+      // Tocar em qualquer lugar da gaveta para abrir (quando fechada)
+      drawer.addEventListener('click', () => {
+        if (!isExpanded) openDrawer();
       });
 
-      // Tap no header para fechar se estiver aberto
+      // Tocar no header (topo) fecha a gaveta se ela estiver aberta
       header.addEventListener('click', (e) => {
         if (isExpanded) {
-           e.stopPropagation(); // Evita que o evento caia no listener da gaveta inteira
+           e.stopPropagation();
            closeDrawer();
         }
       });
 
-      // Tap overlay to close
+      // Clicar fora fecha a gaveta
       overlay.addEventListener('click', closeDrawer);
 
-      // Drag/Swipe
+      // Lógica de Gesto (Arrastar/Swipe)
       drawer.addEventListener('touchstart', (e) => {
-        const target = e.target;
-        // Verifica se o toque foi no header ou dentro dele
-        touchTargetMatchesHeader = header.contains(target) || target === header;
-        
-        // Habilita "arrastar" de qualquer lugar se a bandeja estiver fechada,
-        // mas só permite arrastar do header se a bandeja estiver aberta.
-        if (!isExpanded || touchTargetMatchesHeader) {
-          startY = e.touches[0].clientY;
-          isDragging = true;
-          drawer.style.transition = 'none'; // Snaps to finger
-        }
+        startY = e.touches[0].clientY;
       }, {passive: true});
 
-      drawer.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        currentY = e.touches[0].clientY;
+      drawer.addEventListener('touchend', (e) => {
+        const currentY = e.changedTouches[0].clientY;
         const deltaY = currentY - startY;
-        
-        if (isExpanded) {
-            // Se estiver expandido e tocando fora do header na lista, ignora o drag geral e deixa scrollar
-            if (!touchTargetMatchesHeader) return;
-            
-            // Se estiver descendo (deltaY > 0), deixa arrastar livremente
-            if (deltaY > 0) drawer.style.transform = `translateY(${deltaY}px)`;
-            // Efeito resistência se tentar puxar pra cima da tela inteira
-            if (deltaY < 0) drawer.style.transform = `translateY(${deltaY * 0.2}px)`;
-        } else {
-            // Puxando pra cima a partir do fechado
-            if (deltaY < 0) drawer.style.transform = `translateY(calc(100% - 60px + ${deltaY}px))`;
-        }
-      }, {passive:true});
 
-      drawer.addEventListener('touchend', () => {
-        if (!isDragging) return;
-        isDragging = false;
-        // Restore smooth transition
-        drawer.style.transition = 'transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)';
-        
-        const deltaY = currentY - startY;
-        if (isExpanded) {
-           if (!touchTargetMatchesHeader) return;
-           // Se puxou pelo menos 40px pra baixo, fecha
-           if (deltaY > 40) closeDrawer();
-           else openDrawer();
+        if (!isExpanded) {
+           // Se a gaveta estava FECHADA e arrastamos para CIMA
+           if (deltaY < -threshold) {
+               openDrawer();
+           }
         } else {
-           // Se puxou pelo menos 30px pra cima, abre
-           if (deltaY < -30) openDrawer();
-           else closeDrawer();
+           // Se a gaveta estava ABERTA e arrastamos para BAIXO
+           if (deltaY > threshold) {
+               // Apenas fechar se a lista estiver no topo
+               const scrollContainer = drawer.querySelector('.overflow-y-auto');
+               if (!scrollContainer || scrollContainer.scrollTop <= 0) {
+                  closeDrawer();
+               }
+           }
         }
       });
-
 
       // --- ML LIVE RANKING DATA FETCH ---
       const liveCards = drawer.querySelectorAll('[data-ml-live-card]');
@@ -736,7 +705,7 @@ const badgeClass = {
         }
       });
 
-      function hideCardUi(id) {
+      function hideCardUi(id: string) {
          const rc = document.getElementById(`ml-rating-container-${id}`);
          const sb = document.getElementById(`ml-stock-badge-${id}`);
          if(rc) rc.style.display = 'none';
