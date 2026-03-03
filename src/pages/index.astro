@@ -528,7 +528,7 @@ const badgeClass = {
   <!-- ============================================================ -->
   <!-- MOBILE BOTTOM DRAWER: LIVE RANKING                           -->
   <!-- ============================================================ -->
-  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform w-full lg:hidden translate-y-[calc(100%-60px)]" style="height: 60vh;">
+  <div id="ml-bottom-drawer" class="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-background/95 backdrop-blur-2xl border-t border-border shadow-[0_-15px_40px_rgba(0,0,0,0.15)] rounded-t-[32px] transition-transform duration-300 ease-out will-change-transform w-full lg:hidden" style="height: 60vh; transform: translateY(calc(100% - 60px));">
     
     <!-- Drag Handle & Closed State Header -->
     <div id="ml-drawer-header" class="w-full flex flex-col items-center pt-3 pb-3 px-5 cursor-pointer h-[60px] shrink-0 outline-none select-none">
@@ -600,8 +600,7 @@ const badgeClass = {
       function openDrawer() {
         if (isExpanded) return;
         isExpanded = true;
-        drawer.classList.remove('translate-y-[calc(100%-60px)]');
-        drawer.classList.add('translate-y-0');
+        drawer.style.transform = 'translateY(0)';
         icon.style.transform = 'rotate(180deg)';
         overlay.classList.remove('pointer-events-none', 'opacity-0');
         document.body.style.overflow = 'hidden'; 
@@ -610,8 +609,7 @@ const badgeClass = {
       function closeDrawer() {
         if (!isExpanded) return;
         isExpanded = false;
-        drawer.classList.add('translate-y-[calc(100%-60px)]');
-        drawer.classList.remove('translate-y-0');
+        drawer.style.transform = 'translateY(calc(100% - 60px))';
         icon.style.transform = 'rotate(0deg)';
         overlay.classList.add('opacity-0');
         document.body.style.overflow = '';
