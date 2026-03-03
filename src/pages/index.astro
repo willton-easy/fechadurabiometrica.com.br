@@ -617,27 +617,50 @@ const badgeClass = {
         setTimeout(() => { if (!isExpanded) overlay.classList.add('pointer-events-none'); }, 300);
       }
 
-      // Tap to toggle
-      header.addEventListener('click', () => {
-        isExpanded ? closeDrawer() : openDrawer();
+      let touchTargetMatchesHeader = false;
+
+      // Click: qualquer toque na gaveta fechada irá abri-la
+      drawer.addEventListener('click', (e) => {
+        if (!isExpanded) {
+           openDrawer();
+        }
+      });
+
+      // Tap no header para fechar se estiver aberto
+      header.addEventListener('click', (e) => {
+        if (isExpanded) {
+           e.stopPropagation(); // Evita que o evento caia no listener da gaveta inteira
+           closeDrawer();
+        }
       });
 
       // Tap overlay to close
       overlay.addEventListener('click', closeDrawer);
 
       // Drag/Swipe
-      header.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
-        isDragging = true;
-        drawer.style.transition = 'none'; // Snaps to finger
+      drawer.addEventListener('touchstart', (e) => {
+        const target = e.target;
+        // Verifica se o toque foi no header ou dentro dele
+        touchTargetMatchesHeader = header.contains(target) || target === header;
+        
+        // Habilita "arrastar" de qualquer lugar se a bandeja estiver fechada,
+        // mas só permite arrastar do header se a bandeja estiver aberta.
+        if (!isExpanded || touchTargetMatchesHeader) {
+          startY = e.touches[0].clientY;
+          isDragging = true;
+          drawer.style.transition = 'none'; // Snaps to finger
+        }
       }, {passive: true});
 
-      header.addEventListener('touchmove', (e) => {
+      drawer.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         currentY = e.touches[0].clientY;
         const deltaY = currentY - startY;
         
         if (isExpanded) {
+            // Se estiver expandido e tocando fora do header na lista, ignora o drag geral e deixa scrollar
+            if (!touchTargetMatchesHeader) return;
+            
             // Se estiver descendo (deltaY > 0), deixa arrastar livremente
             if (deltaY > 0) drawer.style.transform = `translateY(${deltaY}px)`;
             // Efeito resistência se tentar puxar pra cima da tela inteira
@@ -648,7 +671,7 @@ const badgeClass = {
         }
       }, {passive:true});
 
-      header.addEventListener('touchend', () => {
+      drawer.addEventListener('touchend', () => {
         if (!isDragging) return;
         isDragging = false;
         // Restore smooth transition
@@ -656,6 +679,7 @@ const badgeClass = {
         
         const deltaY = currentY - startY;
         if (isExpanded) {
+           if (!touchTargetMatchesHeader) return;
            // Se puxou pelo menos 40px pra baixo, fecha
            if (deltaY > 40) closeDrawer();
            else openDrawer();
