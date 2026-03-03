@@ -11,6 +11,7 @@ export interface Product {
   cons: string[];
   amazonUrl: string;
   mlUrl: string;
+  mlbId?: string;
   reviewUrl: string;
   brand?: string;
 }
@@ -23,6 +24,7 @@ export const products: Product[] = [
     badge: "Melhor Escolha Premium",
     badgeColor: "accent",
     image: "/combo.webp",
+    mlbId: "MLB2144222365",
     specs: ["Biometria (20 digitais)", "Senha PIN", "Chave Mecânica", "App Yale Home"],
     verdict:
       "A Yale YMF 40A RL é o tanque de guerra das fechaduras. Extremamente silenciosa (mecanismo rolete) e com uma das biometrias mais precisas que já testamos.",
@@ -44,6 +46,7 @@ export const products: Product[] = [
     badge: "Melhor Custo-Benefício",
     badgeColor: "cta",
     image: "https://m.media-amazon.com/images/I/51SD1pB3X-L._AC_SX569_.jpg",
+    mlbId: "MLB3929469993",
     specs: ["Biometria (100 digitais)", "Senha", "Cartão", "Sobrepor"],
     verdict:
       "O 'queridinho' do Brasil. Se você quer largar as chaves hoje sem gastar muito e sem complicação na instalação, a FR 220 é a escolha óbvia.",
@@ -65,6 +68,7 @@ export const products: Product[] = [
     badge: "Melhor Integração e Design",
     badgeColor: "primary",
     image: "https://m.media-amazon.com/images/I/61BypIl8SRL.jpg",
+    mlbId: "MLB6002488304",
     specs: ["Wi-Fi Nativo", "Push-Pull", "Alexa", "App Izy"],
     verdict:
       "A alternativa perfeita para quem busca acabamento premium e o prático sistema Push-Pull (empurre e entre). Além disso, integra-se de forma impecável à casa inteligente pelo app Izy.",
@@ -86,6 +90,7 @@ export const products: Product[] = [
     badge: "A mais Versátil",
     badgeColor: "primary",
     image: "https://m.media-amazon.com/images/I/41-pe-SSrjL._AC_UL320_.jpg",
+    mlbId: "MLB4120503485",
     specs: ["Biometria", "Senha", "Tag RFID", "App Elsys"],
     verdict:
       "Uma das mais fáceis de configurar via app. Funciona muito bem para quem quer gerenciar acessos de visitas e prestadores de serviço.",
@@ -107,6 +112,7 @@ export const products: Product[] = [
     badge: "Melhor Design sobrepor",
     badgeColor: "primary",
     image: "https://m.media-amazon.com/images/I/41HcCEN+upL._AC_UL320_.jpg",
+    mlbId: "MLB3951692459",
     specs: ["Biometria", "Senha", "Sensor Térmico", "Sobrepor"],
     verdict:
       "Une a facilidade da FR 220 com um visual muito mais moderno. Ideal para quem quer um toque de sofisticação sem precisar esculpir a porta.",
@@ -128,6 +134,7 @@ export const products: Product[] = [
     badge: "Melhor Gestão App",
     badgeColor: "primary",
     image: "https://m.media-amazon.com/images/I/41iKLJ5BFpL._AC_SX569_.jpg",
+    mlbId: "MLB4277506471",
     specs: ["App dedicado", "Biometria", "Histórico", "Tag"],
     verdict:
       "A Primebras focou em quem vive no celular. O histórico de quem entrou e saiu é um dos mais detalhados da categoria.",
@@ -149,6 +156,7 @@ export const products: Product[] = [
     badge: "Elegância e Praticidade",
     badgeColor: "primary",
     image: "/papaiz-sl140-sobrepor.webp",
+    mlbId: "MLB6031487772",
     specs: ["Instalação Sobreposta", "Biometria", "Maçaneta Reversível", "Senha"],
     verdict:
       "A Papaiz SL140 de sobrepor é ideal para quem busca uma instalação rápida e sem grandes furos na porta. Combina o design slim da marca com a versatilidade do modelo de sobrepor.",
@@ -170,6 +178,7 @@ export const products: Product[] = [
     badge: "Melhor de Entrada",
     badgeColor: "primary",
     image: "https://m.media-amazon.com/images/I/51R13R8zlmL._AC_UL320_.jpg",
+    mlbId: "MLB3593070370",
     specs: ["Senha Digital", "Compacta", "Alarme", "Sobrepor"],
     verdict:
       "O modelo mais em conta que você pode confiar. Não tem biometria (apenas senha), mas a segurança Intelbras está toda aqui.",
@@ -191,6 +200,7 @@ export const products: Product[] = [
     badge: "Robustez e Estilo",
     badgeColor: "primary",
     image: "/novadigital-sl06.webp",
+    mlbId: "MLB5538370972",
     specs: ["Biometria", "Wi-Fi Tuya", "Maçaneta em Aço", "App Smart Life"],
     verdict:
       "Design sofisticado com maçaneta em aço inox e biometria de alta velocidade. Integração com Tuya/Smart Life para controle remoto. Uma surpresa muito positiva no segmento intermediário.",
@@ -212,6 +222,7 @@ export const products: Product[] = [
     badge: "Qualidade Nacional",
     badgeColor: "primary",
     image: "/pado-fde-600-bio.webp",
+    mlbId: "MLB4245375489",
     specs: ["Biometria", "Senha", "Tag", "Maçaneta Reversível"],
     verdict:
       "A Pado trouxe sua experiência em fechaduras mecânicas para o digital. Acabamento impecável e sensação de segurança no toque.",
@@ -233,6 +244,7 @@ export const products: Product[] = [
     badge: "Custo Acessível",
     badgeColor: "primary",
     image: "/fechadura-slim-generica.png",
+    mlbId: "MLB4481116445",
     specs: ["Wi-Fi Tuya", "Biometria", "App Smartphone", "Resistente à Água"],
     verdict:
       "Uma indicação extra para quem quer entrar no mundo das fechaduras inteligentes sem pagar pela marca. Usa a plataforma Tuya — a mesma base de marcas globais renomadas — e entrega recursos surpreendentes pelo preço.",
@@ -254,6 +266,7 @@ export const products: Product[] = [
     badge: "Melhor Escolha 2026",
     badgeColor: "primary",
     image: "/images/products/intelbras-fr400.png",
+    mlbId: "MLB5561538316",
     specs: ["Senha", "Tag RFID", "Instalação por Pressão", "Para Vidro Pivotante"],
     verdict:
       "A FR 400 é a solução definitiva para portas de vidro sem furos. Seu sistema de fixação por pressão é robusto e não exige alteração no vidro temperado.",
@@ -276,6 +289,7 @@ export const products: Product[] = [
     badge: "Melhor Biometria para Vidro",
     badgeColor: "accent",
     image: "/images/products/pado-fdv200.webp",
+    mlbId: "MLB4265377661",
     specs: ["Biometria (200 digitais)", "Senha", "Sobrepor", "Voz em PT-BR"],
     verdict:
       "A Pado FDV-200 traz a alta capacidade biométrica da marca para o vidro. É um dos poucos modelos de sobrepor para vidro que suporta até 200 digitais.",
@@ -298,6 +312,7 @@ export const products: Product[] = [
     badge: "Melhor Custo-Benefício 2026",
     badgeColor: "cta",
     image: "/images/products/primebras-athenas.png",
+    mlbId: "MLB4226245002",
     specs: ["Biometria", "Wi-Fi (via Gateway)", "Bluetooth", "Senha"],
     verdict:
       "A Athenas Smart da Primebras se destaca pelo conjunto completo. É uma das poucas que oferece biometria e gestão via App com um preço extremamente agressivo para portas de vidro.",
