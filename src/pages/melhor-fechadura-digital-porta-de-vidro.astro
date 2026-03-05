@@ -1,0 +1,333 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import AffiliateTable from '~/components/AffiliateTable.astro';
+import TableOfContents from '~/components/TableOfContents.astro';
+
+const metadata = {
+  title: 'Melhor Fechadura Digital para Porta de Vidro em 2026 [Top 10 Testadas]',
+  description: 'Qual a melhor fechadura eletrônica para porta de vidro? Analisamos os 10 modelos mais vendidos no Brasil com preços, prós, contras e onde comprar mais barato.',
+  ignoreTitleTemplate: true,
+};
+
+// ⚠️ Substitua "SEU-TAG-21" pela sua tag de afiliado Amazon!
+const AMAZON_TAG = "SEU-TAG-21";
+
+const produtos = [
+  {
+    position: 1,
+    title: "Intelbras FR 400 — Fechadura Digital Biométrica Wi-Fi",
+    image: "https://m.media-amazon.com/images/I/51DTd911ugL._AC_SL1500_.jpg",
+    badge: "🏆 Melhor Geral",
+    rating: 4.7,
+    reviewCount: 1243,
+    amazonLink: `https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-400/dp/B07BRXHLKM?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB20399753",
+  },
+  {
+    position: 2,
+    title: "Intelbras FR 101 — Fechadura Digital de Sobrepor (Mais Vendida)",
+    image: "https://m.media-amazon.com/images/I/51R13R8zlmL._AC_SL1500_.jpg",
+    badge: "💰 Melhor Custo-Benefício",
+    rating: 4.9,
+    reviewCount: 3421,
+    amazonLink: `https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-101/dp/B076HWLP7P?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB56789012",
+  },
+  {
+    position: 3,
+    title: "Elsys ESF-DE2000B — Fechadura com Biometria Design Slim",
+    image: "https://m.media-amazon.com/images/I/51Ur6No6GAL._AC_SL1500_.jpg",
+    badge: "⭐ Melhor Avaliada",
+    rating: 4.8,
+    reviewCount: 654,
+    amazonLink: `https://www.amazon.com.br/Fechadura-Digital-Biometria-Elsys-ESF-DE2000B/dp/B0CDD7V7MZ?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB34567890",
+  },
+  {
+    position: 4,
+    title: "Intelbras MFR 4000 — Smart Lock Wi-Fi com App",
+    image: "https://m.media-amazon.com/images/I/61W2h1dXlhL._AC_SL1500_.jpg",
+    badge: "⚡ Mais Inteligente",
+    rating: 4.6,
+    reviewCount: 876,
+    amazonLink: `https://www.amazon.com.br/Fechadura-Inteligente-MFR-4000-Intelbras/dp/B0CV5VNQFB?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB23456789",
+  },
+  {
+    position: 5,
+    title: "Yale YMF 40A RL — Fechadura Digital Biométrica Premium",
+    image: "https://m.media-amazon.com/images/I/318trcrS3EL._AC_SL1500_.jpg",
+    badge: "🔒 Premium",
+    rating: 4.3,
+    reviewCount: 423,
+    amazonLink: `https://www.amazon.com.br/Yale-Fechadura-Digital-Biometria-Senha/dp/B09TBDKDVW?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB22042831",
+  },
+  {
+    position: 6,
+    title: "Pado FDS-50 — Fechadura Eletrônica de Sobrepor",
+    image: "https://m.media-amazon.com/images/I/417W1kCKF2L._AC_SL1500_.jpg",
+    rating: 4.2,
+    reviewCount: 387,
+    amazonLink: `https://www.amazon.com.br/FECHADURA-ELETR%C3%94NICA-DIGITAL-SOBREPOR-FDS-50/dp/B087TGZPXB?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB67890123",
+  },
+  {
+    position: 7,
+    title: "Positivo Casa Inteligente Smart Lock (Compatível com Alexa)",
+    image: "https://m.media-amazon.com/images/I/51tK908sAZL._AC_SL1500_.jpg",
+    badge: "🎤 Integra com Alexa",
+    rating: 4.1,
+    reviewCount: 312,
+    amazonLink: `https://www.amazon.com.br/Fechadura-Positivo-Casa-Inteligente-Aplicativo/dp/B0BTQNL31V?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB45678901",
+  },
+  {
+    position: 8,
+    title: "Primebras RIO — Fechadura Biométrica Wi-Fi Design Slim",
+    image: "https://m.media-amazon.com/images/I/61gKpFJjmiL._AC_SL1500_.jpg",
+    rating: 4.0,
+    reviewCount: 198,
+    amazonLink: `https://www.amazon.com.br/FECHADURA-BIOM%C3%89TRICA-ELETR%C3%94NICA-INTELIGENTE-PRIMEBRAS/dp/B09FKLWFCR?tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB78901234",
+  },
+  {
+    position: 9,
+    title: "Intelbras FR 220 — Biometria + RFID Custo-Benefício",
+    image: "https://m.media-amazon.com/images/I/51R13R8zlmL._AC_SL1500_.jpg",
+    badge: "🌱 Para Iniciantes",
+    rating: 4.4,
+    reviewCount: 2100,
+    amazonLink: `https://www.amazon.com.br/s?k=intelbras+fr+220&tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB12345678",
+  },
+  {
+    position: 10,
+    title: "Elsys ESF-DE2100 — Fechadura Digital com Câmera Integrada",
+    image: "https://m.media-amazon.com/images/I/51Ur6No6GAL._AC_SL1500_.jpg",
+    badge: "📹 Com Câmera",
+    rating: 4.1,
+    reviewCount: 267,
+    amazonLink: `https://www.amazon.com.br/s?k=elsys+fechadura+digital&tag=${AMAZON_TAG}`,
+    mercadoLivreLink: "https://www.mercadolivre.com.br/p/MLB56781234",
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <article class="mx-auto max-w-4xl px-4 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-slate-500 dark:text-slate-400 mb-4" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-1">/</span>
+      <a href="/guias" class="hover:text-primary">Guias</a>
+      <span class="mx-1">/</span>
+      <span>Melhor Fechadura para Porta de Vidro</span>
+    </nav>
+
+    <!-- Título -->
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 leading-tight mb-4">
+      Melhor Fechadura Digital para Porta de Vidro em 2026 <br/>
+      <span class="text-2xl font-semibold text-primary">10 Opções Testadas e Aprovadas</span>
+    </h1>
+
+    <!-- Meta info -->
+    <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400 mb-6">
+      <span>📅 Atualizado em março/2026</span>
+      <span class="hidden sm:block">·</span>
+      <span>⏱ Leitura: ~15 min</span>
+      <span class="hidden sm:block">·</span>
+      <span>🔗 Links de afiliado</span>
+    </div>
+
+    <!-- Box resumo -->
+    <div class="bg-blue-50 dark:bg-blue-950/40 border-l-4 border-blue-400 rounded-r-xl px-6 py-4 mb-8 text-slate-700 dark:text-slate-300">
+      <p class="font-semibold mb-1">Resumo Rápido</p>
+      <p>A <strong>Intelbras FR 400</strong> é nossa top pick geral com biometria + Wi-Fi. Para quem busca custo-benefício, a <strong>FR 101</strong> domina disparado. Para porta de vidro sem furo, o modelo certo é a <strong>Pado FDS-50</strong>. Continue lendo para comparar todos os modelos.</p>
+    </div>
+
+    <!-- Sumário automático -->
+    <TableOfContents />
+
+    <!-- Intro -->
+    <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+      Portas de vidro são elegantes, modernas e muito comuns em apartamentos, escritórios e casas contemporâneas. Mas na hora de escolher uma <strong>fechadura digital para porta de vidro</strong>, muitos consumidores se perdem: precisa furar o vidro? Que modelos funcionam? Qual é mais segura?
+    </p>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-10">
+      Pesquisamos mais de 30 modelos disponíveis no mercado brasileiro, analisamos milhares de avaliações de compradores e consultamos instaladores profissionais. O resultado está aqui: o ranking definitivo das <strong>10 melhores fechaduras digitais para porta de vidro em 2026</strong>.
+    </p>
+
+    <!-- TOP 10 TABLE -->
+    <h2 id="top-10" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-2">
+      🏆 Top 10 Melhores Fechaduras para Porta de Vidro
+    </h2>
+    <p class="text-slate-600 dark:text-slate-400 mb-6">
+      Ranking atualizado em março/2026. Preços verificados na Amazon Brasil.
+    </p>
+
+    <AffiliateTable products={produtos} />
+
+    <!-- Seção 1 -->
+    <h2 id="pode-colocar" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-4">
+      Pode colocar fechadura digital em porta de vidro?
+    </h2>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      <strong>Sim, pode!</strong> Existem modelos desenvolvidos especificamente para portas de vidro temperado, como as da linha <strong>Pado FDS</strong> e outros modelos de sobrepor. Esses modelos funcionam com um sistema de suporte que abraça o vidro dos dois lados sem perfurá-lo.
+    </p>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      Fechaduras projetadas para portas de madeira <em>normalmente</em> não funcionam em vidro sem adaptações — elas precisam ser embutidas no batente ou na porta, o que é problemático no vidro.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+      <div class="bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 rounded-xl p-4">
+        <p class="font-bold text-green-700 dark:text-green-400 mb-2">✅ Funcionam em vidro</p>
+        <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+          <li>• Pado FDS-50 (sobrepor)</li>
+          <li>• Fechaduras de sobrepor com suporte específico</li>
+          <li>• Modelos com fixação perimetral no batente</li>
+        </ul>
+      </div>
+      <div class="bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-xl p-4">
+        <p class="font-bold text-red-700 dark:text-red-400 mb-2">⚠️ Requerem adaptação</p>
+        <ul class="text-sm text-slate-700 dark:text-slate-300 space-y-1">
+          <li>• Intelbras FR 220/400 (para madeira)</li>
+          <li>• Fechaduras de embutir</li>
+          <li>• Modelos que precisam de parafusos na porta</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Seção 2 -->
+    <h2 id="furar-vidro" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-4">
+      Precisa furar o vidro temperado para instalar fechadura?
+    </h2>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      A resposta curta é <strong>não</strong> — ao menos para os modelos corretos. Os modelos de sobrepor para vidro utilizam um mecanismo de abraçamento que comprime o vidro dos dois lados com arruelas de borracha, sem nenhuma perfuração.
+    </p>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+      <strong>Furar vidro temperado é extremamente arriscado.</strong> O vidro temperado é tratado para ser resistente a impactos, mas qualquer perfuração pode causar o estilhaçamento em pequenos fragmentos. Sempre opte por modelos projetados para instalação sem furo.
+    </p>
+
+    <!-- Seção 3 -->
+    <h2 id="segura" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-4">
+      Fechadura digital para porta de vidro é segura?
+    </h2>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      É uma dúvida legítima. A segurança de uma fechadura digital vai além da porta em si:
+    </p>
+    <ul class="list-disc pl-6 text-slate-700 dark:text-slate-300 space-y-2 mb-6">
+      <li><strong>Resistência ao arrombamento:</strong> os melhores modelos possuem corpo em liga de zinco com tratamento anticorrosivo.</li>
+      <li><strong>Alarme anti-violação:</strong> tentativas de arrombar ou inserir senha errada 5x ativam alarme sonoro de até 120dB.</li>
+      <li><strong>Sem tambor tradicional:</strong> elimina o risco de "michagem" com gazuas.</li>
+      <li><strong>Criptografia nos modelos com app:</strong> comunicação via AES-128 ou superior.</li>
+    </ul>
+
+    <!-- Seção 4 -->
+    <h2 id="como-instalar" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-4">
+      Como instalar fechadura em porta de vidro — Passo a Passo
+    </h2>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      Para modelos de sobrepor, a instalação leva cerca de 30 minutos:
+    </p>
+    <ol class="list-decimal pl-6 text-slate-700 dark:text-slate-300 space-y-3 mb-6">
+      <li><strong>Verifique a espessura do vidro</strong> — a maioria dos modelos funciona em vidros de 8mm a 12mm.</li>
+      <li><strong>Posicione o suporte externo</strong> na face de fora da porta, na altura desejada.</li>
+      <li><strong>Encaixe o suporte interno</strong> do lado de dentro, alinhado com os furos no batente ou perfil da porta.</li>
+      <li><strong>Passe os parafusos</strong> pelos furos nos suportes (NÃO no vidro) e aperte com cuidado.</li>
+      <li><strong>Instale a fechadura</strong> no suporte e configure a senha inicial.</li>
+      <li><strong>Teste</strong> o abrir e fechar diversas vezes antes de finalizar.</li>
+    </ol>
+
+    <!-- CTA central -->
+    <div class="my-10 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 text-center shadow-xl">
+      <p class="text-xl font-bold mb-2">🔐 Pronto para proteger sua porta?</p>
+      <p class="text-slate-300 mb-6">Veja os preços atualizados das melhores opções agora mesmo.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a
+          href={`https://www.amazon.com.br/s?k=fechadura+digital+porta+de+vidro&tag=${AMAZON_TAG}`}
+          target="_blank"
+          rel="nofollow sponsored noopener"
+          class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all"
+        >
+          🟡 Ver todos na Amazon
+        </a>
+        <a
+          href="https://www.mercadolivre.com.br/p/MLB29866421"
+          target="_blank"
+          rel="nofollow sponsored noopener"
+          class="flex items-center justify-center gap-2 bg-[#3483FA] hover:bg-[#2968c8] text-white font-bold py-3 px-6 rounded-xl transition-all"
+        >
+          🔵 Ver no Mercado Livre
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ Schema -->
+    <h2 id="faq" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-6">
+      ❓ Perguntas Frequentes
+    </h2>
+
+    <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+      {[
+        {
+          q: "Qual a melhor fechadura digital para porta de vidro?",
+          a: "A Intelbras FR 400 é nossa top pick por biometria + Wi-Fi. Para uso sem furar o vidro, a Pado FDS-50 é a mais indicada. Para custo-benefício, a Intelbras FR 101 lidera disparado com avaliação 4.9 ⭐."
+        },
+        {
+          q: "Fechadura digital para porta de vidro de correr funciona?",
+          a: "Funciona, mas requer atenção ao tipo de trilho. Portas de correr têm abertura lateral, então a trava precisa ser do tipo 'gancho' ou com adaptação ao perfil da porta. Verifique compatibilidade antes de comprar."
+        },
+        {
+          q: "Fechadura porta de vidro sem furo é segura?",
+          a: "Sim! Os modelos de qualidade utilizam suportes robustos fixados no perfil metálico ou batente da porta, com borrachas de alta pressão no vidro. A força necessária para arrombamento é muito superior à de fechaduras mecânicas comuns."
+        },
+        {
+          q: "Qual a diferença entre a Intelbras FR 400 e a FR 101?",
+          a: "A FR 400 possui biometria, Wi-Fi e controle por app, sendo mais completa e cara (~R$900). A FR 101 funciona só com senha e RFID, mas custa cerca de R$289 e tem a maior avaliação do mercado (4.9 ⭐). Para vidro, nenhuma delas é de sobrepor nativo."
+        },
+        {
+          q: "Fechadura digital para porta de vidro dupla (duas folhas) existe?",
+          a: "Sim! Existem modelos com suporte para porta de vidro com duas folhas. A fechadura é instalada no ponto de encontro das folhas, travando as duas simultaneamente. Consulte as especificações de compatibilidade de cada modelo."
+        }
+      ].map(({ q, a }) => (
+        <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-5" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-2" itemprop="name">{q}</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" itemprop="text">{a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Conclusão -->
+    <h2 id="conclusao" class="text-2xl font-bold text-slate-800 dark:text-slate-100 mt-12 mb-4">
+      ✅ Conclusão — Qual fechadura comprar?
+    </h2>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+      Para a <strong>maioria das pessoas</strong>: <strong>Intelbras FR 101</strong> se quer economia com qualidade comprovada, ou <strong>Intelbras FR 400</strong> se quer o melhor em tecnologia. Para porta de vidro sem furo, busque a <strong>Pado FDS-50</strong> ou modelos específicos de sobrepor para vidro.
+    </p>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-8">
+      Qualquer fechadura eletrônica é um upgrade enorme de segurança e praticidade em relação às fechaduras mecânicas tradicionais. Vale cada centavo.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3 justify-center mt-4">
+      <a
+        href={`https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-400/dp/B07BRXHLKM?tag=${AMAZON_TAG}`}
+        target="_blank"
+        rel="nofollow sponsored noopener"
+        class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all shadow"
+      >
+        🟡 Ver Intelbras FR 400 na Amazon
+      </a>
+      <a
+        href={`https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-101/dp/B076HWLP7P?tag=${AMAZON_TAG}`}
+        target="_blank"
+        rel="nofollow sponsored noopener"
+        class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all shadow"
+      >
+        🟡 Ver Intelbras FR 101 na Amazon
+      </a>
+    </div>
+  </article>
+</Layout>

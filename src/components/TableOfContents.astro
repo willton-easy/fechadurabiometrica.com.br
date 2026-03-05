@@ -1,0 +1,101 @@
+---
+export interface Props {
+  content?: string;
+  title?: string;
+  maxDepth?: number;
+}
+
+const { title = 'Neste Artigo', maxDepth = 3 } = Astro.props;
+---
+
+<div
+  id="toc"
+  class="toc-box my-8 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 p-5 shadow-sm"
+  x-data="{ open: true }"
+>
+  <button
+    @click="open = !open"
+    class="flex w-full items-center justify-between font-bold text-slate-800 dark:text-slate-100 text-base mb-0"
+    aria-expanded="true"
+    aria-controls="toc-list"
+  >
+    <span class="flex items-center gap-2">
+      <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"></path>
+      </svg>
+      {title}
+    </span>
+    <svg
+      class="w-4 h-4 transition-transform duration-200"
+      :class="open ? 'rotate-180' : ''"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <nav id="toc-list" x-show="open" x-transition class="mt-3">
+    <ul id="toc-auto" class="toc-list text-sm text-slate-600 dark:text-slate-300 space-y-1 list-none pl-0">
+      <!-- Preenchido dinamicamente pelo script abaixo -->
+    </ul>
+  </nav>
+</div>
+
+<script>
+  function buildTOC() {
+    const article = document.querySelector('article, .prose, main');
+    if (!article) return;
+
+    const headings = article.querySelectorAll('h2, h3, h4');
+    const list = document.getElementById('toc-auto');
+    if (!list || headings.length === 0) {
+      const box = document.getElementById('toc');
+      if (box) box.style.display = 'none';
+      return;
+    }
+
+    let html = '';
+    headings.forEach((heading, i) => {
+      const level = parseInt(heading.tagName.charAt(1));
+      if (level > 3) return;
+
+      // Gera ID âncora se não existir
+      if (!heading.id) {
+        heading.id =
+          'toc-' +
+          heading.textContent
+            ?.trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .slice(0, 60) +
+          '-' +
+          i;
+      }
+
+      const indent = level === 2 ? 'pl-0' : level === 3 ? 'pl-4' : 'pl-8';
+      html += `<li class="${indent}">
+        <a href="#${heading.id}" class="hover:text-primary transition-colors block py-0.5 leading-snug">
+          ${heading.textContent?.trim()}
+        </a>
+      </li>`;
+    });
+
+    list.innerHTML = html;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildTOC);
+  } else {
+    buildTOC();
+  }
+</script>
+
+<style>
+  .toc-list a.active {
+    color: var(--aw-color-primary, #4f46e5);
+    font-weight: 600;
+  }
+</style>

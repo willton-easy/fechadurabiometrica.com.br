@@ -1,0 +1,99 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Contato — Fechadura Biométrica',
+  description:
+    'Entre em contato com a equipe do Fechadura Biométrica. Sugestões, dúvidas ou parcerias — adoramos ouvir você.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">Fale com a gente</h1>
+    <p class="text-slate-600 dark:text-slate-400 mb-10 text-lg">
+      Tem alguma dúvida sobre fechaduras, quer sugerir um produto para review, encontrou um erro no conteúdo ou tem
+      interesse em parceria? Manda mensagem — responderemos em até 2 dias úteis.
+    </p>
+
+    <form
+      name="contato"
+      method="POST"
+      action="/contato/obrigado"
+      class="space-y-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg p-8"
+    >
+      <div>
+        <label for="nome" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+          Seu nome <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          required
+          placeholder="Ex: João Silva"
+          class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-3 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+          Seu e-mail <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="seuemail@exemplo.com"
+          class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-3 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition"
+        />
+      </div>
+
+      <div>
+        <label for="assunto" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+          Assunto
+        </label>
+        <select
+          id="assunto"
+          name="assunto"
+          class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-3 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-primary transition"
+        >
+          <option value="">Selecione um assunto</option>
+          <option value="duvida">Dúvida sobre fechaduras</option>
+          <option value="sugestao-review">Sugestão de produto para review</option>
+          <option value="erro-conteudo">Encontrei um erro no conteúdo</option>
+          <option value="parceria">Parceria ou publicidade</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="mensagem" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1">
+          Mensagem <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          id="mensagem"
+          name="mensagem"
+          required
+          rows="5"
+          placeholder="Escreva sua mensagem aqui..."
+          class="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-3 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary transition resize-none"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition-all shadow hover:shadow-lg text-base"
+      >
+        Enviar Mensagem →
+      </button>
+
+      <p class="text-xs text-slate-400 text-center">
+        Seus dados são protegidos. Veja nossa <a href="/privacy" class="underline hover:text-primary"
+          >Política de Privacidade</a
+        >.
+      </p>
+    </form>
+  </section>
+</Layout>
