@@ -1,0 +1,66 @@
+---
+export interface Props {
+  title: string;
+  image: string;
+  rating?: string;
+  amazonLink: string;
+  mercadoLivreLink?: string;
+  highlight?: string;
+  specs?: Record<string, string>;
+}
+
+const { title, image, rating, amazonLink, mercadoLivreLink, highlight, specs } = Astro.props;
+---
+
+<div class="product-card border rounded-lg shadow-lg p-6 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 my-8">
+  {highlight && (
+    <div class="absolute -mt-10 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+      {highlight}
+    </div>
+  )}
+  
+  <div class="flex flex-col md:flex-row gap-6">
+    <div class="md:w-1/3 flex-shrink-0 flex items-center justify-center">
+      <img src={image} alt={title} class="max-w-full h-auto object-contain max-h-64 rounded-md" loading="lazy" />
+    </div>
+    
+    <div class="md:w-2/3 flex flex-col justify-between">
+      <div>
+        <h3 class="text-2xl font-bold mb-2 text-slate-800 dark:text-slate-100">{title}</h3>
+        {rating && <div class="text-yellow-500 font-medium mb-4">Avaliação: ⭐ {rating}/5</div>}
+        
+        {specs && (
+          <ul class="text-sm text-slate-600 dark:text-slate-400 mb-6 space-y-1">
+            {Object.entries(specs).map(([key, value]) => (
+              <li><strong>{key}:</strong> {value}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      
+      <div class="flex flex-col gap-3 mt-4">
+        {amazonLink && (
+          <a 
+            href={amazonLink} 
+            target="_blank" 
+            rel="nofollow sponsored" 
+            class="w-full text-center bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2"
+          >
+            <span class="text-xl">🟡</span> Ver preço na Amazon
+          </a>
+        )}
+        
+        {mercadoLivreLink && (
+          <a 
+            href={mercadoLivreLink} 
+            target="_blank" 
+            rel="nofollow sponsored" 
+            class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition-colors flex items-center justify-center gap-2"
+          >
+            <span class="text-xl">🔵</span> Ver no Mercado Livre
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</div>

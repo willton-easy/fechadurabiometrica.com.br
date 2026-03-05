@@ -1,0 +1,44 @@
+fragment ReviewsParts on Reviews {
+  __typename
+  title
+  description
+  date
+  type
+  featured
+  tags
+  seoTitle
+  seoDescription
+  pros
+  cons
+  affiliateLink
+  priceText
+  highlight
+  body
+}
+
+fragment ComparativosParts on Comparativos {
+  __typename
+  title
+  description
+  date
+  type
+  featured
+  tags
+  seoTitle
+  seoDescription
+  affiliateLink
+  body
+}
+
+fragment GuiasParts on Guias {
+  __typename
+  title
+  description
+  date
+  type
+  featured
+  tags
+  seoTitle
+  seoDescription
+  body
+}
