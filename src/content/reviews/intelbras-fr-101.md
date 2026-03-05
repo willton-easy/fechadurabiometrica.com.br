@@ -44,6 +44,17 @@ Modelos como este são projetados primordialmente para portas internas ou áreas
 
 ---
 
+
+
+## Galeria do Produto
+
+<div class="grid grid-cols-2 gap-4 my-8">
+  <img src="https://m.media-amazon.com/images/I/71Yv8aJ8E2L._AC_SL1500_.jpg" alt="Detalhe do Produto 1" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+  <img src="https://m.media-amazon.com/images/I/71h3n-cT1DL._AC_SL1500_.jpg" alt="Detalhe do Produto 2" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+  <img src="https://m.media-amazon.com/images/I/61H-4hPjB9L._AC_SL1500_.jpg" alt="Detalhe do Produto 3" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+  <img src="https://m.media-amazon.com/images/I/71P1tU3zK+L._AC_SL1500_.jpg" alt="Detalhe do Produto 4" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+</div>
+
 ## Veredito Final: Para Quem Recomendamos a Intelbras FR 101?
 
 Ao cruzar os dados de construção, design, precisões biométricas e a força do seu travamento, fica evidente que ela não é uma peça de plástico temporária.

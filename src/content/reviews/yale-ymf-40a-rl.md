@@ -41,6 +41,16 @@ Uma das maiores dúvidas de quem compra a **Yale YMF 40A RL** online é a sua ad
 
 ---
 
+
+
+## Galeria do Produto
+
+<div class="grid grid-cols-2 gap-4 my-8">
+  <img src="https://m.media-amazon.com/images/I/61r5L-F0mFL._AC_SL1500_.jpg" alt="Detalhe do Produto 1" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+  <img src="https://m.media-amazon.com/images/I/61k1q0z0SFL._AC_SL1500_.jpg" alt="Detalhe do Produto 2" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+  <img src="https://m.media-amazon.com/images/I/61I-S0x0jEL._AC_SL1500_.jpg" alt="Detalhe do Produto 3" class="rounded-2xl shadow-sm border border-border w-full h-auto object-cover max-h-[300px]" loading="lazy" />
+</div>
+
 ## Veredito Final: Para Quem Recomendamos a Yale YMF 40A RL?
 
 Ao cruzar os dados de construção, design, precisões biométricas e a força do seu travamento, fica evidente que ela não é uma peça de plástico temporária.

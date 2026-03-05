@@ -22,23 +22,36 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
-// 3. Procura os dados adicionais do produto
-const product = products.find((p) => p.id === entry.data.idProduto);
+// 3. Flexibilidade: Busca os dados do arquivo TS (antigo) ou usa o novo Frontmatter
+let product;
 
-// Segurança
-if (!product) {
-  throw new Error(`⚠ Produto com ID ${entry.data.idProduto} não encontrado no arquivo lib/products.ts!`);
+if (entry.data.idProduto) {
+  product = products.find((p) => p.id === entry.data.idProduto);
+  if (!product) throw new Error(`⚠ Produto com ID ${entry.data.idProduto} não encontrado!`);
+} else {
+  // Se for o novo padrão do Crawler (CMS-less), mapeia-se uma "Mock Store"
+  product = {
+    id: Math.floor(Math.random() * 1000) + 100, // ID Fake pra sidebar
+    name: entry.data.title || "Fechadura",
+    brand: "Geral",
+    image: entry.data.heroImage || "",
+    verdict: entry.data.description || "Review de Fechadura",
+    pros: [], // Prós e contras foram movidos pro corpo do texto da Skill
+    cons: [],
+    amazonUrl: entry.data.affiliateLink || "",
+    mlUrl: "",
+  };
 }
 
 // SEO Tags e Dados da Página vazios resolvidos
-const title = entry.data.titulo;
+const title = entry.data.title || entry.data.titulo || "Análise de Fechadura";
 const description = entry.data.description || product.verdict.replaceAll('*', '');
-const heroSubtitle = entry.data.heroSubtitle.replaceAll('*', '');
+const heroSubtitle = entry.data.heroSubtitle ? entry.data.heroSubtitle.replaceAll('*', '') : "Avaliação em Foco";
 
 // Dados E-E-A-T (SEO Avançado)
 const author = entry.data.author || "Will Alves";
-const datePublishedObj = entry.data.datePublished || new Date('2026-02-15T10:00:00Z');
-const dateModifiedObj = entry.data.dateModified || new Date('2026-03-04T14:30:00Z');
+const datePublishedObj = new Date(entry.data.datePublished || '2026-02-15T10:00:00Z');
+const dateModifiedObj = new Date(entry.data.dateModified || '2026-03-04T14:30:00Z');
 const datePublished = datePublishedObj.toISOString();
 const dateModified = dateModifiedObj.toISOString();
 const displayDate = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' }).format(dateModifiedObj);
@@ -162,11 +175,12 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
   </section>
 
   <!-- ESPECIFICAÇÕES INFOGRÁFICO Dinâmico -->
+  {product.specs && product.specs.length > 0 && (
   <section class="max-w-6xl mx-auto px-4 -mt-20 relative z-20">
     <div class="bg-card border border-border rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]">
       <h2 class="text-2xl font-black mb-10 text-center uppercase tracking-widest text-muted-foreground">O que faz dela uma Premium?</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        {product.specs.slice(0, 4).map((spec, i) => (
+        {(product.specs || []).slice(0, 4).map((spec, i) => (
            <div class="flex flex-col items-center group">
               <div class="w-20 h-20 bg-secondary/50 rounded-3xl flex items-center justify-center mb-5 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                 <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={ICON_PATHS[i%4]} /></svg>
@@ -188,8 +202,10 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
       </div>
     </div>
   </section>
+  )}
 
   <!-- VeredictBox: Veredito Rápido (Featured Snippet) -->
+  {product.buyIf && product.buyIf.length > 0 && (
   <VeredictBox
     productName={product.name}
     rating={product.rating}
@@ -199,6 +215,7 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
     amazonUrl={product.amazonUrl}
     mlUrl={product.mlUrl}
   />
+  )}
 
   <div class="mx-auto max-w-7xl px-4 lg:px-8 py-8 lg:py-16 flex flex-col lg:flex-row gap-10 lg:gap-16">
     <!-- Coluna de Leitura (Esquerda no Desktop) -->
@@ -225,29 +242,30 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
        <Content />
     </div>
 
-    <!-- Prós e Contras -->
-    <div class="grid md:grid-cols-2 gap-8 my-20">
-      <div class="bg-green-50 dark:bg-green-900/10 p-10 rounded-[2.5rem] border border-green-200 dark:border-green-800/50 shadow-md">
-        <h4 class="text-green-700 dark:text-green-400 font-black text-2xl mb-8 flex items-center gap-3">
-          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
-          POR QUE COMPRAR
-        </h4>
-        <ul class="space-y-4 list-none p-0">
-          {product.pros.map((pro) => (
-            <li class="flex items-start gap-4">
-              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-green-200 dark:bg-green-800 text-green-700 dark:text-green-300 flex items-center justify-center font-bold text-sm">+</span>
-              <span class="font-medium text-foreground">{pro.replaceAll('*', '')}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div class="bg-red-50 dark:bg-red-900/10 p-10 rounded-[2.5rem] border border-red-200 dark:border-red-800/50 shadow-md">
-        <h4 class="text-red-700 dark:text-red-400 font-black text-2xl mb-8 flex items-center gap-3">
-          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" /></svg>
-          PONTOS NEGATIVOS
-        </h4>
-        <ul class="space-y-4 list-none p-0">
-          {product.cons.map((con) => (
+    <!-- Prós e Contras (Renderização Condicional para produtos antigos) -->
+    {product.pros && product.pros.length > 0 && (
+      <div class="grid md:grid-cols-2 gap-8 my-20">
+        <div class="bg-green-50 dark:bg-green-900/10 p-10 rounded-[2.5rem] border border-green-200 dark:border-green-800/50 shadow-md">
+          <h4 class="text-green-700 dark:text-green-400 font-black text-2xl mb-8 flex items-center gap-3">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" /></svg>
+            POR QUE COMPRAR
+          </h4>
+          <ul class="space-y-4 list-none p-0">
+            {product.pros.map((pro) => (
+              <li class="flex items-start gap-4">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-green-200 dark:bg-green-800 text-green-700 dark:text-green-300 flex items-center justify-center font-bold text-sm">+</span>
+                <span class="font-medium text-foreground">{pro.replaceAll('*', '')}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-red-50 dark:bg-red-900/10 p-10 rounded-[2.5rem] border border-red-200 dark:border-red-800/50 shadow-md">
+          <h4 class="text-red-700 dark:text-red-400 font-black text-2xl mb-8 flex items-center gap-3">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" /></svg>
+            PONTOS NEGATIVOS
+          </h4>
+          <ul class="space-y-4 list-none p-0">
+            {product.cons.map((con) => (
             <li class="flex items-start gap-4">
               <span class="flex-shrink-0 w-6 h-6 rounded-full bg-red-200 dark:bg-red-800 text-red-700 dark:text-red-300 flex items-center justify-center font-bold text-sm">-</span>
               <span class="font-medium text-foreground">{con.replaceAll('*', '')}</span>
@@ -256,6 +274,7 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
         </ul>
       </div>
     </div>
+    )}
 
     <!-- Caixa de Conversão Final (Call To Action) -->
     <div class="border-[4px] border-accent/20 bg-card rounded-[3rem] p-8 md:p-12 mb-20 shadow-xl overflow-hidden relative">

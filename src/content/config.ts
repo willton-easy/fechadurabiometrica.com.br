@@ -83,19 +83,27 @@ const blogCollection = defineCollection({
 const reviewsCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    // ID do Produto cadastrado em lib/products.ts
-    idProduto: z.number(),
+    // ID do Produto cadastrado em lib/products.ts (Padrão Antigo)
+    idProduto: z.number().optional(),
     
-    // O título H1 da página e do SEO
-    titulo: z.string(),
+    // O título H1 da página e do SEO (Padrão Antigo)
+    titulo: z.string().optional(),
     
-    // O subtítulo que fica embaixo do título principal no Hero
-    heroSubtitle: z.string(),
+    // O subtítulo que fica embaixo do título principal no Hero (Padrão Antigo)
+    heroSubtitle: z.string().optional(),
+
+    // --- NOVA SKILL APROVADA: CAMPOS NATIVOS A NOVO PADRÃO CMS-LESS ---
+    title: z.string().optional(),
+    description: z.string().optional(),
+    price: z.string().optional(),
+    heroImage: z.string().optional(),
+    affiliateLink: z.string().optional(),
+    pubDate: z.string().or(z.date()).optional(),
 
     // Opcionais adicionados para SEO E-E-A-T
     author: z.string().default("Will Alves").optional(),
-    datePublished: z.date().optional(),
-    dateModified: z.date().optional(),
+    datePublished: z.string().or(z.date()).optional(),
+    dateModified: z.string().or(z.date()).optional(),
 
     // Array de Perguntas Frequentes estruturado para injeção de Schema JSON-LD
     faqs: z.array(z.object({
