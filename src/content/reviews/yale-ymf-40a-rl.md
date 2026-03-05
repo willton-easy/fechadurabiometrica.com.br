@@ -2,6 +2,13 @@
 idProduto: 1
 titulo: "Review Yale YMF 40A RL: Análise Completa 2026"
 heroSubtitle: "Melhor Escolha Premium"
+faqs:
+  - question: "Se a pilha da Yale YMF 40A RL acabar pelo lado de fora, o que eu faço?"
+    answer: "Um dos maiores medos de quem migra para o digital é ficar trancado para fora de casa. Com este modelo, você está protegido! A fechadura avisa semanas antes através de luzes ou bipes e, na fatalidade das pilhas morrerem totalmente, há a opção de alimentação de emergência externa (encostando uma bateria de 9V) ou usar as chaves mecânicas ocultas como apoio."
+  - question: "A instalação exige um profissional qualificado?"
+    answer: "Sempre recomendamos contratar um instalador profissional que possua as ferramentas corretas para madeira e vidro (dependendo da sua porta), assegurando que o batente não será lascado e a garantia da fechadura permanecerá intacta."
+  - question: "Essa fechadura é resistente à água? Pode ficar no portão?"
+    answer: "Este modelo é projetado primordialmente para portas internas ou áreas externas com cobertura (sem exposição direta ao sol escaldante e chuva torrencial). A parte externa suporta respingos ou umidade, mas o compartimento orgânico das pilhas na parte traseira (interna) não pode ser exposto à água."
 ---
 
 Se você chegou até aqui pesquisando pela **Yale YMF 40A RL**, é provável que esteja se perguntando: será que ela realmente entrega a segurança e a praticidade que promete, ou é apenas mais um gadget caro que vai dar dor de cabeça?
@@ -25,22 +32,12 @@ Além disso, o design da peça contribui ativamente para a estética do seu ambi
 Uma das maiores dúvidas de quem compra a **Yale YMF 40A RL** online é a sua adequação em portas específicas.
 
 É crucial entender que esta fechadura prospera na rotina. Você tem a flexibilidade de:
+
 1. **Delegar Acessos:** Criar senhas temporárias ou delegar abertura rápida para prestadores de serviço, faxineiras ou locatários (caso você administre Airbnbs).
 2. **Tranquilidade Automática:** O travamento automático assim que a porta se fecha elimina para sempre o temido "S.P.R." (Sensação Psicológica de Risco) de quando a gente deita na cama e pensa: "Será que eu tranquei a porta da frente?".
 3. **Ergonomia e Feedback Sonoro:** Diferente de modelos que bipam de forma irritante, o feedback aqui é claro e pode ser ajustado na maioria das vezes.
 
 ---
-
-## Dúvidas Frequentes (Respondendo as Buscas do Google)
-
-### 1. Se a pilha da Yale YMF 40A RL acabar pelo lado de fora, o que eu faço?
-Um dos maiores medos de quem migra para o digital é ficar trancado para fora de casa. Com este modelo, você está protegido! A fechadura não pifa do nada; ela avisa semanas antes através de luzes ou bipes e, na fatalidade das pilhas morrerem totalmente, há sempre a opção de alimentação de emergência externa (encostando uma bateria de 9V comum ou plugar um power bank) ou as chaves mecânicas ocultas como apoio infalível.
-
-### 2. A instalação exige um profissional qualificado?
-Sempre recomendamos contratar um instalador profissional que possua as ferramentas corretas para madeira e vidro (dependendo da sua porta), assegurando que o batente não será lascado e a garantia permanecerá intacta.
-
-### 3. Essa fechadura é resistente à água? Pode ficar no portão?
-Modelos como este são projetados primordialmente para portas internas ou áreas externas com cobertura (sem exposição direta e constante ao sol escaldante e jorradas de chuva torrencial). A parte externa suporta respingos ou umidade, mas o compartimento orgânico das pilhas de forma alguma pode ser imerso.
 
 ---
 

@@ -92,9 +92,16 @@ const reviewsCollection = defineCollection({
     // O subtítulo que fica embaixo do título principal no Hero
     heroSubtitle: z.string(),
 
-    // (Opcional) Data de publicação, SEO description
-    date: z.date().optional(),
-    description: z.string().optional(),
+    // Opcionais adicionados para SEO E-E-A-T
+    author: z.string().default("Will Alves").optional(),
+    datePublished: z.date().optional(),
+    dateModified: z.date().optional(),
+
+    // Array de Perguntas Frequentes estruturado para injeção de Schema JSON-LD
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string()
+    })).optional(),
   })
 });
 

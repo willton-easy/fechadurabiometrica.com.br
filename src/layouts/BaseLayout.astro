@@ -8,6 +8,9 @@ interface Props {
   canonical?: string
   ogTitle?: string
   ogDescription?: string
+  author?: string
+  datePublished?: string
+  dateModified?: string
 }
 
 const {
@@ -16,6 +19,9 @@ const {
   canonical,
   ogTitle,
   ogDescription,
+  author = 'Will Alves',
+  datePublished,
+  dateModified,
 } = Astro.props
 
 const siteUrl = 'https://www.fechadurabiometrica.com.br'
@@ -43,7 +49,9 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="fechadura biométrica, fechadura digital, fechadura eletrônica, fechadura wifi, fechadura inteligente, smart lock" />
-    <meta name="author" content="Willton Alves" />
+    <meta name="author" content={author} />
+    {datePublished && <meta property="article:published_time" content={datePublished} />}
+    {dateModified && <meta property="article:modified_time" content={dateModified} />}
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph -->
