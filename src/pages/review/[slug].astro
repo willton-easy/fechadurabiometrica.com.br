@@ -298,7 +298,7 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
 
     <!-- Barra Lateral (Sidebar Promovida Direita no Desktop) -->
     <aside class="w-full lg:w-[340px] xl:w-[380px] flex-shrink-0 space-y-8 mt-12 lg:mt-0 relative">
-      <SidebarOfferWidget productIds={[1, 4]} title="🔥 Ofertas Especiais" />
+      <SidebarOfferWidget excludeId={product.id} limit={2} title="🔥 Ofertas Especiais" />
     </aside>
   </div>
 

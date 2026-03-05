@@ -2,14 +2,24 @@
 import { products } from '../lib/products';
 
 interface Props {
-  productIds?: number[];
+  limit?: number;
   title?: string;
+  excludeId?: number; // Para não mostrar o mesmo produto do review atual
 }
 
-// Por padrão, pega a Yale (1) e a Intelbras (2) se não passar IDs
-const { productIds = [1, 2], title = "⭐ Ofertas Recomendadas" } = Astro.props;
+const { limit = 2, title = "⭐ Ofertas Recomendadas", excludeId } = Astro.props;
 
-const promotedProducts = products.filter(p => productIds.includes(p.id));
+// 1. Filtra produtos disponíveis (removendo o atual, se houver, e que tenha URL)
+let availableProducts = products.filter(p => p.id !== excludeId && p.amazonUrl);
+
+// 2. Embaralha a lista aleatoriamente (shuffle)
+for (let i = availableProducts.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [availableProducts[i], availableProducts[j]] = [availableProducts[j], availableProducts[i]];
+}
+
+// 3. Pega apenas a quantidade solicitada (limit)
+const promotedProducts = availableProducts.slice(0, limit);
 
 if (promotedProducts.length === 0) return null;
 
