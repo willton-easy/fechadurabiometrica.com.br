@@ -201,12 +201,17 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Reviews | Comparativos | Guias | Folder;
 
+export type ReviewsImages = {
+  __typename?: 'ReviewsImages';
+  url?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
 export type Reviews = Node & Document & {
   __typename?: 'Reviews';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   date?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
   featured?: Maybe<Scalars['Boolean']['output']>;
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   seoTitle?: Maybe<Scalars['String']['output']>;
@@ -214,8 +219,11 @@ export type Reviews = Node & Document & {
   pros?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   cons?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   affiliateLink?: Maybe<Scalars['String']['output']>;
+  mlLink?: Maybe<Scalars['String']['output']>;
   priceText?: Maybe<Scalars['String']['output']>;
   highlight?: Maybe<Scalars['String']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<ReviewsImages>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -242,6 +250,21 @@ export type BooleanFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type ReviewsImagesFilter = {
+  url?: InputMaybe<StringFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
 export type RichTextFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
   eq?: InputMaybe<Scalars['String']['input']>;
@@ -252,7 +275,6 @@ export type ReviewsFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   date?: InputMaybe<DatetimeFilter>;
-  type?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
   tags?: InputMaybe<StringFilter>;
   seoTitle?: InputMaybe<StringFilter>;
@@ -260,8 +282,11 @@ export type ReviewsFilter = {
   pros?: InputMaybe<StringFilter>;
   cons?: InputMaybe<StringFilter>;
   affiliateLink?: InputMaybe<StringFilter>;
+  mlLink?: InputMaybe<StringFilter>;
   priceText?: InputMaybe<StringFilter>;
   highlight?: InputMaybe<StringFilter>;
+  rating?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<ReviewsImagesFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -278,33 +303,65 @@ export type ReviewsConnection = Connection & {
   edges?: Maybe<Array<Maybe<ReviewsConnectionEdges>>>;
 };
 
+export type ComparativosProductsExtraImages = {
+  __typename?: 'ComparativosProductsExtraImages';
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComparativosProducts = {
+  __typename?: 'ComparativosProducts';
+  position?: Maybe<Scalars['Float']['output']>;
+  title: Scalars['String']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  extraImages?: Maybe<Array<Maybe<ComparativosProductsExtraImages>>>;
+  badge?: Maybe<Scalars['String']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
+  reviewCount?: Maybe<Scalars['Float']['output']>;
+  amazonLink?: Maybe<Scalars['String']['output']>;
+  mercadoLivreLink?: Maybe<Scalars['String']['output']>;
+};
+
 export type Comparativos = Node & Document & {
   __typename?: 'Comparativos';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   date?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
   featured?: Maybe<Scalars['Boolean']['output']>;
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   seoTitle?: Maybe<Scalars['String']['output']>;
   seoDescription?: Maybe<Scalars['String']['output']>;
-  affiliateLink?: Maybe<Scalars['String']['output']>;
+  products?: Maybe<Array<Maybe<ComparativosProducts>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
+export type ComparativosProductsExtraImagesFilter = {
+  url?: InputMaybe<StringFilter>;
+};
+
+export type ComparativosProductsFilter = {
+  position?: InputMaybe<NumberFilter>;
+  title?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringFilter>;
+  extraImages?: InputMaybe<ComparativosProductsExtraImagesFilter>;
+  badge?: InputMaybe<StringFilter>;
+  rating?: InputMaybe<NumberFilter>;
+  reviewCount?: InputMaybe<NumberFilter>;
+  amazonLink?: InputMaybe<StringFilter>;
+  mercadoLivreLink?: InputMaybe<StringFilter>;
+};
+
 export type ComparativosFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   date?: InputMaybe<DatetimeFilter>;
-  type?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
   tags?: InputMaybe<StringFilter>;
   seoTitle?: InputMaybe<StringFilter>;
   seoDescription?: InputMaybe<StringFilter>;
-  affiliateLink?: InputMaybe<StringFilter>;
+  products?: InputMaybe<ComparativosProductsFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -321,31 +378,65 @@ export type ComparativosConnection = Connection & {
   edges?: Maybe<Array<Maybe<ComparativosConnectionEdges>>>;
 };
 
+export type GuiasProductsExtraImages = {
+  __typename?: 'GuiasProductsExtraImages';
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type GuiasProducts = {
+  __typename?: 'GuiasProducts';
+  position?: Maybe<Scalars['Float']['output']>;
+  title: Scalars['String']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  extraImages?: Maybe<Array<Maybe<GuiasProductsExtraImages>>>;
+  badge?: Maybe<Scalars['String']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
+  reviewCount?: Maybe<Scalars['Float']['output']>;
+  amazonLink?: Maybe<Scalars['String']['output']>;
+  mercadoLivreLink?: Maybe<Scalars['String']['output']>;
+};
+
 export type Guias = Node & Document & {
   __typename?: 'Guias';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   date?: Maybe<Scalars['String']['output']>;
-  type: Scalars['String']['output'];
   featured?: Maybe<Scalars['Boolean']['output']>;
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   seoTitle?: Maybe<Scalars['String']['output']>;
   seoDescription?: Maybe<Scalars['String']['output']>;
+  products?: Maybe<Array<Maybe<GuiasProducts>>>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
+export type GuiasProductsExtraImagesFilter = {
+  url?: InputMaybe<StringFilter>;
+};
+
+export type GuiasProductsFilter = {
+  position?: InputMaybe<NumberFilter>;
+  title?: InputMaybe<StringFilter>;
+  image?: InputMaybe<StringFilter>;
+  extraImages?: InputMaybe<GuiasProductsExtraImagesFilter>;
+  badge?: InputMaybe<StringFilter>;
+  rating?: InputMaybe<NumberFilter>;
+  reviewCount?: InputMaybe<NumberFilter>;
+  amazonLink?: InputMaybe<StringFilter>;
+  mercadoLivreLink?: InputMaybe<StringFilter>;
+};
+
 export type GuiasFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   date?: InputMaybe<DatetimeFilter>;
-  type?: InputMaybe<StringFilter>;
   featured?: InputMaybe<BooleanFilter>;
   tags?: InputMaybe<StringFilter>;
   seoTitle?: InputMaybe<StringFilter>;
   seoDescription?: InputMaybe<StringFilter>;
+  products?: InputMaybe<GuiasProductsFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -459,11 +550,15 @@ export type DocumentMutation = {
   guias?: InputMaybe<GuiasMutation>;
 };
 
+export type ReviewsImagesMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ReviewsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   seoTitle?: InputMaybe<Scalars['String']['input']>;
@@ -471,48 +566,82 @@ export type ReviewsMutation = {
   pros?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   cons?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   affiliateLink?: InputMaybe<Scalars['String']['input']>;
+  mlLink?: InputMaybe<Scalars['String']['input']>;
   priceText?: InputMaybe<Scalars['String']['input']>;
   highlight?: InputMaybe<Scalars['String']['input']>;
+  rating?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<ReviewsImagesMutation>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type ComparativosProductsExtraImagesMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComparativosProductsMutation = {
+  position?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  extraImages?: InputMaybe<Array<InputMaybe<ComparativosProductsExtraImagesMutation>>>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  rating?: InputMaybe<Scalars['Float']['input']>;
+  reviewCount?: InputMaybe<Scalars['Float']['input']>;
+  amazonLink?: InputMaybe<Scalars['String']['input']>;
+  mercadoLivreLink?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComparativosMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   seoTitle?: InputMaybe<Scalars['String']['input']>;
   seoDescription?: InputMaybe<Scalars['String']['input']>;
-  affiliateLink?: InputMaybe<Scalars['String']['input']>;
+  products?: InputMaybe<Array<InputMaybe<ComparativosProductsMutation>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type GuiasProductsExtraImagesMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GuiasProductsMutation = {
+  position?: InputMaybe<Scalars['Float']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  extraImages?: InputMaybe<Array<InputMaybe<GuiasProductsExtraImagesMutation>>>;
+  badge?: InputMaybe<Scalars['String']['input']>;
+  rating?: InputMaybe<Scalars['Float']['input']>;
+  reviewCount?: InputMaybe<Scalars['Float']['input']>;
+  amazonLink?: InputMaybe<Scalars['String']['input']>;
+  mercadoLivreLink?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GuiasMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
-  type?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
   tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   seoTitle?: InputMaybe<Scalars['String']['input']>;
   seoDescription?: InputMaybe<Scalars['String']['input']>;
+  products?: InputMaybe<Array<InputMaybe<GuiasProductsMutation>>>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type ReviewsPartsFragment = { __typename: 'Reviews', title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, priceText?: string | null, highlight?: string | null, body?: any | null };
+export type ReviewsPartsFragment = { __typename: 'Reviews', title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, mlLink?: string | null, priceText?: string | null, highlight?: string | null, rating?: number | null, body?: any | null, images?: Array<{ __typename: 'ReviewsImages', url?: string | null, alt?: string | null } | null> | null };
 
-export type ComparativosPartsFragment = { __typename: 'Comparativos', title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, affiliateLink?: string | null, body?: any | null };
+export type ComparativosPartsFragment = { __typename: 'Comparativos', title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, products?: Array<{ __typename: 'ComparativosProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'ComparativosProductsExtraImages', url?: string | null } | null> | null } | null> | null };
 
-export type GuiasPartsFragment = { __typename: 'Guias', title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null };
+export type GuiasPartsFragment = { __typename: 'Guias', title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, products?: Array<{ __typename: 'GuiasProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'GuiasProductsExtraImages', url?: string | null } | null> | null } | null> | null };
 
 export type ReviewsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ReviewsQuery = { __typename?: 'Query', reviews: { __typename: 'Reviews', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, priceText?: string | null, highlight?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ReviewsQuery = { __typename?: 'Query', reviews: { __typename: 'Reviews', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, mlLink?: string | null, priceText?: string | null, highlight?: string | null, rating?: number | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, images?: Array<{ __typename: 'ReviewsImages', url?: string | null, alt?: string | null } | null> | null } };
 
 export type ReviewsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -524,14 +653,14 @@ export type ReviewsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ReviewsConnectionQuery = { __typename?: 'Query', reviewsConnection: { __typename?: 'ReviewsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ReviewsConnectionEdges', cursor: string, node?: { __typename: 'Reviews', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, priceText?: string | null, highlight?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ReviewsConnectionQuery = { __typename?: 'Query', reviewsConnection: { __typename?: 'ReviewsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ReviewsConnectionEdges', cursor: string, node?: { __typename: 'Reviews', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, pros?: Array<string | null> | null, cons?: Array<string | null> | null, affiliateLink?: string | null, mlLink?: string | null, priceText?: string | null, highlight?: string | null, rating?: number | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, images?: Array<{ __typename: 'ReviewsImages', url?: string | null, alt?: string | null } | null> | null } | null } | null> | null } };
 
 export type ComparativosQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ComparativosQuery = { __typename?: 'Query', comparativos: { __typename: 'Comparativos', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, affiliateLink?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ComparativosQuery = { __typename?: 'Query', comparativos: { __typename: 'Comparativos', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, products?: Array<{ __typename: 'ComparativosProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'ComparativosProductsExtraImages', url?: string | null } | null> | null } | null> | null } };
 
 export type ComparativosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -543,14 +672,14 @@ export type ComparativosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ComparativosConnectionQuery = { __typename?: 'Query', comparativosConnection: { __typename?: 'ComparativosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ComparativosConnectionEdges', cursor: string, node?: { __typename: 'Comparativos', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, affiliateLink?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ComparativosConnectionQuery = { __typename?: 'Query', comparativosConnection: { __typename?: 'ComparativosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ComparativosConnectionEdges', cursor: string, node?: { __typename: 'Comparativos', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, products?: Array<{ __typename: 'ComparativosProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'ComparativosProductsExtraImages', url?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type GuiasQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type GuiasQuery = { __typename?: 'Query', guias: { __typename: 'Guias', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type GuiasQuery = { __typename?: 'Query', guias: { __typename: 'Guias', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, products?: Array<{ __typename: 'GuiasProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'GuiasProductsExtraImages', url?: string | null } | null> | null } | null> | null } };
 
 export type GuiasConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -562,7 +691,7 @@ export type GuiasConnectionQueryVariables = Exact<{
 }>;
 
 
-export type GuiasConnectionQuery = { __typename?: 'Query', guiasConnection: { __typename?: 'GuiasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GuiasConnectionEdges', cursor: string, node?: { __typename: 'Guias', id: string, title: string, description: string, date?: string | null, type: string, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type GuiasConnectionQuery = { __typename?: 'Query', guiasConnection: { __typename?: 'GuiasConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GuiasConnectionEdges', cursor: string, node?: { __typename: 'Guias', id: string, title: string, description: string, date?: string | null, featured?: boolean | null, tags?: Array<string | null> | null, seoTitle?: string | null, seoDescription?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, products?: Array<{ __typename: 'GuiasProducts', position?: number | null, title: string, image?: string | null, badge?: string | null, rating?: number | null, reviewCount?: number | null, amazonLink?: string | null, mercadoLivreLink?: string | null, extraImages?: Array<{ __typename: 'GuiasProductsExtraImages', url?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export const ReviewsPartsFragmentDoc = gql`
     fragment ReviewsParts on Reviews {
@@ -570,7 +699,6 @@ export const ReviewsPartsFragmentDoc = gql`
   title
   description
   date
-  type
   featured
   tags
   seoTitle
@@ -578,8 +706,15 @@ export const ReviewsPartsFragmentDoc = gql`
   pros
   cons
   affiliateLink
+  mlLink
   priceText
   highlight
+  rating
+  images {
+    __typename
+    url
+    alt
+  }
   body
 }
     `;
@@ -589,12 +724,25 @@ export const ComparativosPartsFragmentDoc = gql`
   title
   description
   date
-  type
   featured
   tags
   seoTitle
   seoDescription
-  affiliateLink
+  products {
+    __typename
+    position
+    title
+    image
+    extraImages {
+      __typename
+      url
+    }
+    badge
+    rating
+    reviewCount
+    amazonLink
+    mercadoLivreLink
+  }
   body
 }
     `;
@@ -604,11 +752,25 @@ export const GuiasPartsFragmentDoc = gql`
   title
   description
   date
-  type
   featured
   tags
   seoTitle
   seoDescription
+  products {
+    __typename
+    position
+    title
+    image
+    extraImages {
+      __typename
+      url
+    }
+    badge
+    rating
+    reviewCount
+    amazonLink
+    mercadoLivreLink
+  }
   body
 }
     `;

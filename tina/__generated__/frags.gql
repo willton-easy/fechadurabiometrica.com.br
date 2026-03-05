@@ -3,7 +3,6 @@ fragment ReviewsParts on Reviews {
   title
   description
   date
-  type
   featured
   tags
   seoTitle
@@ -11,8 +10,15 @@ fragment ReviewsParts on Reviews {
   pros
   cons
   affiliateLink
+  mlLink
   priceText
   highlight
+  rating
+  images {
+    __typename
+    url
+    alt
+  }
   body
 }
 
@@ -21,12 +27,25 @@ fragment ComparativosParts on Comparativos {
   title
   description
   date
-  type
   featured
   tags
   seoTitle
   seoDescription
-  affiliateLink
+  products {
+    __typename
+    position
+    title
+    image
+    extraImages {
+      __typename
+      url
+    }
+    badge
+    rating
+    reviewCount
+    amazonLink
+    mercadoLivreLink
+  }
   body
 }
 
@@ -35,10 +54,24 @@ fragment GuiasParts on Guias {
   title
   description
   date
-  type
   featured
   tags
   seoTitle
   seoDescription
+  products {
+    __typename
+    position
+    title
+    image
+    extraImages {
+      __typename
+      url
+    }
+    badge
+    rating
+    reviewCount
+    amazonLink
+    mercadoLivreLink
+  }
   body
 }

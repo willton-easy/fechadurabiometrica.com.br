@@ -93,11 +93,15 @@ type Collection {
 
 union DocumentNode = Reviews | Comparativos | Guias | Folder
 
+type ReviewsImages {
+  url: String
+  alt: String
+}
+
 type Reviews implements Node & Document {
   title: String!
   description: String!
   date: String
-  type: String!
   featured: Boolean
   tags: [String]
   seoTitle: String
@@ -105,8 +109,11 @@ type Reviews implements Node & Document {
   pros: [String]
   cons: [String]
   affiliateLink: String
+  mlLink: String
   priceText: String
   highlight: String
+  rating: Float
+  images: [ReviewsImages]
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -133,6 +140,21 @@ input BooleanFilter {
   exists: Boolean
 }
 
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input ReviewsImagesFilter {
+  url: StringFilter
+  alt: StringFilter
+}
+
 input RichTextFilter {
   startsWith: String
   eq: String
@@ -143,7 +165,6 @@ input ReviewsFilter {
   title: StringFilter
   description: StringFilter
   date: DatetimeFilter
-  type: StringFilter
   featured: BooleanFilter
   tags: StringFilter
   seoTitle: StringFilter
@@ -151,8 +172,11 @@ input ReviewsFilter {
   pros: StringFilter
   cons: StringFilter
   affiliateLink: StringFilter
+  mlLink: StringFilter
   priceText: StringFilter
   highlight: StringFilter
+  rating: NumberFilter
+  images: ReviewsImagesFilter
   body: RichTextFilter
 }
 
@@ -167,32 +191,62 @@ type ReviewsConnection implements Connection {
   edges: [ReviewsConnectionEdges]
 }
 
+type ComparativosProductsExtraImages {
+  url: String
+}
+
+type ComparativosProducts {
+  position: Float
+  title: String!
+  image: String
+  extraImages: [ComparativosProductsExtraImages]
+  badge: String
+  rating: Float
+  reviewCount: Float
+  amazonLink: String
+  mercadoLivreLink: String
+}
+
 type Comparativos implements Node & Document {
   title: String!
   description: String!
   date: String
-  type: String!
   featured: Boolean
   tags: [String]
   seoTitle: String
   seoDescription: String
-  affiliateLink: String
+  products: [ComparativosProducts]
   body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
+input ComparativosProductsExtraImagesFilter {
+  url: StringFilter
+}
+
+input ComparativosProductsFilter {
+  position: NumberFilter
+  title: StringFilter
+  image: StringFilter
+  extraImages: ComparativosProductsExtraImagesFilter
+  badge: StringFilter
+  rating: NumberFilter
+  reviewCount: NumberFilter
+  amazonLink: StringFilter
+  mercadoLivreLink: StringFilter
+}
+
 input ComparativosFilter {
   title: StringFilter
   description: StringFilter
   date: DatetimeFilter
-  type: StringFilter
   featured: BooleanFilter
   tags: StringFilter
   seoTitle: StringFilter
   seoDescription: StringFilter
-  affiliateLink: StringFilter
+  products: ComparativosProductsFilter
   body: RichTextFilter
 }
 
@@ -207,30 +261,62 @@ type ComparativosConnection implements Connection {
   edges: [ComparativosConnectionEdges]
 }
 
+type GuiasProductsExtraImages {
+  url: String
+}
+
+type GuiasProducts {
+  position: Float
+  title: String!
+  image: String
+  extraImages: [GuiasProductsExtraImages]
+  badge: String
+  rating: Float
+  reviewCount: Float
+  amazonLink: String
+  mercadoLivreLink: String
+}
+
 type Guias implements Node & Document {
   title: String!
   description: String!
   date: String
-  type: String!
   featured: Boolean
   tags: [String]
   seoTitle: String
   seoDescription: String
+  products: [GuiasProducts]
   body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
+input GuiasProductsExtraImagesFilter {
+  url: StringFilter
+}
+
+input GuiasProductsFilter {
+  position: NumberFilter
+  title: StringFilter
+  image: StringFilter
+  extraImages: GuiasProductsExtraImagesFilter
+  badge: StringFilter
+  rating: NumberFilter
+  reviewCount: NumberFilter
+  amazonLink: StringFilter
+  mercadoLivreLink: StringFilter
+}
+
 input GuiasFilter {
   title: StringFilter
   description: StringFilter
   date: DatetimeFilter
-  type: StringFilter
   featured: BooleanFilter
   tags: StringFilter
   seoTitle: StringFilter
   seoDescription: StringFilter
+  products: GuiasProductsFilter
   body: RichTextFilter
 }
 
@@ -272,11 +358,15 @@ input DocumentMutation {
   guias: GuiasMutation
 }
 
+input ReviewsImagesMutation {
+  url: String
+  alt: String
+}
+
 input ReviewsMutation {
   title: String
   description: String
   date: String
-  type: String
   featured: Boolean
   tags: [String]
   seoTitle: String
@@ -284,33 +374,67 @@ input ReviewsMutation {
   pros: [String]
   cons: [String]
   affiliateLink: String
+  mlLink: String
   priceText: String
   highlight: String
+  rating: Float
+  images: [ReviewsImagesMutation]
   body: JSON
+}
+
+input ComparativosProductsExtraImagesMutation {
+  url: String
+}
+
+input ComparativosProductsMutation {
+  position: Float
+  title: String
+  image: String
+  extraImages: [ComparativosProductsExtraImagesMutation]
+  badge: String
+  rating: Float
+  reviewCount: Float
+  amazonLink: String
+  mercadoLivreLink: String
 }
 
 input ComparativosMutation {
   title: String
   description: String
   date: String
-  type: String
   featured: Boolean
   tags: [String]
   seoTitle: String
   seoDescription: String
-  affiliateLink: String
+  products: [ComparativosProductsMutation]
   body: JSON
+}
+
+input GuiasProductsExtraImagesMutation {
+  url: String
+}
+
+input GuiasProductsMutation {
+  position: Float
+  title: String
+  image: String
+  extraImages: [GuiasProductsExtraImagesMutation]
+  badge: String
+  rating: Float
+  reviewCount: Float
+  amazonLink: String
+  mercadoLivreLink: String
 }
 
 input GuiasMutation {
   title: String
   description: String
   date: String
-  type: String
   featured: Boolean
   tags: [String]
   seoTitle: String
   seoDescription: String
+  products: [GuiasProductsMutation]
   body: JSON
 }
 
