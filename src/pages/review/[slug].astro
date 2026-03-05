@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import RecentArticles from "../../components/RecentArticles.astro";
+import VeredictBox from "../../components/VeredictBox.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 import { products } from "../../lib/products";
 
 // 1. Gera as páginas dinamicamente baseando-se nos arquivos Markdown em src/content/reviews/
@@ -15,7 +18,7 @@ export async function getStaticPaths() {
 
 // 2. Extrai as propriedades e o renderizador para Markdown
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 
 // 3. Procura os dados adicionais do produto
 const product = products.find((p) => p.id === entry.data.idProduto);
@@ -142,11 +145,34 @@ const schemaJson = JSON.stringify(schemaData);
     </div>
   </section>
 
+  <!-- VeredictBox: Veredito Rápido (Featured Snippet) -->
+  <VeredictBox
+    productName={product.name}
+    rating={product.rating}
+    reviewsCount={product.reviewsCount}
+    buyIf={product.buyIf}
+    avoidIf={product.avoidIf}
+    amazonUrl={product.amazonUrl}
+    mlUrl={product.mlUrl}
+  />
+
   <article class="mx-auto max-w-4xl px-4 py-8" itemscope itemtype="https://schema.org/Product">
-    <nav class="mb-12 flex flex-wrap gap-2 text-sm text-muted-foreground justify-center md:justify-start">
-      <a href="/" class="hover:text-primary transition-colors">Home</a> / 
-      <span class="text-foreground font-bold">{product.name}</span>
+    <!-- Breadcrumb com link para Blog -->
+    <nav class="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground" aria-label="Caminho de navegação">
+      <a href="/" class="hover:text-primary transition-colors">Home</a>
+      <svg class="h-3.5 w-3.5 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      <a href="/blog/" class="hover:text-primary transition-colors">Blog</a>
+      <svg class="h-3.5 w-3.5 text-muted-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      <span class="text-foreground font-semibold truncate max-w-[200px] sm:max-w-none">{product.name}</span>
     </nav>
+    <!-- Data de atualização visível -->
+    <p class="mb-6 text-xs text-muted-foreground flex items-center gap-1.5">
+      <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Atualizado em Março de 2026 &middot; Review por Willton Alves
+    </p>
+
+    <!-- Índice com âncoras (TOC) -->
+    <TableOfContents headings={headings} />
 
     <div class="prose prose-lg prose-neutral dark:prose-invert max-w-none mb-16 text-lg" style="font-family: 'Inter', sans-serif;">
        <Content />
@@ -218,6 +244,9 @@ const schemaJson = JSON.stringify(schemaData);
     <!-- Review Schema Automático (Rich Snippet) -->
     <script type="application/ld+json" set:html={schemaJson} />
   </article>
+
+  <!-- Artigos Recentes -->
+  <RecentArticles excludeSlug={product.reviewUrl} />
 
   <!-- Floating Action Button (FAB) -->
   <button id="btn-ranking-fab" class="fixed bottom-6 right-4 sm:right-6 lg:right-8 z-40 bg-gradient-to-tr from-emerald-500 to-emerald-400 text-black rounded-full w-14 h-14 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform animate-[bounce_4s_ease-in-out_infinite]" aria-label="Ver Ranking Completo">

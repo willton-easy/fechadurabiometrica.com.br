@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getArticlesSorted, getFeaturedArticle, formatDate } from '../../lib/articles.ts';
+import type { ArticleCategory } from '../../lib/articles.ts';
+
+const allArticles = getArticlesSorted();
+const featured = getFeaturedArticle();
+const rest = allArticles.filter((a) => a.slug !== featured.slug);
+
+const categoryLabels: Record<ArticleCategory, string> = {
+  Review: '⭐ Review',
+  Guia: '📖 Guia',
+  Comparativo: '📊 Comparativo',
+  Lista: '🏆 Ranking',
+};
+
+const categoryColors: Record<ArticleCategory, string> = {
+  Review: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
+  Guia: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
+  Comparativo: 'bg-violet-500/10 text-violet-600 border-violet-500/20',
+  Lista: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
+};
+---
+
+<BaseLayout
+  title="Blog — Reviews, Guias e Comparativos de Fechaduras Eletrônicas 2026"
+  description="Todos os reviews, guias de compra e comparativos de fechaduras eletrônicas, digitais e biométricas. Análises honestas, atualizadas em 2026."
+  canonical="https://www.fechadurabiometrica.com.br/blog/"
+>
+  <!-- Hero da Página Blog -->
+  <section class="bg-gradient-to-b from-secondary/60 to-background border-b border-border py-12 px-4">
+    <div class="mx-auto max-w-4xl text-center">
+      <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold uppercase tracking-widest mb-4">
+        📝 Blog
+      </span>
+      <h1 class="text-3xl md:text-4xl font-black text-foreground mb-3 leading-tight">
+        Fechaduras Eletrônicas:<br class="hidden sm:block" /> Guia Completo de Reviews e Análises
+      </h1>
+      <p class="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-8">
+        Reviews honestos, guias de compra aprofundados e comparativos para você escolher a fechadura certa, sem erros.
+      </p>
+
+      <!-- Busca Funcional -->
+      <div class="relative max-w-xl mx-auto">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          id="blog-search"
+          type="search"
+          placeholder="Buscar reviews, guias e comparativos..."
+          aria-label="Buscar artigos do blog"
+          class="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-border bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm shadow-sm transition-all"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-7xl px-4 lg:px-6 py-12">
+
+    <!-- Filtros por Categoria -->
+    <div id="category-filters" class="flex flex-wrap gap-2 mb-10 justify-center">
+      <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border transition-all bg-primary text-primary-foreground border-primary">
+        Todos
+      </button>
+      <button data-filter="Review" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-border text-muted-foreground hover:border-primary hover:text-primary transition-all">
+        ⭐ Reviews
+      </button>
+      <button data-filter="Guia" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-border text-muted-foreground hover:border-primary hover:text-primary transition-all">
+        📖 Guias
+      </button>
+      <button data-filter="Lista" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-border text-muted-foreground hover:border-primary hover:text-primary transition-all">
+        🏆 Rankings
+      </button>
+    </div>
+
+    <!-- Artigo em Destaque -->
+    <div id="featured-section" class="mb-12">
+      <p class="text-xs font-black uppercase tracking-widest text-muted-foreground mb-4">⭐ Artigo em Destaque</p>
+      <a
+        href={featured.slug}
+        data-article
+        data-category={featured.category}
+        data-title={featured.title.toLowerCase()}
+        class="group grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+      >
+        <div class="relative overflow-hidden bg-secondary/30 min-h-[200px] md:min-h-[280px] flex items-center justify-center p-8">
+          <img
+            src={featured.image}
+            alt={`${featured.title} — imagem de destaque`}
+            width="480"
+            height="480"
+            class="max-h-52 object-contain group-hover:scale-105 transition-transform duration-500"
+            loading="eager"
+          />
+          <span class={`absolute top-4 left-4 rounded-full border px-3 py-1 text-xs font-bold ${categoryColors[featured.category]}`}>
+            {categoryLabels[featured.category]}
+          </span>
+        </div>
+        <div class="flex flex-col justify-center p-6 md:p-8 lg:p-10">
+          <p class="text-xs text-muted-foreground mb-3 font-medium">
+            Atualizado em {formatDate(featured.updatedDate ?? featured.date)}
+          </p>
+          <h2 class="text-xl md:text-2xl font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">
+            {featured.title}
+          </h2>
+          <p class="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">{featured.excerpt}</p>
+          <span class="inline-flex items-center gap-2 text-sm font-bold text-primary">
+            Leia o Review Completo
+            <svg class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grid de Artigos -->
+    <div id="articles-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {rest.map((article) => (
+        <a
+          href={article.slug}
+          data-article
+          data-category={article.category}
+          data-title={article.title.toLowerCase()}
+          class="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+        >
+          <div class="relative overflow-hidden bg-secondary/30 flex items-center justify-center p-6 min-h-[160px]">
+            <img
+              src={article.image}
+              alt={`${article.title} — preview`}
+              width="320"
+              height="320"
+              class="max-h-36 object-contain group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <span class={`absolute top-3 left-3 rounded-full border px-2.5 py-0.5 text-xs font-bold ${categoryColors[article.category]}`}>
+              {categoryLabels[article.category]}
+            </span>
+          </div>
+          <div class="flex flex-col flex-1 p-5">
+            <p class="text-xs text-muted-foreground mb-2">{formatDate(article.updatedDate ?? article.date)}</p>
+            <h2 class="text-base font-black text-foreground mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+              {article.title}
+            </h2>
+            <p class="text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-3">{article.excerpt}</p>
+            <span class="inline-flex items-center gap-1 text-xs font-bold text-primary mt-4">
+              Leia mais
+              <svg class="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Mensagem sem resultados -->
+    <div id="no-results" class="hidden py-20 text-center">
+      <p class="text-4xl mb-4">🔍</p>
+      <p class="text-foreground font-bold text-lg mb-2">Nenhum artigo encontrado</p>
+      <p class="text-muted-foreground text-sm">Tente outro termo de busca ou explore todas as categorias.</p>
+    </div>
+
+    <!-- CTA Ranking -->
+    <div class="mt-16 rounded-3xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 p-8 md:p-10 text-center">
+      <p class="text-xs font-black uppercase tracking-widest text-primary mb-3">🏆 Não sabe por onde começar?</p>
+      <h3 class="text-2xl font-black text-foreground mb-3">Veja o Ranking Completo</h3>
+      <p class="text-muted-foreground mb-6 max-w-lg mx-auto text-sm md:text-base">
+        Analisamos e ranqueamos as melhores fechaduras biométricas de 2026 por custo-benefício, segurança e facilidade de instalação.
+      </p>
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity">
+        Ver Ranking Completo
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Schema JSON-LD: Blog -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog — Fechadura Biométrica",
+    "url": "https://www.fechadurabiometrica.com.br/blog/",
+    "description": "Reviews, guias e comparativos de fechaduras eletrônicas, digitais e biométricas.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fechadura Biométrica Brasil",
+      "url": "https://www.fechadurabiometrica.com.br"
+    }
+  })} />
+</BaseLayout>
+
+<script>
+  // ── Busca Client-Side ──────────────────────────────────────────────────────
+  const searchInput = document.getElementById('blog-search') as HTMLInputElement;
+  const allArticleEls = document.querySelectorAll<HTMLElement>('[data-article]');
+  const noResults = document.getElementById('no-results');
+  const featuredSection = document.getElementById('featured-section');
+  let activeFilter = 'all';
+
+  function applyFilters() {
+    const q = searchInput?.value.toLowerCase().trim() ?? '';
+    let visible = 0;
+
+    allArticleEls.forEach((el) => {
+      const title = el.dataset.title ?? '';
+      const category = el.dataset.category ?? '';
+      const matchSearch = !q || title.includes(q);
+      const matchFilter = activeFilter === 'all' || category === activeFilter;
+      const show = matchSearch && matchFilter;
+      el.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    // Ocultar destaque se busca ativa (destaque já é article-el)
+    if (featuredSection) {
+      featuredSection.style.display = q || activeFilter !== 'all' ? 'none' : '';
+    }
+
+    noResults?.classList.toggle('hidden', visible > 0 || (!q && activeFilter === 'all'));
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+
+  // ── Filtro por Categoria ───────────────────────────────────────────────────
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter ?? 'all';
+      filterBtns.forEach((b) => {
+        const isActive = b === btn;
+        b.classList.toggle('bg-primary', isActive);
+        b.classList.toggle('text-primary-foreground', isActive);
+        b.classList.toggle('border-primary', isActive);
+        b.classList.toggle('text-muted-foreground', !isActive);
+        b.classList.toggle('border-border', !isActive);
+        b.classList.toggle('active', isActive);
+      });
+      applyFilters();
+    });
+  });
+</script>

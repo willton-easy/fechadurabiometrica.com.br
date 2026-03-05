@@ -1,0 +1,129 @@
+---
+// VeredictBox.astro — Bloco "Veredito Rápido" para Featured Snippet no Google
+// Exibir ANTES do conteúdo do review, logo após o hero.
+
+interface Props {
+  productName: string;
+  rating?: number;
+  reviewsCount?: number;
+  buyIf?: string[];
+  avoidIf?: string[];
+  amazonUrl: string;
+  mlUrl: string;
+}
+
+const {
+  productName,
+  rating,
+  reviewsCount,
+  buyIf = [],
+  avoidIf = [],
+  amazonUrl,
+  mlUrl,
+} = Astro.props;
+
+// Renderizar estrelas
+function renderStars(r: number) {
+  const full = Math.floor(r);
+  const half = r % 1 >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  return { full, half, empty };
+}
+const stars = rating ? renderStars(rating) : null;
+---
+
+<!-- VeredictBox — Veredito Rápido -->
+<div
+  class="mx-auto max-w-4xl px-4 -mt-8 mb-8 relative z-20"
+  aria-label={`Veredito rápido: ${productName}`}
+>
+  <div class="rounded-3xl border border-primary/20 bg-card shadow-lg overflow-hidden">
+    <!-- Header -->
+    <div class="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-primary/5 to-emerald-500/5 border-b border-border">
+      <span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10">
+        <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </span>
+      <span class="text-sm font-black uppercase tracking-widest text-foreground">⚡ Veredito Rápido</span>
+
+      {stars && rating && (
+        <span class="ml-auto flex items-center gap-1.5 text-sm">
+          <span class="flex items-center gap-0.5" aria-label={`Nota ${rating} de 5`}>
+            {Array.from({ length: stars.full }).map(() => (
+              <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            ))}
+            {stars.half === 1 && (
+              <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" opacity=".5"/></svg>
+            )}
+          </span>
+          <span class="font-bold text-foreground">{rating}</span>
+          {reviewsCount && (
+            <span class="text-muted-foreground text-xs">({reviewsCount.toLocaleString('pt-BR')} aval.)</span>
+          )}
+        </span>
+      )}
+    </div>
+
+    <!-- Body -->
+    <div class="grid sm:grid-cols-2 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-border">
+      <!-- Compre Se -->
+      {buyIf.length > 0 && (
+        <div class="p-5 md:p-6">
+          <p class="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Compre Se...
+          </p>
+          <ul class="space-y-2">
+            {buyIf.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-foreground">
+                <span class="flex-shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Evite Se -->
+      {avoidIf.length > 0 && (
+        <div class="p-5 md:p-6">
+          <p class="text-xs font-black uppercase tracking-wider text-red-500 dark:text-red-400 mb-3 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            Evite Se...
+          </p>
+          <ul class="space-y-2">
+            {avoidIf.map((item) => (
+              <li class="flex items-start gap-2 text-sm text-foreground">
+                <span class="flex-shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+
+    <!-- CTAs no veredito -->
+    <div class="flex flex-col sm:flex-row gap-3 px-5 md:px-6 py-4 bg-secondary/20 border-t border-border">
+      <a
+        href={amazonUrl}
+        target="_blank"
+        rel="nofollow sponsored"
+        class="flex-1 flex items-center justify-center gap-2 bg-[#FF9900] text-black font-black text-sm py-3 px-4 rounded-xl hover:bg-[#E68A00] hover:scale-[1.02] transition-all"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21.997 18.23c0 .727-.405 2.127-1.315 2.896c-.182.14-.364.061-.284-.143c.265-.648.871-2.147.587-2.492c-.201-.262-1.031-.242-1.739-.182c-.323.041-.607.06-.827.105c-.204.016-.245-.163-.041-.303a3.1 3.1 0 0 1 .87-.428c1.15-.344 2.479-.137 2.67.083c.036.042.079.16.079.463m-1.922 1.294a7 7 0 0 1-.829.55c-2.122 1.275-4.871 1.943-7.258 1.943c-3.843 0-7.28-1.417-9.888-3.788c-.224-.182-.039-.446.223-.303c2.81 1.64 6.288 2.632 9.888 2.632c2.266 0 4.708-.424 7.035-1.336c.163-.061.345-.144.504-.202c.367-.165.69.242.325.504m-6.17-11.03c0-1.041.042-1.654-.303-2.18c-.306-.433-.833-.693-1.569-.652c-.798.044-1.655.567-1.873 1.526c-.043.22-.171.436-.437.483l-2.435-.31c-.174-.04-.439-.173-.352-.521C7.459 4.088 9.81 3.129 12.034 3h.522c1.22 0 2.788.349 3.791 1.264c1.217 1.136 1.087 2.662 1.087 4.32v3.927c0 1.178.478 1.7.958 2.314c.13.219.175.477-.044.655a78 78 0 0 1-1.917 1.654c-.175.133-.489.147-.61.045c-.77-.645-.958-1.003-1.435-1.658c-.83.871-1.527 1.352-2.356 1.613a7 7 0 0 1-1.784.216c-2.09 0-3.745-1.303-3.745-3.88c0-2.049 1.09-3.442 2.7-4.101c1.61-.66 3.95-.87 4.704-.874m-.477 5.192c.52-.872.477-1.586.477-3.185c-.652 0-1.306.045-1.871.178c-1.045.303-1.875.96-1.875 2.355c0 1.09.568 1.832 1.526 1.832q.198 0 .348-.045c.67-.186 1.088-.522 1.395-1.135"/></svg>
+        Ver na Amazon
+      </a>
+      <a
+        href={mlUrl}
+        target="_blank"
+        rel="nofollow sponsored"
+        class="flex-1 flex items-center justify-center gap-2 bg-[#FFE600] text-[#2d3277] font-black text-sm py-3 px-4 rounded-xl hover:scale-[1.02] transition-transform"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 48 48"><ellipse cx="24" cy="24" fill="none" stroke="currentColor" stroke-width="2.5" rx="19.5" ry="12.978"/><path fill="none" stroke="currentColor" stroke-width="2.5" d="M38.882 15.614a8.6 8.6 0 0 1-5.165 1.485c-3.335 0-6.225-2.199-9.215-2.199c-2.668 0-7.189 4.373-7.189 5.164s1.31 1.26 2.372.74c.621-.303 3.31-2.914 5.484-2.914s9.219 7.136 9.857 7.806c.989 1.038-.926 3.274-2.149 2.05"/></svg>
+        Ver no Mercado Livre
+      </a>
+    </div>
+  </div>
+</div>

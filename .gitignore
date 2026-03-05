@@ -15,6 +15,7 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.local
 .env.production
 
 # macOS-specific files
@@ -22,3 +23,18 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# scripts de teste e utilitários locais (não vão para o repositório)
+test_*.js
+test_*.py
+test_*.mjs
+test-*.js
+update-ratings.mjs
+ml_auth.js
+ml_fetcher.py
+scrape_meli.js
+*.local.js
+*.local.mjs
+
+# Vercel local config (contém projectId e orgId — não commitar)
+.vercel/

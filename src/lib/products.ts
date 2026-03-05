@@ -14,6 +14,11 @@ export interface Product {
   mlbId?: string;
   reviewUrl: string;
   brand?: string;
+  rating?: number;
+  reviewsCount?: number;
+  // VeredictBox — bloco de decisão rápida no topo do review
+  buyIf?: string[];    // razões para comprar (max 3)
+  avoidIf?: string[];  // razões para evitar (max 2)
 }
 
 export const products: Product[] = [
@@ -38,6 +43,10 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/4b33ueL",
     mlUrl: "https://meli.la/1hVhuw8",
     reviewUrl: "/review/yale-ymf-40a-rl",
+    rating: 5.0,
+    reviewsCount: 2,
+    buyIf: ["Quer máxima segurança e silêncio (mecanismo rolete)", "Mora em apartamento ou condomínio", "Precisa integrar com Alexa ou app"],
+    avoidIf: ["Quer Wi-Fi nativo sem hub extra", "Tem orçamento limitado"],
   },
   {
     id: 2,
@@ -60,6 +69,10 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/40Cj24c",
     mlUrl: "https://meli.la/2bfc5J2",
     reviewUrl: "/review/intelbras-fr-220",
+    rating: 4.9,
+    reviewsCount: 407,
+    buyIf: ["Quer a instalação mais fácil do mercado (sobrepor)", "Precisa de até 100 digitais cadastradas", "Quer assistência técnica em todo o Brasil"],
+    avoidIf: ["Precisa de acesso remoto pelo celular", "Prioriza design premium"],
   },
   {
     id: 3,
@@ -82,6 +95,10 @@ export const products: Product[] = [
     amazonUrl: "https://www.amazon.com.br/dp/B0BXB7419R",
     mlUrl: "https://lista.mercadolivre.com.br/intelbras-ifr-7000#D[A:intelbras%20ifr%207000]",
     reviewUrl: "/review/intelbras-ifr-7000",
+    rating: 4.9,
+    reviewsCount: 377,
+    buyIf: ["Quer porta Push-Pull (empurre e entre)", "Usa casa inteligente (Alexa/Google)", "Precisa controlar acesso pelo celular"],
+    avoidIf: ["Prefere instalação simples sem especialista", "Não quer pagar pelo hub de Wi-Fi"],
   },
   {
     id: 4,
@@ -104,6 +121,10 @@ export const products: Product[] = [
     amazonUrl: "https://www.amazon.com.br/dp/B08HSMKRR8",
     mlUrl: "https://meli.la/1PDGayy",
     reviewUrl: "/review/elsys-esf-de4000b",
+    rating: 4.8,
+    reviewsCount: 657,
+    buyIf: ["Quer gerenciar visitas e prestadores pelo app", "Prefere design embutir slim", "Gosta de controle total de acesso"],
+    avoidIf: ["Tem mãos frequentemente úmidas", "Quer instalação sem furos"],
   },
   {
     id: 5,
@@ -126,6 +147,10 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/4r9fgu7",
     mlUrl: "https://meli.la/28SbeV3",
     reviewUrl: "/review/intelbras-fr-201",
+    rating: 4.9,
+    reviewsCount: 5632,
+    buyIf: ["Quer o modelo mais avaliado do Brasil (5.600+ avaliações)", "Prefere instalação de sobrepor com design moderno", "Precisa de sensor térmico de emergência"],
+    avoidIf: ["Precisa de controle remoto pelo celular", "Quer integração com casa inteligente"],
   },
   {
     id: 6,
@@ -148,6 +173,8 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/4u9LEj1",
     mlUrl: "https://meli.la/232BgxP",
     reviewUrl: "/review/primebras-athenas",
+    rating: 4.6,
+    reviewsCount: 325,
   },
   {
     id: 7,
@@ -170,6 +197,8 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/3MQlbGo",
     mlUrl: "https://meli.la/1jerQyg",
     reviewUrl: "/review/papaiz-sl140-sobrepor",
+    rating: 5.0,
+    reviewsCount: 1,
   },
   {
     id: 8,
@@ -192,6 +221,8 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/3P9uG3Z",
     mlUrl: "https://meli.la/12VH5ij",
     reviewUrl: "/review/intelbras-fr-101",
+    rating: 4.9,
+    reviewsCount: 7754,
   },
   {
     id: 9,
@@ -214,6 +245,8 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/3P8JT5j",
     mlUrl: "https://meli.la/1gq7gyZ",
     reviewUrl: "/review/novadigital-sl06",
+    rating: 4.9,
+    reviewsCount: 426,
   },
   {
     id: 10,
@@ -236,6 +269,8 @@ export const products: Product[] = [
     amazonUrl: "https://amzn.to/4clSgnQ",
     mlUrl: "https://meli.la/2HH1UDL",
     reviewUrl: "/review/pado-fde-600",
+    rating: 5.0,
+    reviewsCount: 2,
   },
   {
     id: 11,
@@ -304,6 +339,8 @@ export const products: Product[] = [
     mlUrl: "https://meli.la/2GR7MRF",
     reviewUrl: "/review/pado-fdv-200",
     brand: "Pado",
+    rating: 5.0,
+    reviewsCount: 8,
   },
   {
     id: 15,
@@ -327,6 +364,8 @@ export const products: Product[] = [
     mlUrl: "https://meli.la/12mVHuZ",
     reviewUrl: "/review/primebras-athenas-vidro",
     brand: "Primebras",
+    rating: 4.7,
+    reviewsCount: 180,
   },
 ];
 

@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { products } from '../lib/products'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || 'https://ahgbxzbyylawrxryyhuc.supabase.co';
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_R-njGNTmJuGsvlbbsl6_1Q_wnG9xdSJ';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Baixando os produtos ordenados (rank)
+const { data: dbProducts, error } = await supabase.from('products').select('*').order('rank', { ascending: true });
+const products = dbProducts || [];
 
 const tocItems = [
   { label: 'O que é Biometria e por que usar?', href: '#o-que-e-biometria' },
@@ -70,6 +78,10 @@ const badgeClass = {
   primary: 'bg-primary/10 text-primary border-primary/20',
   accent: 'bg-accent/10 text-accent border-accent/20',
   cta: 'bg-cta/10 text-cta border-cta/20',
+}
+
+function getStarClass(star: number, rating: number): string {
+  return star <= Math.round(rating) ? 'text-amber-400' : 'text-gray-300';
 }
 ---
 
@@ -293,7 +305,7 @@ const badgeClass = {
                   <div class={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl text-lg font-extrabold ${product.rank <= 3 ? 'bg-primary text-primary-foreground shadow-md shadow-primary/25' : 'bg-secondary text-muted-foreground'}`}>
                     {product.rank}
                   </div>
-                  <span class={`rounded-full border px-3 py-1 text-xs font-semibold ${badgeClass[product.badgeColor]}`}>
+                  <span class={`rounded-full border px-3 py-1 text-xs font-semibold ${badgeClass[product.badgeColor as keyof typeof badgeClass] || badgeClass.primary}`}>
                     {product.badge}
                   </span>
                 </div>
@@ -323,9 +335,26 @@ const badgeClass = {
                   </a>
                 </h3>
 
+                <!-- Rating estático do ML -->
+                {product.rating && (
+                  <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-0.5">
+                      {[1, 2, 3, 4, 5].map((star: number) => (
+                        <svg class={`w-4 h-4 flex-shrink-0 fill-current ${getStarClass(star, product.rating)}`} viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                      ))}
+                    </div>
+                    <span class="text-xs font-semibold text-foreground">{product.rating.toFixed(1)}</span>
+                    {product.reviews_count && (
+                      <span class="text-xs text-muted-foreground">({product.reviews_count.toLocaleString('pt-BR')} avaliações no ML)</span>
+                    )}
+                  </div>
+                )}
+
                 <!-- Specs -->
                 <div class="flex flex-wrap gap-2">
-                  {product.specs.map((spec) => (
+                  {product.specs.map((spec: string) => (
                     <span class="rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground">
                       {spec}
                     </span>
@@ -343,7 +372,7 @@ const badgeClass = {
                   <div>
                     <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-primary">O que gostamos</p>
                     <ul class="flex flex-col gap-1.5">
-                      {product.pros.map((pro) => (
+                      {product.pros.map((pro: string) => (
                         <li class="flex items-start gap-2 text-sm text-foreground">
                           <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                           {pro}
@@ -354,7 +383,7 @@ const badgeClass = {
                   <div>
                     <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-destructive">Pontos de atenção</p>
                     <ul class="flex flex-col gap-1.5">
-                      {product.cons.map((con) => (
+                      {product.cons.map((con: string) => (
                         <li class="flex items-start gap-2 text-sm text-foreground">
                           <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                           {con}
@@ -587,9 +616,9 @@ const badgeClass = {
     document.addEventListener('DOMContentLoaded', () => {
       // DRAWER INTERACTION LOGIC
       const drawer = document.getElementById('ml-bottom-drawer');
-      const header = document.getElementById('ml-drawer-header');
-      const overlay = document.getElementById('ml-drawer-overlay');
-      const icon = document.getElementById('ml-drawer-icon');
+      const header = document.getElementById('ml-drawer-header') as HTMLElement;
+      const overlay = document.getElementById('ml-drawer-overlay') as HTMLElement;
+      const icon = document.getElementById('ml-drawer-icon') as HTMLElement;
       
       if (!drawer || !header || !overlay || !icon) return;
 
@@ -600,20 +629,20 @@ const badgeClass = {
       function openDrawer() {
         if (isExpanded) return;
         isExpanded = true;
-        drawer.style.transform = 'translateY(0)';
-        icon.style.transform = 'rotate(180deg)';
-        overlay.classList.remove('pointer-events-none', 'opacity-0');
+        drawer!.style.transform = 'translateY(0)';
+        icon!.style.transform = 'rotate(180deg)';
+        overlay!.classList.remove('pointer-events-none', 'opacity-0');
         document.body.style.overflow = 'hidden'; 
       }
 
       function closeDrawer() {
         if (!isExpanded) return;
         isExpanded = false;
-        drawer.style.transform = 'translateY(calc(100% - 70px))';
-        icon.style.transform = 'rotate(0deg)';
-        overlay.classList.add('opacity-0');
+        drawer!.style.transform = 'translateY(calc(100% - 70px))';
+        icon!.style.transform = 'rotate(0deg)';
+        overlay!.classList.add('opacity-0');
         document.body.style.overflow = '';
-        setTimeout(() => { if (!isExpanded) overlay.classList.add('pointer-events-none'); }, 300);
+        setTimeout(() => { if (!isExpanded) overlay!.classList.add('pointer-events-none'); }, 300);
       }
 
       // Tocar em qualquer lugar da gaveta para abrir (quando fechada)
