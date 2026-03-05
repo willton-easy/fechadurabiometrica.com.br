@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SidebarOfferWidget from '../../components/SidebarOfferWidget.astro';
 import { getArticlesSorted, getFeaturedArticle, formatDate } from '../../lib/articles.ts';
 import type { ArticleCategory } from '../../lib/articles.ts';
 
@@ -56,9 +57,10 @@ const categoryColors: Record<ArticleCategory, string> = {
     </div>
   </section>
 
-  <div class="mx-auto max-w-7xl px-4 lg:px-6 py-12">
-
-    <!-- Filtros por Categoria -->
+  <div class="mx-auto max-w-[1400px] px-4 lg:px-8 py-12 flex flex-col lg:flex-row gap-10 lg:gap-16">
+    <!-- Coluna Principal (Artigos) -->
+    <div class="flex-1 min-w-0">
+      <!-- Filtros por Categoria -->
     <div id="category-filters" class="flex flex-wrap gap-2 mb-10 justify-center">
       <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold border transition-all bg-primary text-primary-foreground border-primary">
         Todos
@@ -170,6 +172,11 @@ const categoryColors: Record<ArticleCategory, string> = {
         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
+    
+    <!-- Barra Lateral (Sidebar Promovida Direita) -->
+    <aside class="w-full lg:w-[340px] xl:w-[380px] flex-shrink-0 mt-8 lg:mt-0 relative space-y-8">
+      <SidebarOfferWidget productIds={[1, 2]} title="🔥 Vitrine de Ofertas" />
+    </aside>
   </div>
 
   <!-- Schema JSON-LD: Blog -->

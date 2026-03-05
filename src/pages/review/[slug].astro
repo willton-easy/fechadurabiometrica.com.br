@@ -5,6 +5,7 @@ import RecentArticles from "../../components/RecentArticles.astro";
 import VeredictBox from "../../components/VeredictBox.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import FAQxSchema from "../../components/FAQxSchema.astro";
+import SidebarOfferWidget from "../../components/SidebarOfferWidget.astro";
 import { products } from "../../lib/products";
 
 // 1. Gera as páginas dinamicamente baseando-se nos arquivos Markdown em src/content/reviews/
@@ -199,7 +200,10 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
     mlUrl={product.mlUrl}
   />
 
-  <article class="mx-auto max-w-4xl px-4 py-8" itemscope itemtype="https://schema.org/Product">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8 py-8 lg:py-16 flex flex-col lg:flex-row gap-10 lg:gap-16">
+    <!-- Coluna de Leitura (Esquerda no Desktop) -->
+    <div class="flex-1 min-w-0 max-w-4xl mx-auto lg:mx-0">
+      <article itemscope itemtype="https://schema.org/Product">
     <!-- Breadcrumb com link para Blog -->
     <nav class="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground" aria-label="Caminho de navegação">
       <a href="/" class="hover:text-primary transition-colors">Home</a>
@@ -286,12 +290,19 @@ const schemaJson = JSON.stringify([schemaData, breadcrumbSchema]);
 
     <!-- Review Schema Automático (Rich Snippet) -->
     <script type="application/ld+json" set:html={schemaJson} />
-  </article>
+      </article>
 
-  <!-- Seção de FAQ (SEO) -->
-  <FAQxSchema faqs={entry.data.faqs} title="Dúvidas Frequentes" />
+      <!-- Seção de FAQ (SEO) -->
+      <FAQxSchema faqs={entry.data.faqs} title="Dúvidas Frequentes" />
+    </div>
 
-  <!-- Artigos Recentes -->
+    <!-- Barra Lateral (Sidebar Promovida Direita no Desktop) -->
+    <aside class="w-full lg:w-[340px] xl:w-[380px] flex-shrink-0 space-y-8 mt-12 lg:mt-0 relative">
+      <SidebarOfferWidget productIds={[1, 4]} title="🔥 Ofertas Especiais" />
+    </aside>
+  </div>
+
+  <!-- Artigos Recentes (Largura total abaixo do Review) -->
   <RecentArticles excludeSlug={product.reviewUrl} />
 
   <!-- Floating Action Button (FAB) -->

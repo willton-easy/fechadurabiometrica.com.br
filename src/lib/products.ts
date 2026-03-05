@@ -19,6 +19,7 @@ export interface Product {
   // VeredictBox — bloco de decisão rápida no topo do review
   buyIf?: string[];    // razões para comprar (max 3)
   avoidIf?: string[];  // razões para evitar (max 2)
+  gallery?: string[];  // URLs das imagens miniaturas
 }
 
 export const products: Product[] = [
@@ -47,6 +48,7 @@ export const products: Product[] = [
     reviewsCount: 2,
     buyIf: ["Quer máxima segurança e silêncio (mecanismo rolete)", "Mora em apartamento ou condomínio", "Precisa integrar com Alexa ou app"],
     avoidIf: ["Quer Wi-Fi nativo sem hub extra", "Tem orçamento limitado"],
+    gallery: ["/combo.webp", "/yale-2.png", "/yale-3.png"],
   },
   {
     id: 2,
@@ -122,9 +124,10 @@ export const products: Product[] = [
     mlUrl: "https://meli.la/1PDGayy",
     reviewUrl: "/review/elsys-esf-de4000b",
     rating: 4.8,
-    reviewsCount: 657,
-    buyIf: ["Quer gerenciar visitas e prestadores pelo app", "Prefere design embutir slim", "Gosta de controle total de acesso"],
-    avoidIf: ["Tem mãos frequentemente úmidas", "Quer instalação sem furos"],
+    reviewsCount: 154,
+    buyIf: ["Casa ou negócio com muitas pessoas entrando", "Buscando uma marca brasileira tradicional"],
+    avoidIf: ["Quer funções Wi-Fi direto de fábrica (este é via Bluetooth/ZigBee)", "Porta onde a fechadura pegará chuva direta e forte"],
+    gallery: ["/intelbras.jpg", "/intelbras-2.jpg", "/intelbras-3.jpg"],
   },
   {
     id: 5,
