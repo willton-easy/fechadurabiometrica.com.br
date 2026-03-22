@@ -19,6 +19,7 @@ cons:
 affiliateLink: "https://amazon.com.br/s?k=intelbras+fr+101"
 priceText: "Verificado: preço médio de R$ 380 em março/2026"
 highlight: "Melhor Custo-Benefício"
+image: '~/assets/images/fechadura_externa_luxo_2026_ip65_1774147330927.png'
 ---
 
 A fechadura digital de sobrepor FR 101 da Intelbras é frequentemente a porta de entrada (literalmente!) de muitos brasileiros no mundo das automações residenciais. 
@@ -36,3 +37,8 @@ A fechadura digital de sobrepor FR 101 da Intelbras é frequentemente a porta de
 ## ✅ Veredito Final
 
 Para quem busca se livrar das chaves tradicionais e morre de medo de perder a chave de casa, a FR 101 é uma excelente primeira fechadura eletrônica.
+
+
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8 mb-8 justify-center w-full">
+  <a href="https://www.mercadolivre.com.br/fechadura-digital-de-sobrepor-touch-screen-fr-101-preta-intelbras/p/MLB20938205#polycard_client=search-desktop&search_layout=grid&position=1&type=product&tracking_id=3c3cdfbe-0ca3-4c41-a2b4-75567700bc3f&wid=MLB3924428363&sid=search" target="_blank" class="btn btn-primary bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded w-full sm:w-auto text-center shadow-lg transition-transform transform hover:scale-105">📦 Review Fechadura Dig no Meli</a>
+</div>
