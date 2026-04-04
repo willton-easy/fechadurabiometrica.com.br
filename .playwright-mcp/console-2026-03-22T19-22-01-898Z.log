@@ -1,0 +1,6 @@
+[    1022ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/agents/estrategista-seo-2026/dashboard:0
+[    2184ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/api/health:0
+[    2249ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/api/auth/get-session:0
+[    3398ms] [ERROR] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[    3398ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/api/companies:0
+[    6757ms] [ERROR] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3100/assets/index-jDIK0KDk.js:1119

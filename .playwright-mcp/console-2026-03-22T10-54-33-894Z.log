@@ -1,0 +1,3 @@
+[     730ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[     745ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/agents/all:0
+[     809ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119

@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import AffiliateTable from '~/components/AffiliateTable.astro';
 import TableOfContents from '~/components/TableOfContents.astro';
+import AffiliateButton from '~/components/ui/AffiliateButton.astro';
 
 const metadata = {
   title: 'Melhor Fechadura Digital para Porta de Vidro em 2026 [Top 10 Testadas]',
@@ -240,23 +241,19 @@ const produtos = [
     <div class="my-10 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 text-center shadow-xl">
       <p class="text-xl font-bold mb-2">🔐 Escolha sua fechadura agora</p>
       <p class="text-slate-300 mb-6">Compare preços na Amazon e Mercado Livre.</p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <AffiliateButton
+          type="amazon"
           href={`https://www.amazon.com.br/s?k=fechadura+digital+porta+de+vidro&tag=${TAG}`}
-          target="_blank"
-          rel="nofollow sponsored noopener"
-          class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all"
-        >
-          🟡 Ver na Amazon
-        </a>
-        <a
+          text="Ver na Amazon"
+          class="w-full sm:w-72"
+        />
+        <AffiliateButton
+          type="mercadolivre"
           href="https://www.mercadolivre.com.br/fechadura-digital-porta-vidro"
-          target="_blank"
-          rel="nofollow sponsored noopener"
-          class="flex items-center justify-center gap-2 bg-[#3483FA] hover:bg-[#2968c8] text-white font-bold py-3 px-6 rounded-xl transition-all"
-        >
-          🔵 Ver no Mercado Livre
-        </a>
+          text="Ver no Mercado Livre"
+          class="w-full sm:w-72"
+        />
       </div>
     </div>
 
@@ -312,23 +309,19 @@ const produtos = [
       > (4.9 ⭐ | +4.500 avaliações).
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+      <AffiliateButton
+        type="amazon"
         href={`https://www.amazon.com.br/dp/B0G4SLY6Y7?tag=${TAG}`}
-        target="_blank"
-        rel="nofollow sponsored noopener"
-        class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all shadow"
-      >
-        🟡 Novadigital na Amazon
-      </a>
-      <a
-        href={`https://www.amazon.com.br/dp/B07BRXHLKM?tag=${TAG}`}
-        target="_blank"
-        rel="nofollow sponsored noopener"
-        class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-3 px-6 rounded-xl transition-all shadow"
-      >
-        🟡 Intelbras FR 400 na Amazon
-      </a>
+        text="Comprar Novadigital SL-Lumi"
+        class="w-full sm:w-80"
+      />
+      <AffiliateButton
+        type="mercadolivre"
+        href="https://www.mercadolivre.com.br/p/MLB29866421"
+        text="Novadigital no Mercado Livre"
+        class="w-full sm:w-80"
+      />
     </div>
   </article>
 </Layout>

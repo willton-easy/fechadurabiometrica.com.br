@@ -1,6 +1,7 @@
 ---
 // AffiliateTable.astro — Tabela de afiliados estilo AffiliateX
 // Suporta: imagens com zoom lightbox, logos Amazon + ML, badges, avaliações
+import AffiliateButton from '~/components/ui/AffiliateButton.astro';
 
 export interface ProductImage {
   src: string; // URL base, ex: https://m.media-amazon.com/images/I/51DTd911ugL
@@ -62,7 +63,6 @@ function amazonImgSize(url: string, size: '300' | '500' | '1500') {
 >
   {
     products.map((product) => {
-      const thumbUrl = amazonImgSize(product.image, '300');
       const hdUrl = amazonImgSize(product.image, '1500');
       const medUrl = amazonImgSize(product.image, '500');
 
@@ -139,46 +139,9 @@ function amazonImgSize(url: string, size: '300' | '500' | '1500') {
 
           {/* Botões de CTA */}
           <div class="flex-shrink-0 flex flex-col gap-2 w-full md:w-auto">
-            <a
-              href={product.amazonLink}
-              target="_blank"
-              rel="nofollow sponsored noopener"
-              class="flex items-center justify-center gap-2 bg-[#FF9900] hover:bg-[#e68a00] text-[#111] font-bold py-2.5 px-4 rounded-lg transition-all text-sm whitespace-nowrap shadow hover:shadow-md"
-            >
-              {/* Logo Amazon SVG */}
-              <svg
-                width="60"
-                height="18"
-                viewBox="0 0 135 41"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-label="Amazon"
-                fill="#111"
-              >
-                <path d="M95.2 32.4c-8.4 6.2-20.6 9.5-31.1 9.5-14.7 0-28-5.5-38-14.5-.8-.7-.1-1.7.9-1.1 10.8 6.3 24.2 10.1 38 10.1 9.3 0 19.6-1.9 29-6 1.4-.6 2.6.9 1.2 2zm3.4-3.9c-1.1-1.4-7.1-.7-9.8-.3-.8.1-1-.6-.2-1.1 4.8-3.4 12.7-2.4 13.6-1.3.9 1.2-.2 9.1-4.8 12.8-.7.6-1.3.3-1-.5 1-2.5 3.3-8.2 2.2-9.6z" />
-                <path d="M34 7.4V4.2c0-.5.4-.8.8-.8h14.1c.5 0 .8.3.8.8v2.8c0 .5-.4 1-.8 2L41.6 20h8.1c.5 0 .8.3.8.8v3.3c0 .5-.4.8-.9.8-4.3-2.3-10.1-2.5-14.9 0-.5.3-1-.3-1-.7v-3.2c0-.5 0-1.4.5-2.1l8.5-12.2H35c-.5 0-.8-.3-.8-.8l.3.5zm-25.2 0V4.2c0-.5.4-.8.8-.8h14.1c.5 0 .8.3.8.8v2.8c0 .5-.4 1-.8 2L16.5 20h8.1c.5 0 .8.3.8.8v3.3c0 .5-.4.8-.9.8C20.1 22.6 14.3 22.4 9.4 24.9c-.5.3-1-.3-1-.7v-3.2c0-.5 0-1.4.5-2.1L17.4 6.7H9.7c-.5 0-.8-.3-.8-.8l.1.5zm95.2 16.2H100c-.4 0-.8-.3-.8-.8V4.3c0-.5.4-.8.8-.8h4c.4 0 .8.4.8.8v3.1h.1c1-3 3-4.3 5.6-4.3 2.7 0 4.4 1.4 5.6 4.3 1-3 3.4-4.3 5.9-4.3 1.8 0 3.7.7 4.9 2.4 1.3 1.9 1.1 4.6 1.1 7V23c0 .5-.4.8-.8.8h-4.3c-.4 0-.8-.4-.8-.8v-8.5c0-.9.1-3.3-.1-4.2-.3-1.5-1.2-1.9-2.4-1.9-1 0-2 .6-2.4 1.7-.4 1.1-.4 2.8-.4 4.4v8.2c0 .5-.4.8-.8.8H113c-.4 0-.8-.4-.8-.8v-8.5c0-3.7.6-9.1-2.5-9.1-3.2 0-3.1 5.3-3.1 9.1v8.2c0 .5-.4.8-.8.8h.2zm39.2-17.4c6.6 0 10.1 5.7 10.1 12.9 0 7-3.9 12.5-10.1 12.5-6.5 0-10-5.7-10-12.7 0-7.1 3.6-12.7 10-12.7zm0 4.7c-3.3 0-3.5 4.5-3.5 7.2 0 2.8-.1 8.8 3.4 8.8 3.4 0 3.6-4.8 3.6-7.7 0-1.9-.1-4.2-.7-6-.5-1.6-1.6-2.3-2.8-2.3zm18.6 15.6h-4.3c-.4 0-.8-.4-.8-.8V4.4c.1-.4.4-.7.8-.7h4c.4 0 .7.3.8.6v2.9h.1c1.2-2.7 2.9-3.9 5.8-3.9 1.9 0 3.8.7 5 2.6 1.1 1.8 1.1 4.8 1.1 6.9V23c-.1.4-.4.7-.8.7h-4.3c-.4 0-.7-.3-.8-.7v-8.3c0-3.1.4-7.6-2.6-7.6-1 0-1.9.7-2.4 1.7-.6 1.3-.6 2.7-.6 4.4v9.9c0 .5-.4.8-.8.8z" />
-              </svg>
-              Ver na Amazon
-            </a>
+            <AffiliateButton type="amazon" href={product.amazonLink} class="w-full md:w-60" />
             {product.mercadoLivreLink && (
-              <a
-                href={product.mercadoLivreLink}
-                target="_blank"
-                rel="nofollow sponsored noopener"
-                class="flex items-center justify-center gap-2 bg-[#3483FA] hover:bg-[#2968c8] text-white font-bold py-2.5 px-4 rounded-lg transition-all text-sm whitespace-nowrap shadow hover:shadow-md"
-              >
-                {/* Logo Mercado Livre SVG */}
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 32 32"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="white"
-                  aria-label="Mercado Livre"
-                >
-                  <path d="M16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0zm5.8 10.2a.8.8 0 0 1-.1.3C20.5 13 18.5 16.8 16 16.8s-4.5-3.8-5.7-6.3a.8.8 0 0 1-.1-.3c0-.4.4-.8.8-.8h9.9c.5 0 .9.4.9.8zM16 25.6c-3.9 0-7.3-2.5-8.7-6-.1-.1 0-.3.1-.3l1.9-1c.1-.1.3 0 .4.1C10.7 20.4 13.2 22 16 22s5.3-1.6 6.3-3.6c.1-.1.2-.2.4-.1l1.9 1c.1.1.1.2.1.3-1.4 3.5-4.8 6-8.7 6z" />
-                </svg>
-                Mercado Livre
-              </a>
+              <AffiliateButton type="mercadolivre" href={product.mercadoLivreLink} class="w-full md:w-60" />
             )}
           </div>
         </div>

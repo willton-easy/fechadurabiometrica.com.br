@@ -7,119 +7,98 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 const metadata = {
-  title: 'Fechadura Biométrica - Tudo sobre Fechaduras Digitais',
+  title: 'Fechadura Biométrica - Tudo sobre Fechaduras Digitais Premium',
+  description: 'Descubra a melhor fechadura biométrica para porta de vidro e madeira. Análises e tendências tecnológicas de 2026 para proteger sua casa de forma inteligente.',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <!-- JSON-LD para SEO Oficial -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Fechadura Biométrica",
+      "url": "https://fechadurabiometrica.com.br",
+      "description": "Guias, análises e comparativos de fechaduras digitais 2026."
+    }
+  </script>
 
+  <!-- Hero Widget - Minimalista e Convergente -->
   <Hero
     actions={[
       {
         variant: 'primary',
-        text: 'Melhores Fechaduras',
-        href: '/reviews',
-        icon: 'tabler:lock',
+        text: 'Ler os Guias Premium',
+        href: '/blog',
+        icon: 'tabler:book',
       },
-      { text: 'Guias de Instalação', href: '/guias' },
+      { text: 'Ir para o Glossário', href: '/glossario', icon: 'tabler:bulb' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Fechadura Digital Hero Image' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Fechadura Biométrica de Luxo' }}
   >
     <Fragment slot="title">
-      A Melhor <span class="text-accent dark:text-white">Fechadura Digital</span> Para Sua Casa
+      Casa Inteligente e Segura: <span class="text-accent dark:text-white">A Revolução Digital 2026</span>
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        Descubra qual é a fechadura eletrônica ideal para sua porta de vidro, madeira ou portão de correr.
+        Guias de bolso e análises completas para escolher sua fechadura digital ideal.
       </span>
-      Análises completas, comparativos sinceros e os menores preços do mercado.
+      Esqueça as chaves de vez. Proteja sua fortaleza com biometria.
     </Fragment>
   </Hero>
 
-  <!-- Features Widget *************** -->
-
+  <!-- Features - O que importa -->
   <Features
     id="features"
-    tagline="Benefícios"
-    title="Por que escolher uma fechadura inteligente?"
-    subtitle="Segurança, conforto e modernidade em um único equipamento."
+    tagline="Pilares da Proteção"
+    title="O fim da insegurança e das chaves perdidas"
+    subtitle="Design moderno, usabilidade premium e segurança de nível militar."
     items={[
       {
-        title: 'Segurança Avançada',
-        description:
-          'Esqueça as chaves físicas que podem ser copiadas. Utilize tecnologia de ponta como reconhecimento facial, biometria e senhas criptografadas.',
-        icon: 'tabler:shield-check',
+        title: 'Criptografia e Biometria',
+        description: 'Sensores capacitivos anti-falsificação (3D FaceID) e comunicação AES-128 para evitar qualquer invasão digital ou clonagem.',
+        icon: 'tabler:fingerprint',
       },
       {
-        title: 'Fechamento Automático',
-        description:
-          'Bateu a porta, ela trancou. O recurso de travamento automático garante que você nunca mais volte para checar se a casa está segura.',
+        title: 'Casa Inteligente Integrada',
+        description: 'Compatibilidade total com o protocolo Matter 2026, Zigbee e Wi-Fi (Alexa, Google Home e Apple HomeKit).',
+        icon: 'tabler:smart-home',
+      },
+      {
+        title: 'Acabamento Sem Furar',
+        description: 'Seja em portas de vidro temperado ou pivotantes de madeira maciça de luxo, instalação sob medida para valorizar o design.',
         icon: 'tabler:door',
-      },
-      {
-        title: 'Acesso Remoto via App',
-        description:
-          'Abra a porta para visitas, prestadores de serviço ou crie senhas temporárias de qualquer lugar do mundo pelo seu celular.',
-        icon: 'tabler:device-mobile',
-      },
-      {
-        title: 'Alertas de Intrusão',
-        description:
-          'Sensores integrados soam um alarme se alguém tentar arrombar a porta ou inserir a senha errada repetidas vezes.',
-        icon: 'tabler:bell-ringing',
-      },
-      {
-        title: 'Durabilidade',
-        description:
-          'Bateria que dura por meses. E não se preocupe: se a pilha acabar, você pode utilizar chaves de contingência ou um powerbank.',
-        icon: 'tabler:battery',
-      },
-      {
-        title: 'Fácil Instalação',
-        description:
-          'Existem modelos de sobrepor perfeitos para portas de vidro que não exigem furos ou quebra-quebra.',
-        icon: 'tabler:settings',
       },
     ]}
   />
 
-  <!-- HighlightedPosts Widget ******* -->
-
+  <!-- Artigos Atuais -->
   <BlogLatestPosts
-    title="Nossos Últimos Artigos"
-    information={`Analisamos os últimos lançamentos do mercado, desde fechaduras de entrada da Intelbras até modelos topo de linha com Wi-Fi. Leia nossos reviews honestos para tomar a melhor decisão.`}
+    title="Nossa Inteligência Editorial"
+    information="O que testamos e aprendemos recentemente sobre as tecnologias de controle de acesso mais requisitadas pelo mercado de alto padrão brasileiro."
   />
 
-  <!-- FAQs Widget ******************* -->
-
+  <!-- FAQs - Melhorado para conversão -->
   <FAQs
-    title="Perguntas Frequentes"
-    subtitle="Tire todas as suas dúvidas sobre a instalação e uso de fechaduras eletrônicas."
+    title="Dúvidas Clássicas dos Usuários"
+    subtitle="Direto ao ponto, sem termos técnicos confusos."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Fechaduras digitais são realmente seguras?',
-        description:
-          "Sim. A maioria das fechaduras digitais utiliza criptografia militar para proteger suas senhas e app, além de sensores anti-arrombamento. Como elas não possuem tambores físicos tradicionais em modelos de sobrepor, elas não podem ser 'michadas' por ladrões comuns.",
+        title: 'E se faltar energia mecânica e elétrica na rua?',
+        description: 'Nenhum problema. Todas as fechaduras são alimentadas por pilhas alcalinas tipo AA independentes. Elas avisam sobre pilhas fracas com meses de antecedência. Caso você negligencie o aviso, você ainda conta com chave de emergência ou cabo USB (powerbank).',
       },
       {
-        title: 'Preciso furar minha porta de vidro?',
-        description:
-          'Não é obrigatório. Existem excelentes modelos específicos de sobrepor para porta de vidro que são presos através de suportes adesivos de altíssima colagem ou pressão. Isso significa que não é necessário nenhum corte no vidro temperado.',
+        title: 'Por que o modelo para Porta de Vidro é diferente?',
+        description: 'Portas de vidro geralmente não suportam maquinário para cortar um miolo (embutir). Por isso, as fechaduras de porta de vidro usam fitas adesivas de classe estrutural 3M VHB ou fixadores de pressão U-Clip, preservando o vidro intacto.',
       },
       {
-        title: 'E se a bateria da fechadura acabar, eu fico trancado do lado de fora?',
-        description:
-          'De forma alguma! Quase todas as fechaduras avisam semanas antes que a pilha está baixa. Se ignorar o aviso e a energia zerar, você pode abrir utilizando uma chave mecânica de backup (que vem no kit) ou energizar a fechadura temporariamente ligando um Powerbank na entrada USB de emergência externa.',
-      },
-      {
-        title: 'Qual a diferença entre fechadura de embutir e de sobrepor?',
-        description:
-          'Fechaduras de embutir vão DENTRO do batente da porta (requer maquinário de marcenaria para cavar a madeira, ótimo acabamento). Fechaduras de sobrepor são afixadas POR CIMA da porta, não substituindo a maçaneta principal original (instalação muito mais DIY e rápida).',
+        title: 'Qualquer hacker ou inteligência artificial consegue clonar a senha?',
+        description: 'As fechaduras de 2026 utilizam senhas dinâmicas (OTP) e os modelos biométricos utilizam sensores de detecção de vivacidade. Ou seja, até dedos de silicone não conseguem enganar os escâneres da Intelbras ou Yale.',
       },
     ]}
   />

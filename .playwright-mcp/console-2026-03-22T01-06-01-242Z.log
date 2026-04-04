@@ -1,0 +1,2 @@
+[     286ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/org:0
+[     375ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119

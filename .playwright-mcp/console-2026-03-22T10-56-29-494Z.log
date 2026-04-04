@@ -1,0 +1,6 @@
+[     232ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/affiliate-manager?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[     238ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[     353ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/agents/affiliate-manager/settings:0
+[    1285ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/affiliate-manager?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[    3311ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/affiliate-manager?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[    7322ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/affiliate-manager?companyId=f714b013-1227-46ef-b551-2f44a841f624:0

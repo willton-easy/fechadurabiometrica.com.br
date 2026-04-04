@@ -1,0 +1,6 @@
+[     230ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/hardware-specialist?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[     235ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[     341ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/agents/hardware-specialist/settings:0
+[    1289ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/hardware-specialist?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[    3308ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/hardware-specialist?companyId=f714b013-1227-46ef-b551-2f44a841f624:0
+[    7327ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3100/api/agents/hardware-specialist?companyId=f714b013-1227-46ef-b551-2f44a841f624:0

@@ -1,0 +1,4 @@
+[    1096ms] [WARNING] This page is using the deprecated ResourceLoader module "jquery.ui".
+Please use Codex instead. @ https://commons.wikimedia.org/w/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector-2022:11
+[    1429ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://commons.wikimedia.org/w/index.php?title=MediaWiki:Gadget-ImageAnnotator.js&action=raw&ctype=text/javascript:0
+[    1430ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://commons.wikimedia.org/w/index.php?title=MediaWiki:AjaxTranslation.js&action=raw&ctype=text/javascript:0

@@ -1,0 +1,77 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+
+const metadata = {
+  title: 'Glossário Tech: Dicionário das Fechaduras Digitais - Fechadura Biométrica',
+  description: 'Aprenda o significado de Biometria Capacitiva, RFID, Senha Dinâmica, Tuya, Zigbee, e Protocolo Matter. O vocabulário definitivo de casas inteligentes.',
+};
+
+const glossarioItems = [
+  {
+    term: 'Biometria Capacitiva (3D FaceID)',
+    definition: 'Tecnologia que utiliza campos elétricos para mapear as cristas e sulcos da pele humana, evitando fraudes com dedos de silicone ou fotos. Usada nas melhores fechaduras de 2026.',
+  },
+  {
+    term: 'Protocolo Matter',
+    definition: 'O padrão universal de casa inteligente. Se uma fechadura tem Matter, ela funciona perfeitamente com Alexa, Google Home e Apple HomeKit sem precisar de hubs complicados de terceiros.',
+  },
+  {
+    term: 'RFID / NFC',
+    definition: 'Tecnologias de radiofrequência (Tags). RFID é usado nas tags de aproximação (cartões/chaveiros). NFC é o que permite abrir a porta encostando o smartwatch ou celular.',
+  },
+  {
+    term: 'Fechadura de Embutir vs Sobrepor',
+    definition: 'Embutir significa que o maquinário está escondido dentro da madeira (requer escavação da porta). Sobrepor significa que ela é colocada por cima, perfeita para portas de vidro e instalações rápidas.',
+  },
+  {
+    term: 'Senha Dinâmica / OTP (One-Time Password)',
+    definition: 'Uma senha que é válida por um curtíssimo período de tempo ou para um único uso. Excelente para liberar entrada de diaristas, entregadores ou visitas no Airbnb.',
+  },
+  {
+    term: 'Mortise',
+    definition: 'A caixa da fechadura que vai dentro da porta (no caso das de embutir). É a estrutura metálica robusta onde ficam os trincos e a lingueta anti-vandalismo.',
+  },
+  {
+    term: 'Zigbee e Wi-Fi',
+    definition: 'Padrões de conexão sem fio. Wi-Fi consome bateria, mas conecta direto no roteador. Zigbee economiza a pilha, mas exige um "Hub" (Gateway) para acessar a internet.',
+  },
+  {
+    term: 'Hub / Gateway',
+    definition: 'Pequeno dispositivo que conecta a sua fechadura Zigbee/Bluetooth à internet Wi-Fi da casa, permitindo aberturas remotas mesmo quando você está longe.',
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- JSON-LD Estruturado para SEO de FAQ/Glossário -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": glossarioItems.map(item => ({
+      "@type": "Question",
+      "name": `O que é ${item.term}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.definition
+      }
+    }))
+  })} />
+
+  <Hero
+    tagline="Dicionário de Tecnologias"
+    title="O Glossário das <br/> <span class='text-accent dark:text-white'>Fechaduras Inteligentes</span>"
+    subtitle="Descubra o que significa cada termo técnico antes de comprar sua próxima fechadura."
+  />
+
+  <!-- Dicionário -->
+  <Features
+    id="glossario"
+    items={glossarioItems.map(item => ({
+      title: item.term,
+      description: item.definition,
+      icon: 'tabler:book',
+    }))}
+  />
+</Layout>

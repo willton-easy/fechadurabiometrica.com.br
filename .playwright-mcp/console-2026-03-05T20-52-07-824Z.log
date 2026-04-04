@@ -1,0 +1,7 @@
+[     246ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://tina.io/docs/reference/search:0
+[     847ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://tina.io/docs/reference/search:0
+[     944ms] TypeError: Cannot read properties of undefined (reading 'exists')
+    at https://tina.io/_next/static/chunks/app/not-found-1be46d57063068d7.js:1:3697
+[     983ms] [ERROR] Failed to load resource: the server responded with a status of 405 () @ https://tina.io/docs/reference/search:0
+[    1000ms] TypeError: Cannot read properties of undefined (reading 'exists')
+    at https://tina.io/_next/static/chunks/app/not-found-1be46d57063068d7.js:1:3697

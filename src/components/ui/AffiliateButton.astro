@@ -1,0 +1,135 @@
+---
+// AffiliateButton.astro
+// Botão premium simplificado e de alta conversão sem logos
+
+export interface Props {
+  type: 'amazon' | 'mercadolivre';
+  href: string;
+  text?: string;
+  class?: string;
+}
+
+const { type, href, text, class: className = '' } = Astro.props;
+
+const isAmazon = type === 'amazon';
+const label = text || (isAmazon ? 'Ver preço na Amazon' : 'Ver no Mercado Livre');
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="nofollow sponsored noopener"
+  class:list={['affiliate-btn group', isAmazon ? 'btn-amazon' : 'btn-ml', className]}
+>
+  <div class="btn-content">
+    <span class="btn-text">{label}</span>
+    <div class="arrow">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="3.5"
+        stroke="currentColor"
+        class="w-5 h-5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+      </svg>
+    </div>
+  </div>
+</a>
+
+<style>
+  .affiliate-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 18px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+
+  .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .btn-amazon {
+    background: linear-gradient(135deg, #ff9900 0%, #ffb64d 100%);
+    color: #1a1a1a;
+  }
+
+  .btn-amazon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 35px -8px rgba(255, 153, 0, 0.5);
+  }
+
+  .btn-ml {
+    background: linear-gradient(135deg, #fff159 0%, #ffe600 100%);
+    color: #2d3277;
+  }
+
+  .btn-ml:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 35px -8px rgba(255, 230, 0, 0.5);
+  }
+
+  .btn-text {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .affiliate-btn:hover .arrow {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+  }
+
+  /* Shimmer effect for premium feel without being distracting */
+  .affiliate-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-20deg);
+    transition: 0.7s ease;
+    z-index: 1;
+  }
+
+  .affiliate-btn:hover::before {
+    left: 150%;
+  }
+
+  @media (max-width: 640px) {
+    .affiliate-btn {
+      padding: 16px 20px;
+      font-size: 16px;
+    }
+  }
+</style>

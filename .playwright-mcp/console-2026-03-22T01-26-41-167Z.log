@@ -1,0 +1,21 @@
+[    2463ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://smr.seopacktools.com/reference_static/ajst/example_11.js:0
+[    2463ms] [ERROR] Refused to execute script from 'https://smr.seopacktools.com/reference_static/ajst/example_11.js' because its MIME type ('application/xml') is not executable, and strict MIME type checking is enabled. @ https://smr.seopacktools.com/analytics/keywordoverview/?db=br&q=melhores+fechaduras+digitais+2026:0
+[    2573ms] Error: Invalid delegateTo provided. It should be a Node instance
+    at a (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:1999)
+    at i (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:1795)
+    at HTMLDocument.<anonymous> (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:3639)
+    at HTMLDocument.n (https://smr.seopacktools.com/__static__/webpack/sentry.e030446cdcb9d5c9.js:2:56478)
+[    2664ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://widget.example_2.io/widget/cs07vi2k:0
+[   45000ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[   45102ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/goals/1065045b-f0ab-4feb-89a1-4b1cb51ba231:0
+[   46018ms] [ERROR] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog @ http://localhost:3100/assets/index-jDIK0KDk.js:104
+[   58198ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/FEC/agents/new:0
+[   58296ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[ 1148509ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[ 1148555ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[ 1158499ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
+[ 1158520ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/f714b013-1227-46ef-b551-2f44a841f624/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119

@@ -1,0 +1,1 @@
+[     358ms] [WARNING] A preload for 'https://simpleicons.org/js/fast-fuzzy-1.12.0.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute. @ https://simpleicons.org/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:0
