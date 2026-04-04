@@ -1,7 +1,7 @@
 ---
 title: "Elsys ESF-DE2000B: Design Slim e Custo-Benefício"
 description: "Fina e elegante: conheça tudo sobre a fechadura Elsys ESF-DE2000B em nossa análise técnica."
-publishDate: 2026-03-22
+publishDate: 2026-03-16
 category: "Reviews"
 tags: ["elsys","slim","estetica"]
 author: "Estrategista SEO 2026"

@@ -1,7 +1,7 @@
 ---
 title: "Olho Mágico Digital Wi-Fi: A revolução silenciosa nos apartamentos"
 description: "Apartamento pequeno e regras do condomínio restritas? O Olho Mágico Digital Wi-Fi (como Ezviz e Yale) transforma as portas sem furar nada. Conheça as opções."
-publishDate: 2026-03-22
+publishDate: 2026-03-27
 category: "Reviews"
 tags: ["olho mágico digital", "ezviz", "yale", "wifi"]
 image: '~/assets/images/olho_magico_wifi_1774202114037.png'
@@ -35,3 +35,8 @@ Se você está fechando o "cinturão de segurança" do seu apartamento (combinan
   <a href="https://amzn.to/47iXbTg" target="_blank" class="btn btn-primary bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded w-full sm:w-auto text-center">👁️ Ezviz DP2C (Amazon)</a>
   <a href="https://meli.la/23BBWGV" target="_blank" class="btn btn-primary bg-yellow-300 hover:bg-yellow-400 text-black font-bold py-3 px-6 rounded w-full sm:w-auto text-center">📦 Ezviz DP2C (Meli)</a>
 </div>
+
+
+> [!TIP]
+> **Vai alugar seu imóvel na praia?** Veja também nosso novo [Guia Definitivo de Fechaduras Eletrônicas para o seu Airbnb](/guias/melhor-fechadura-eletronica-airbnb-temporada).
+

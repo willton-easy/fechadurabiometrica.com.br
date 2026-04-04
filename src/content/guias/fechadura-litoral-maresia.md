@@ -1,7 +1,7 @@
 ---
 title: "As Melhores Fechaduras Digitais para Casa de Praia (Litoral) em 2026"
 description: "Maresia destrói eletrônicos? Revelamos um guia imbatível das Top Fechaduras de 2026 desenhadas em aço e chapa marítima para suportar o rigor da costa brasileira."
-publishDate: 2026-03-22
+publishDate: 2026-03-09
 category: "Guias"
 tags: ["casa de praia", "litoral", "maresia", "fechadura digital"]
 image: '~/assets/images/hero_litoral_maresia_1774200779133.png'

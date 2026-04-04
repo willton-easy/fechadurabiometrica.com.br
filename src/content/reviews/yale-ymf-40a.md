@@ -82,3 +82,8 @@ Em caso de tentativa de invasão (força bruta no painel), o sistema ativa um al
 ---
 
 *Este artigo contém links de afiliados. Ao comprar, você apoia o Fechadura Biométrica sem custo extra.*
+
+
+> [!TIP]
+> **Vai alugar seu imóvel na praia?** Veja também nosso novo [Guia Definitivo de Fechaduras Eletrônicas para o seu Airbnb](/guias/melhor-fechadura-eletronica-airbnb-temporada).
+

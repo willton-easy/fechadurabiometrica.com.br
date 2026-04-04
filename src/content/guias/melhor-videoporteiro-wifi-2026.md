@@ -1,7 +1,7 @@
 ---
 title: "Qual o Melhor Videoporteiro Wi-Fi? Guia e Reviews 2026"
 description: "A dupla perfeita para a sua fechadura. Avaliamos os melhores Videoporteiros Wi-Fi (Intelbras Allo wT7, Tuya) e desmontamos as falsas promessas dos concorrentes."
-publishDate: 2026-03-22
+publishDate: 2026-03-11
 category: "Guias"
 tags: ["videoporteiro", "wi-fi", "intelbras allo", "segurança"]
 image: '~/assets/images/videoporteiro_wifi_1774202088975.png'

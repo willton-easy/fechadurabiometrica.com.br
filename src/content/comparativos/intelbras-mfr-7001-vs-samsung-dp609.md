@@ -1,7 +1,7 @@
 ---
 title: "Intelbras MFR 7001 vs Samsung SHP-DP609: Qual a Melhor Fechadura de 2026?"
 description: "Comparativo técnico completo entre a Intelbras MFR 7001 (facial 3D) e a Samsung SHP-DP609 (push-pull). Testamos velocidade, bateria, app e design. Descubra qual reina."
-publishDate: 2026-04-04
+publishDate: 2026-03-05
 category: "Reviews"
 tags: ["intelbras", "samsung", "facial", "biometria", "push-pull", "smart-lock", "premium"]
 image: '~/assets/images/hero_mfr7001_vs_dp609_2026.png'

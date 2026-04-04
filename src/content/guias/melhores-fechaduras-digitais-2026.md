@@ -1,7 +1,7 @@
 ---
 title: "As 10 Melhores Fechaduras Digitais de 2026: Guia Definitivo de Compra"
 description: "Testamos e comparamos as 10 melhores fechaduras digitais de 2026. De biometria facial 3D a Protocolo Matter: descubra qual modelo é perfeito para a sua porta (madeira, vidro ou portão)."
-publishDate: 2026-04-04
+publishDate: 2026-03-13
 category: "Guias"
 tags: ["fechadura-digital", "guia-de-compra", "biometria", "smart-lock", "tendencias-2026", "intelbras", "yale", "pado", "samsung"]
 image: '~/assets/images/hero_top10_fechaduras_2026.png'

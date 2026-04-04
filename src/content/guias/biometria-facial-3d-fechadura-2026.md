@@ -1,7 +1,7 @@
 ---
 title: "Biometria Facial 3D em Portas: A Revolução da Segurança Residencial em 2026"
 description: "Descubra como funciona o reconhecimento facial 3D nas fechaduras inteligentes. FaceID, sensores infravermelhos, detecção de vivacidade e anti-falsificação: o guia técnico definitivo."
-publishDate: 2026-04-04
+publishDate: 2026-03-07
 category: "Guias"
 tags: ["facial", "biometria", "biometrico", "seguranca", "tendencias-2026", "smart-lock", "intelbras"]
 image: '~/assets/images/hero_biometria_facial_2026.png'

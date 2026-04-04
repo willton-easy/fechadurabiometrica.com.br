@@ -1,7 +1,7 @@
 ---
 title: "Intelbras IFR 7000: A Smart Lock com Alexa Que Compete de Igual para Igual com a Samsung"
 description: "Review completo da Intelbras IFR 7000. Biometria, maçaneta integrada, compatibilidade Alexa e 202 avaliações 4.7 estrelas. A smart lock definitiva da Intelbras para 2026."
-publishDate: 2026-04-04
+publishDate: 2026-03-22
 category: "Reviews"
 tags: ["intelbras", "ifr-7000", "alexa", "smart-home", "mibo", "biometria", "zigbee"]
 author: "Redator Elite 2026"
@@ -90,3 +90,8 @@ A IFR 7000 é a **smart lock com maçaneta mais completa fabricada no Brasil em 
 ---
 
 *Este artigo contém links de afiliados. Ao comprar, você apoia o Fechadura Biométrica sem custo extra.*
+
+
+> [!TIP]
+> **Vai alugar seu imóvel na praia?** Veja também nosso novo [Guia Definitivo de Fechaduras Eletrônicas para o seu Airbnb](/guias/melhor-fechadura-eletronica-airbnb-temporada).
+

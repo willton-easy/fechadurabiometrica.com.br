@@ -1,7 +1,7 @@
 ---
 title: "Samsung SHP-DP609: O Push-Pull Coreano Vale a Pena em 2026?"
 description: "Review técnico completo da Samsung SHP-DP609. Testamos o push-pull, a biometria, o app SmartThings e a durabilidade. A mais elegante do mercado, mas tem segredos."
-publishDate: 2026-04-04
+publishDate: 2026-04-03
 category: "Reviews"
 tags: ["samsung", "shp-dp609", "push-pull", "luxury", "smart-lock", "biometria"]
 author: "Redator Elite 2026"
@@ -89,3 +89,8 @@ Isso significa:
 ---
 
 *Este artigo contém links de afiliados. Ao comprar, você apoia o Fechadura Biométrica sem custo extra.*
+
+
+> [!TIP]
+> **Vai alugar seu imóvel na praia?** Veja também nosso novo [Guia Definitivo de Fechaduras Eletrônicas para o seu Airbnb](/guias/melhor-fechadura-eletronica-airbnb-temporada).
+

@@ -1,7 +1,7 @@
 ---
 title: "Segurança Transparente: O Guia das Fechaduras para Porta de Vidro 2026"
 description: "A maioria dos blogs falha em explicar que o vidro temperado não aceita furos. Entenda a tecnologia de fixação por pressão em nosso guia definitivo."
-publishDate: 2026-03-22
+publishDate: 2026-03-14
 category: "Guias"
 tags: ["porta de vidro", "instalação", "matter", "segurança", "tendências 2026"]
 author: "Antigravity & Estrategista SEO"

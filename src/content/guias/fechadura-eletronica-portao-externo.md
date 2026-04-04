@@ -1,7 +1,7 @@
 ---
 title: "Fechadura Eletrônica para Portão: Guia Completo de Instalação e Compra"
 description: "Com 2.900 buscas no Brasil hoje, revelamos as verdades sobre fechaduras eletrônicas para portão, modelos IP65 e o passo a passo com fotos para não errar."
-publishDate: 2026-03-22
+publishDate: 2026-03-08
 category: "Guias"
 tags: ["portão", "guia de compra", "ip65", "fechadura elétrica"]
 image: '~/assets/images/hero_portao_eletronico_1774200755410.png'

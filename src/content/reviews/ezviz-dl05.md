@@ -1,7 +1,7 @@
 ---
 title: "Ezviz DL05: A Fechadura Quase Invisível"
 description: "Beleza e discrição. O review completo da Ezviz DL05 com câmera integrada."
-publishDate: 2026-03-22
+publishDate: 2026-03-17
 category: "Reviews"
 tags: ["ezviz","camera","minimalista"]
 author: "Estrategista SEO 2026"

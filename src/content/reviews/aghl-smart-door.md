@@ -1,7 +1,7 @@
 ---
 title: "AGHL Smart Lock: A Surpresa do Mercado"
 description: "Fechadura custo-benefício que vem crescendo no Brasil. Review completo."
-publishDate: 2026-03-22
+publishDate: 2026-03-15
 category: "Reviews"
 tags: ["aghl","custo-beneficio","zigbee"]
 author: "Estrategista SEO 2026"

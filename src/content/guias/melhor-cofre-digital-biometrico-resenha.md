@@ -1,7 +1,7 @@
 ---
 title: "Qual o Melhor Cofre Digital e Biométrico de 2026? Guia"
 description: "A extensão da casa sem chaves: O Cofre Digital Biométrico (Intelbras, Yale Security e Safewell). Pare de guardar armas e joias com chaveiros fáceis."
-publishDate: 2026-03-22
+publishDate: 2026-03-10
 category: "Guias"
 tags: ["cofre digital", "biométrico", "safewell", "yale", "intelbras"]
 image: '~/assets/images/cofre_digital_biometrico_1774202142712.png'

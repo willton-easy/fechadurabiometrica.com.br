@@ -1,7 +1,7 @@
 ---
 title: "Intelbras FR 400: A Fechadura Digital Para Porta de Vidro Que Funciona de Verdade"
 description: "Review completo da Intelbras FR 400. A referência brasileira para portas de vidro temperado. Fixação sem furos, teclado touch e 170 avaliações 4.7 estrelas na Amazon."
-publishDate: 2026-04-04
+publishDate: 2026-03-21
 category: "Reviews"
 tags: ["intelbras", "fr-400", "porta-de-vidro", "blindex", "sobrepor", "vidro-temperado"]
 author: "Redator Elite 2026"
@@ -90,3 +90,8 @@ Para portas de vidro, a FR 400 é **a compra mais óbvia do mercado brasileiro.*
 ---
 
 *Este artigo contém links de afiliados. Ao comprar você apoia o Fechadura Biométrica sem custo extra.*
+
+
+> [!TIP]
+> **Vai alugar seu imóvel na praia?** Veja também nosso novo [Guia Definitivo de Fechaduras Eletrônicas para o seu Airbnb](/guias/melhor-fechadura-eletronica-airbnb-temporada).
+
