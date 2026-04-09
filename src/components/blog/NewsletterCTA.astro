@@ -1,0 +1,46 @@
+---
+import Button from '~/components/ui/Button.astro';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Domine a Segurança da sua Casa Inteligente",
+  subtitle = "Receba guias exclusivos e as melhores ofertas de fechaduras biométricas diretamente no seu e-mail. Sem spam, apenas tecnologia.",
+} = Astro.props;
+---
+
+<div class="my-16 relative group">
+  <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+  <div class="relative p-8 md:p-12 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col items-center text-center">
+    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+    </div>
+    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+      {title}
+    </h2>
+    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+    
+    <form class="w-full max-w-md flex flex-col sm:flex-row gap-3">
+      <input 
+        type="email" 
+        placeholder="Seu melhor e-mail..." 
+        class="flex-grow px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+        required
+      />
+      <Button variant="primary" type="submit" class="px-8 py-3 rounded-xl font-bold shadow-lg shadow-blue-500/30 active:scale-95 transition-transform">
+        Quero Acesso VIP
+      </Button>
+    </form>
+    
+    <p class="mt-6 text-sm text-slate-500 dark:text-slate-500 italic">
+      Join +5,000 proprietários protegidos.
+    </p>
+  </div>
+</div>

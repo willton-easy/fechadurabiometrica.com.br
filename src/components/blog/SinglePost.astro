@@ -4,6 +4,10 @@ import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
+import AuthorBio from '~/components/blog/AuthorBio.astro';
+import RelatedPosts from '~/components/blog/RelatedPosts.astro';
+import JsonLdAuthor from '~/components/common/JsonLdAuthor.astro';
+import NewsletterCTA from '~/components/blog/NewsletterCTA.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -95,9 +99,30 @@ const { post, url } = Astro.props;
     >
       <slot />
     </div>
+
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-4">
+      <AuthorBio author={post.author} />
+      <JsonLdAuthor 
+        author={post.author} 
+        title={post.title} 
+        description={post.excerpt} 
+        publishDate={post.publishDate} 
+        image={post.image}
+        url={String(url)}
+      />
+    </div>
+
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl">
+      <NewsletterCTA />
+    </div>
+
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
       <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
       <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
+    </div>
+
+    <div class="mt-8 border-t dark:border-slate-700">
+      <RelatedPosts post={post} />
     </div>
   </article>
 </section>

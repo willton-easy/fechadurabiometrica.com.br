@@ -1,0 +1,64 @@
+---
+export interface Props {
+  author?: string;
+  title: string;
+  description?: string;
+  publishDate?: Date;
+  image?: string;
+  url: string;
+}
+
+const { author, title, description, publishDate, image, url } = Astro.props;
+
+const authorsData = {
+  'Nilton Vasconcelo': {
+    name: 'Nilton Vasconcelo',
+    role: 'Engenheiro de Hardware & Segurança',
+    url: 'https://fechadurabiometrica.com.br/authors/nilton-vasconcelo',
+  },
+  'Wilton Alves': {
+    name: 'Wilton Alves',
+    role: 'Estrategista SEO & Smart Home Expert',
+    url: 'https://fechadurabiometrica.com.br/authors/wilton-alves',
+  },
+  'Katarina Brito': {
+    name: 'Katarina Brito',
+    role: 'UX Designer & Home Architect',
+    url: 'https://fechadurabiometrica.com.br/authors/katarina-brito',
+  },
+};
+
+const authorInfo = author ? authorsData[author as keyof typeof authorsData] : null;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": image,
+  "datePublished": publishDate?.toISOString(),
+  "author": authorInfo ? {
+    "@type": "Person",
+    "name": authorInfo.name,
+    "jobTitle": authorInfo.role,
+    "url": authorInfo.url
+  } : {
+    "@type": "Organization",
+    "name": "Fechadura Biometrica"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fechadura Biometrica",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fechadurabiometrica.com.br/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

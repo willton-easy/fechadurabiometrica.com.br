@@ -1,0 +1,107 @@
+{
+  "allo_wt7": {
+    "amazon": "https://amzn.to/4bKOxhH",
+    "ml": "https://meli.la/18Ak9Vc",
+    "name": "Intelbras Allo wT7"
+  },
+  "ivw_3000": {
+    "amazon": "https://amzn.to/4dBgmeL",
+    "ml": "https://meli.la/1dwhw6J",
+    "name": "Intelbras Izy Smart IVW 3000"
+  },
+  "dp2c": {
+    "amazon": "https://amzn.to/47iXbTg",
+    "ml": "https://meli.la/23BBWGV",
+    "name": "EZVIZ DP2C"
+  },
+  "yale_real_view": {
+    "amazon": "https://amzn.to/3PTPdda",
+    "ml": "https://meli.la/1dg3Hom",
+    "name": "Yale Real View Pro"
+  },
+  "safewell_bio": {
+    "amazon": "https://amzn.to/3PsVpZC",
+    "ml": "https://meli.la/2JzD8EG",
+    "name": "Cofre Biométrico Safewell"
+  },
+  "yale_bio": {
+    "amazon": "https://amzn.to/3PrBM46",
+    "ml": "https://meli.la/2pqAk5M",
+    "name": "Cofre Yale Security"
+  },
+  "mfr_7001": {
+    "amazon": "https://amzn.to/480AF1A",
+    "ml": "https://meli.la/2d1rr5B",
+    "name": "Intelbras MFR 7001"
+  },
+  "mca_1001": {
+    "amazon": "https://amzn.to/4btgjR6",
+    "ml": "https://meli.la/1PZZUfe",
+    "name": "Hub Intelbras MCA 1001/1002"
+  },
+  "shp_dp609": {
+    "amazon": null,
+    "ml": "https://meli.la/2nbzKoC",
+    "name": "Samsung SHP-DP609"
+  },
+  "ymf_40a": {
+    "amazon": "https://amzn.to/4c7tJkA",
+    "ml": null,
+    "name": "Yale YMF 40A COMBO"
+  },
+  "fds_50": {
+    "amazon": "https://amzn.to/4s9Ymfd",
+    "ml": "https://meli.la/17bjGDe",
+    "name": "Pado FDS-50"
+  },
+  "fr_400": {
+    "amazon": "https://amzn.to/4v6nI0p",
+    "ml": "https://meli.la/2nzoVce",
+    "name": "Intelbras FR 400"
+  },
+  "ifr_4000": {
+    "amazon": "https://amzn.to/4mcPaW8",
+    "ml": "https://meli.la/23wjW2c",
+    "name": "Intelbras IFR 4000"
+  },
+  "ifr_7000": {
+    "amazon": "https://amzn.to/4tu1iEB",
+    "ml": "https://meli.la/2gdRSQf",
+    "name": "Intelbras IFR 7000"
+  },
+  "papaiz_sl125b": {
+    "amazon": "https://amzn.to/4lJABsR",
+    "ml": "https://meli.la/2cDJbT1",
+    "name": "Papaiz SL125B"
+  },
+  "ezviz_dl05": {
+    "amazon": "https://amzn.to/4cXDBzA",
+    "ml": "https://meli.la/2NfNVEb",
+    "name": "Ezviz DL05"
+  },
+  "ydl_120": {
+    "amazon": "https://amzn.to/40Jo3Ir",
+    "ml": "https://meli.la/24uAMJ3",
+    "name": "Yale YDL 120"
+  },
+  "fr_10": {
+    "amazon": "https://amzn.to/3PofK2g",
+    "ml": "https://meli.la/1ootmUR",
+    "name": "Intelbras FR 10"
+  },
+  "novadigital_ip65": {
+    "amazon": "https://amzn.to/4d2y7DN",
+    "ml": "https://meli.la/1iwpet3",
+    "name": "Fechadura NovaDigital Wi-Fi IP65"
+  },
+  "elsys_sobrepor": {
+    "amazon": "https://amzn.to/40RGzhM",
+    "ml": "https://meli.la/1MKpxo3",
+    "name": "Fechadura Elétrica Elsys Sobrepor"
+  },
+  "papaiz_sl140": {
+    "amazon": "https://amzn.to/4sx37k4",
+    "ml": "https://meli.la/1KGaBfX",
+    "name": "Fechadura Papaiz SL140 Bio"
+  }
+}

@@ -1,0 +1,59 @@
+---
+import Image from '~/components/common/Image.astro';
+
+export interface Props {
+  author?: string;
+}
+
+const { author } = Astro.props;
+
+// Definição dos autores e seus metadados E-E-A-T
+const authorsData = {
+  'Nilton Vasconcelo': {
+    name: 'Nilton Vasconcelo',
+    role: 'Engenheiro de Hardware & Segurança',
+    bio: 'Nilton testa motores de embutir e algoritmos de criptografia de fechaduras nas condições mais extremas há mais de 15 anos. Sua paixão é desmontar tecnologias para achar vulnerabilidades.',
+    image: '~/assets/images/authors/nilton_vasconcelo.png',
+  },
+  'Wilton Alves': {
+    name: 'Wilton Alves',
+    role: 'Estrategista SEO & Smart Home Expert',
+    bio: 'Pioneiro em automação residencial e inteligência artificial no Brasil. Wilton arquiteta ecossistemas Zigbee e Wi-Fi blindados, conectando conforto à segurança absoluta em projetos corporativos e residenciais.',
+    image: '~/assets/images/authors/wilton_alves.png',
+  },
+  'Katarina Brito': {
+    name: 'Katarina Brito',
+    role: 'UX Designer & Home Architect',
+    bio: 'Mesclando a arte do design de interiores com tecnologias invisíveis, Katarina projeta espaços imersivos onde a segurança inteligente não corrompe a estética de portas de vidro e madeira de luxo.',
+    image: '~/assets/images/authors/katarina_brito.png',
+  },
+};
+
+const authorProfile = author ? authorsData[author as keyof typeof authorsData] : null;
+---
+
+{authorProfile && (
+  <div class="mt-12 p-8 rounded-3xl backdrop-blur-md bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 shadow-xl flex flex-col md:flex-row items-center gap-6 group hover:shadow-2xl transition-all duration-300">
+    <div class="flex-shrink-0 relative">
+      <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-md transform group-hover:scale-105 transition-transform duration-300">
+        <Image
+          src={authorProfile.image}
+          alt={`Foto de ${authorProfile.name}`}
+          width={96}
+          height={96}
+          class="object-cover w-full h-full"
+        />
+      </div>
+      <div class="absolute -bottom-2 -right-2 bg-blue-600 rounded-full p-1 border-2 border-white dark:border-slate-800">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+    </div>
+    <div class="text-center md:text-left">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">{authorProfile.name}</h3>
+      <p class="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">{authorProfile.role}</p>
+      <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+        {authorProfile.bio}
+      </p>
+    </div>
+  </div>
+)}

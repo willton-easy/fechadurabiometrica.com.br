@@ -45,13 +45,14 @@ const { title = 'Neste Artigo', maxDepth = 3 } = Astro.props;
 
 <script>
   function buildTOC() {
-    const article = document.querySelector('article, .prose, main');
+    const article = document.querySelector('article .prose, article, main');
     if (!article) return;
 
-    const headings = article.querySelectorAll('h2, h3, h4');
+    const headings = Array.from(article.querySelectorAll('h2, h3'));
     const list = document.getElementById('toc-auto');
+    const box = document.getElementById('toc');
+    
     if (!list || headings.length === 0) {
-      const box = document.getElementById('toc');
       if (box) box.style.display = 'none';
       return;
     }
@@ -59,38 +60,48 @@ const { title = 'Neste Artigo', maxDepth = 3 } = Astro.props;
     let html = '';
     headings.forEach((heading, i) => {
       const level = parseInt(heading.tagName.charAt(1));
-      if (level > 3) return;
-
-      // Gera ID âncora se não existir
+      
       if (!heading.id) {
-        heading.id =
-          'toc-' +
-          heading.textContent
-            ?.trim()
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .slice(0, 60) +
-          '-' +
-          i;
+        heading.id = 'sec-' + i;
       }
 
-      const indent = level === 2 ? 'pl-0' : level === 3 ? 'pl-4' : 'pl-8';
+      const indent = level === 2 ? '' : 'pl-4 opacity-80 text-[0.9em]';
       html += `<li class="${indent}">
-        <a href="#${heading.id}" class="hover:text-primary transition-colors block py-0.5 leading-snug">
+        <a href="#${heading.id}" class="toc-link hover:text-primary transition-all duration-200 block py-1 border-l-2 border-transparent pl-3 -ml-[2px]">
           ${heading.textContent?.trim()}
         </a>
       </li>`;
     });
 
     list.innerHTML = html;
+
+    // Scroll Spy Logic
+    const links = list.querySelectorAll('.toc-link');
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -80% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          links.forEach(link => {
+            link.classList.remove('border-primary', 'text-primary', 'font-bold');
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('border-primary', 'text-primary', 'font-bold');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    headings.forEach(h => observer.observe(h));
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildTOC);
-  } else {
-    buildTOC();
-  }
+  document.addEventListener('astro:page-load', buildTOC);
+  document.addEventListener('DOMContentLoaded', buildTOC);
 </script>
 
 <style>
