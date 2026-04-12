@@ -1,11 +1,54 @@
 ---
+// -----------------------------------------------------------------------------
+// SEÇÃO DE LÓGICA E TIPAGEM DO COMPONENTE ASTRO
+// O bloco delimitado por '---' é executado apenas durante o build (no servidor).
+// -----------------------------------------------------------------------------
+
+// Define as propriedades (props) que este componente Astro pode receber.
+// Utiliza a interface TypeScript 'Props' para garantir tipagem estática e autocomplete seguro no código-fonte.
 export interface Props {
+  // A propriedade 'isDark' é opcional (indicado pela interrogação '?').
+  // Recebe um valor booleano para forçar que a variante do plano de fundo inicie como um tema escuro (dark).
   isDark?: boolean;
 }
 
+// Extrai a propriedade 'isDark' do objeto global 'Astro.props' (que contém todas as props passadas a este componente).
+// Define 'false' como valor padrão de preenchimento caso o componente pai não envie a prop (fallback strategy).
 const { isDark = false } = Astro.props;
 ---
 
+<!-- 
+// -----------------------------------------------------------------------------
+// SEÇÃO DE RENDERIZAÇÃO (TEMPLATE HTML)
+// -----------------------------------------------------------------------------
+-->
+
+<!-- 
+  Elemento container <div> usado estruturar o layout de plano de fundo.
+  
+  A diretiva 'class:list' do Astro é uma maneira otimizada de agrupar classes CSS estáticas e dinâmicas (condicionadas a estados).
+  
+  Explicando as classes Tailwind utilizadas na estruturação do componente:
+  1. 'absolute inset-0' -> Esta é a classe fixa. Ela diz para a <div> sobrepor todo o espaço do elemento pai que tiver position: relative 
+     ('inset-0' é o atalho para as propriedades CSS top-0, left-0, right-0, bottom-0). Esticando assim o background por toda a superfície permitida.
+  
+  2. O objeto condicional '{ 'bg-dark dark:bg-transparent': isDark }' -> Aplica regras adicionais apenas se a flag 'isDark' for igual a 'true':
+      - 'bg-dark': Impõe forçadamente a cor de fundo escura definida nas configurações do Tailwind.
+      - 'dark:bg-transparent': Se o usuário já estiver em modo noturno ativado pelo sistema operativo, a cor de fundo forçada fica transparente. Provavelmente porque a estrutura mestre/global subjacente já possui cores escuras desenhadas adequadamente.
+-->
 <div class:list={['absolute inset-0', { 'bg-dark dark:bg-transparent': isDark }]}>
+  
+  <!-- 
+    A tag <slot /> é um artifício nativo de templating em frameworks web visuais.
+    Atua como um buraco ou invólucro para passagem de dados dos componentes "pais". 
+    Funciona da seguinte maneira prática:
+    Se em uma página inserimos: 
+    <Background isDark={true}>
+      <h1>Bem vindo</h1> 
+    </Background>
+
+    O trecho '<h1>Bem vindo</h1>' será inserido e processado exatamente na localização no qual a tag '<slot />' abaixo está declarada.
+  -->
   <slot />
+
 </div>
