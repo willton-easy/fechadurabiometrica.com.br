@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
+import keystatic from '@keystatic/astro';
 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
@@ -69,6 +70,9 @@ export default defineConfig({
     astrowind({
       config: './src/config.yaml',
     }),
+
+    // CMS visual local — acessível em localhost:4321/keystatic durante npm run dev
+    keystatic(),
   ],
 
   image: {
