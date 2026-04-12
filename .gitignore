@@ -25,3 +25,15 @@ pnpm-lock.yaml
 node_modules
 .vercel
 .env*.local
+
+# Agent Management & Process Artifacts (Ignore for Security)
+AGENT_*.md
+SKILLS_*.md
+ESTRATEGIA_*.md
+task.md
+walkthrough.md
+implementation_plan.md
+analysis_results.md
+research_notes.md
+experiment_results.md
+.agents/
