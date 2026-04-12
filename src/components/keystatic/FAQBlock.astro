@@ -1,0 +1,20 @@
+---
+import { marked } from 'marked';
+
+interface Props {
+  pergunta: string;
+  resposta: string;
+}
+
+const { pergunta, resposta } = Astro.props;
+const htmlResposta = marked.parse(resposta);
+---
+
+<div class="space-y-4 mb-4" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-5" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+    <h3 class="font-semibold text-slate-800 dark:text-slate-100 mb-2" itemprop="name">{pergunta}</h3>
+    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+      <div class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed prose prose-sm dark:prose-invert max-w-none" itemprop="text" set:html={htmlResposta} />
+    </div>
+  </div>
+</div>

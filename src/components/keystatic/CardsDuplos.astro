@@ -1,0 +1,26 @@
+---
+import { marked } from 'marked';
+
+interface Props {
+  titleLeft: string;
+  contentLeft: string;
+  titleRight: string;
+  contentRight: string;
+}
+
+const { titleLeft, contentLeft, titleRight, contentRight } = Astro.props;
+
+const htmlLeft = marked.parse(contentLeft);
+const htmlRight = marked.parse(contentRight);
+---
+
+<div class="grid sm:grid-cols-2 gap-4 mb-8">
+  <div class="bg-green-50 dark:bg-green-950/40 border border-green-200 dark:border-green-800 rounded-xl p-4">
+    <p class="font-bold text-green-700 dark:text-green-400 mb-2">{titleLeft}</p>
+    <div class="prose prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300" set:html={htmlLeft} />
+  </div>
+  <div class="bg-yellow-50 dark:bg-yellow-950/40 border border-yellow-200 dark:border-yellow-800 rounded-xl p-4">
+    <p class="font-bold text-yellow-700 dark:text-yellow-400 mb-2">{titleRight}</p>
+    <div class="prose prose-sm dark:prose-invert max-w-none text-slate-700 dark:text-slate-300" set:html={htmlRight} />
+  </div>
+</div>

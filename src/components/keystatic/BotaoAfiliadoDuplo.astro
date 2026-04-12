@@ -1,0 +1,17 @@
+---
+import AffiliateButton from '~/components/ui/AffiliateButton.astro';
+
+interface Props {
+  amazonLink: string;
+  amazonText: string;
+  meliLink: string;
+  meliText: string;
+}
+
+const { amazonLink, amazonText, meliLink, meliText } = Astro.props;
+---
+
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+  <AffiliateButton type="amazon" href={amazonLink} text={amazonText} />
+  <AffiliateButton type="mercadolivre" href={meliLink} text={meliText} />
+</div>
