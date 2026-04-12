@@ -1,4 +1,0 @@
-[    1091ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:3100/onboarding:0
-[   57654ms] [WARNING] WebSocket connection to 'ws://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/events/ws' failed: WebSocket is closed before the connection is established. @ http://localhost:3100/assets/index-jDIK0KDk.js:1119
-[  125782ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/agents:0
-[  136718ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:3100/api/companies/89c86cab-6fee-4e92-8931-437ccff6e932/agents:0

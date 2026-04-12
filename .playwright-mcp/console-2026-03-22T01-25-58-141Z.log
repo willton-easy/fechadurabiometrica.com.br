@@ -1,8 +1,0 @@
-[    5723ms] TypeError: Cannot read properties of null (reading 'addEventListener')
-    at https://seopack.org/v2/dashboard/:504:32
-    at Array.forEach (<anonymous>)
-    at https://seopack.org/v2/dashboard/:503:10
-[    9535ms] TypeError: Cannot read properties of null (reading 'addEventListener')
-    at https://seopack.org/v2/dashboard/SemRush:589:32
-    at Array.forEach (<anonymous>)
-    at https://seopack.org/v2/dashboard/SemRush:588:10

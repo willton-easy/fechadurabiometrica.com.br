@@ -29,6 +29,7 @@ node_modules
 # Agent Management & Process Artifacts (Ignore for Security)
 AGENT_*.md
 SKILLS_*.md
+.playwright-mcp/
 ESTRATEGIA_*.md
 task.md
 walkthrough.md

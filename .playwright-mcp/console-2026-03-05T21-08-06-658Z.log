@@ -1,7 +1,0 @@
-[      82ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://brandfetch.com/mercadolivre.com.br:0
-[    1518ms] [ERROR]  Note that 'script-src' was not explicitly set, so 'default-src' is used as a fallback. @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/g7dfh/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:0
-[    2579ms] [ERROR] %c%d font-size:0;color:transparent NaN @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/g7dfh/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:0
-[    2580ms] [ERROR] %c%d font-size:0;color:transparent NaN @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/g7dfh/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:0
-[    2584ms] [WARNING] %c%d font-size:0;color:transparent NaN @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/g7dfh/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:0
-[    2584ms] [WARNING] %c%d font-size:0;color:transparent NaN @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/f/ov2/av0/rch/g7dfh/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto:0
-[    2675ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/pat/9d7c18190850f1e7/1772744887576/29ad542a5e9fac0d8178538a47758159267238ec5e0ef9984732377a56be2a1c/ddxMlWEn5F-5Vpy:0

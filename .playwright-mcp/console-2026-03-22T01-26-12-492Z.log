@@ -1,7 +1,0 @@
-[    1001ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://smr.seopacktools.com/reference_static/ajst/example_11.js:0
-[    1001ms] [ERROR] Refused to execute script from 'https://smr.seopacktools.com/reference_static/ajst/example_11.js' because its MIME type ('application/xml') is not executable, and strict MIME type checking is enabled. @ https://smr.seopacktools.com/analytics/overview/:0
-[    1082ms] Error: Invalid delegateTo provided. It should be a Node instance
-    at a (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:1999)
-    at i (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:1795)
-    at HTMLDocument.<anonymous> (https://smr.seopacktools.com/__static__/webpack/smb_footer.fd69f8940fa27d60.js:2:3639)
-[    1208ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://widget.example_2.io/widget/cs07vi2k:0
