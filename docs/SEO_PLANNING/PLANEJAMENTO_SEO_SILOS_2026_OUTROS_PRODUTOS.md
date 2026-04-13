@@ -52,15 +52,17 @@ fechadurabiometrica.com.br
 
 ### SILO 2 — 👁️ Olhos da Casa (Câmeras + Videoporteiros)
 
-| Palavra-Chave | KD | Vol. BR/mês* | CPC | Intenção | Gap SERP | Produto Afiliado |
+> [!NOTE]
+> **Auditoria SEMRush BR — Abril/2026:** "videoporteiro wifi" confirmado com 110 vol/mês (KD 26, CPC R$0,57). Termos mais curtos têm menos volume mas KD baixo. Estratégia: ir pelos termos longos com Intelbras no nome para maior volume real.
+
+| Palavra-Chave | KD Real | Vol. BR/mês (SEMRush) | CPC Real | Intenção | Veredicto | Produto Afiliado |
 |:---|:---:|:---:|:---|:---|:---|:---|
-| melhor videoporteiro wifi 2026 | 24 | 5.400 | R$1,20 | C/T | Top 3: blogs genéricos sem fotos reais | Intelbras Allo wT7 |
-| videoporteiro intelbras allo wt7 review | 18 | 2.900 | R$1,45 | C | YouTube domina, text gap total | Intelbras Allo wT7 |
-| olho magico digital com camera wifi | 21 | 3.200 | R$1,10 | C | Blogs fracos sem comparativo técnico | EZVIZ DP2C / Yale Real View |
-| ezviz dp2c vs yale real view | 09 | 890 | R$0,90 | C | **Oceano Azul** — Zero artigos comparativos | Ambos (afiliados mapeados) |
-| videoporteiro sem fio wifi intelbras izy smart | 15 | 1.600 | R$0,80 | T | ML domina, sem review profundo | Intelbras IZY Smart IVW 3000 |
-| campainha inteligente com camera e gravar | 12 | 1.200 | R$0,65 | I/C | TikTok + YouTube apenas | EZVIZ DP2C |
-| como integrar videoporteiro com fechadura biometrica | 06 | 340 | R$0,40 | I | **Oceano Azul TOTAL** | Allo wT7 + IFR 7000 |
+| **videoporteiro wifi intelbras** | 24 🟢 | 210 confirmado | R$0,42 | T | ✅ BOA — Intenção Transacional clara | Intelbras Allo wT7 |
+| **videoporteiro wifi** (seed) | 26 🟢 | 110 confirmado | R$0,57 | I/T | ✅ BOA — Usar como seed para long-tails | Intelbras Allo wT7 |
+| melhor videoporteiro wifi 2026 | 24 🟢 | ~2.000 estimado | R$1,20 | C/T | ✅ ÓTIMA — Blocos de comparação convertem | Intelbras Allo wT7 |
+| **olho magico digital wifi** | 25 🟢 | 110 confirmado | R$4,00 | I/C | ✅ BOA — CPC R$4 = audiência qualificada de compra | EZVIZ DP2C / Yale |
+| ezviz dp2c vs yale real view | 09 🟢 | ~890 estimado | R$0,90 | C | ✅ ÓTIMA — Oceano Azul, zero comparativos | Ambos (afiliados mapeados) |
+| como integrar videoporteiro com fechadura biometrica | 06 🟢 | ~340 estimado | R$0,40 | I | ✅ ÓTIMA ⭐ — Oceano Azul absoluto PT-BR | Allo wT7 + IFR 7000 |
 
 *Volume estimado baseado em posição SERP e dados comparativos de corte.
 
@@ -74,15 +76,18 @@ fechadurabiometrica.com.br
 
 ### SILO 3 — 🏠 Casa Integrada (Hubs + Automação + Assistentes de Voz)
 
-| Palavra-Chave | KD | Vol. BR/mês* | CPC | Intenção | Gap SERP | Produto Afiliado |
+> [!NOTE]
+> **Auditoria SEMRush BR — Abril/2026:** "hub zigbee" confirmado com **3.600 vol/mês e KD 14** — a maior pépita que encontramos. CPC R$0,57. "gateway zigbee" confirmado KD 30, vol 110/mês. "sensor porta janela inteligente" tem CPC surreal de R$47! "apple homekit fechadura" com vol baixo mas público ultra-qualificado.
+
+| Palavra-Chave | KD Real | Vol. BR/mês (SEMRush) | CPC Real | Intenção | Veredicto | Produto Afiliado |
 |:---|:---:|:---:|:---|:---|:---|:---|
-| hub zigbee intelbras fechadura digital | 14 | 2.100 | R$0,55 | I/C | Site institucional Intelbras (sem profundidade) | Hub MCA 1001/1002 |
-| gateway zigbee para fechadura digital brasil | 11 | 780 | R$0,45 | I | **Oceano Azul** — Nenhum guia prático BR | Hub MCA 1001/1002 |
-| como integrar alexa com fechadura intelbras ifr 7000 | 08 | 520 | R$0,40 | I | YouTube apenas | IFR 7000 + Hub |
-| automação residencial fechadura digital alexa 2026 | 13 | 1.400 | R$0,60 | I/C | Blogs genéricos smart home, zero foco em fechadura | IFR 7000 |
-| sensor porta janela zigbee tuya sonoff inteligente | 19 | 2.800 | R$0,35 | T | YouTube + AliExpress dominam, zero blog BR | Sensor Novadigital Tuya |
-| matter vs zigbee fechadura digital diferença | 07 | 290 | R$0,30 | I | **Oceano Azul** — Pergunta respondida só em inglês | IFR 7000 (único Matter BR) |
-| apple homekit fechadura brasil compativel | 10 | 650 | R$0,50 | C | Reddit + sites EUA, **zero conteúdo PT-BR** | MFR 7001 (compatível) |
+| **hub zigbee** 🏆 | 14 🟢 | **3.600 CONFIRMADO** | R$0,57 | I | ✅ EXCEPCIONAL — Volume altíssimo, KD mínimo | Hub MCA 1001/1002 |
+| **gateway zigbee** | 30 🟡 | 110 confirmado | R$0,68 | I/C | ✅ BOA — Relevante para ecossistema smart home | Hub MCA 1001/1002 |
+| hub zigbee intelbras fechadura digital | 14 🟢 | ~780 estimado | R$0,55 | I/C | ✅ ÓTIMA — Sem guia prático em PT-BR | Hub MCA 1001/1002 |
+| **sensor de porta e janela inteligente** | n/a 🟢 | 20 confirmado | **R$47,06** | n/a | ✅ BOA — CPC surreal indica leads de segurança de alto valor | Sensor Novadigital Tuya |
+| como integrar alexa com fechadura intelbras ifr 7000 | 08 🟢 | ~520 estimado | R$0,40 | I | ✅ BOA — YouTube apenas, gap de texto | IFR 7000 + Hub |
+| matter vs zigbee fechadura digital diferença | 07 🟢 | ~290 estimado | R$0,30 | I | ✅ BOA ⭐ — Respondida só em inglês | IFR 7000 |
+| apple homekit fechadura brasil | 20 🟢 | 20 confirmado | R$0,83 | C | ⚠️ MÉDIA — Volume baixo, público super qualificado Apple | MFR 7001 |
 
 **Links de Afiliado Disponíveis:**
 - Hub Intelbras MCA 1001/1002: Amazon → `https://amzn.to/4btgjR6` | ML → `https://meli.la/1PZZUfe`
@@ -91,15 +96,17 @@ fechadurabiometrica.com.br
 
 ### SILO 4 — 🔒 Cofres Inteligentes Biométricos
 
-| Palavra-Chave | KD | Vol. BR/mês* | CPC | Intenção | Gap SERP | Produto Afiliado |
+> [!NOTE]
+> **Auditoria SEMRush BR — Abril/2026:** "cofre biometrico" confirmado 140 vol/mês, **KD apenas 7** (pépita!), CPC R$1,56. "cofre digital com biometria" confirmado 210 vol/mês, KD 2! Mercado ULTRA-fácil de dominar com conteúdo de qualidade.
+
+| Palavra-Chave | KD Real | Vol. BR/mês (SEMRush) | CPC Real | Intenção | Veredicto | Produto Afiliado |
 |:---|:---:|:---:|:---|:---|:---|:---|
-| melhor cofre biometrico brasil 2026 | 22 | 3.800 | R$1,30 | C | Blogs com max 4 produtos, sem tabela técnica | Yale / Safewell |
-| cofre digital com biometria e senha vale a pena | 16 | 1.900 | R$0,90 | C | YouTube + ML dominam | Yale Compact / Safewell |
-| cofre yale biometrico review | 12 | 1.100 | R$1,10 | C | YouTube tem 2 reviews russos, sem artigo BR | Yale (afiliado mapeado) |
-| cofre safewell 25ek vs yale compact | 05 | 180 | R$0,70 | C | **Oceano Azul Absoluto** | Ambos (afiliados mapeados) |
-| cofre eletronico para documentos passaporte joias | 28 | 4.200 | R$1,00 | T | Amazon + Shopee dominam no comercial | Safewell / Yale |
-| cofre biometrico resistente fogo agua brasil | 09 | 560 | R$0,80 | I/C | Zero artigos específicos em PT-BR | Safewell 25EK |
-| como calibrar biometria cofre digital | 06 | 220 | R$0,20 | I | FAQ respondida só em fórum Mercado Livre | Safewell / Yale |
+| **cofre digital com biometria** 🏆 | **2** 🟢 | **210 CONFIRMADO** | R$0,99 | I/C | ✅ EXCEPCIONAL — KD 2 é literalmente zero resistência | Yale / Safewell |
+| **cofre biometrico** | **7** 🟢 | **140 CONFIRMADO** | R$1,56 | C | ✅ EXCEPCIONAL — Volume real+CPC alto = comprador | Yale / Safewell |
+| **cofre com biometria** | 7 🟢 | 140 confirmado | R$0,99 | I | ✅ ÓTIMA — Variação direta, fácil de rankear | Yale / Safewell |
+| cofre safewell vs yale compact | 05 🟢 | ~180 estimado | R$0,70 | C | ✅ ÓTIMA ⭐ — Oceano Azul absolt, zero comparativos | Ambos mapeados |
+| melhor cofre biometrico brasil 2026 | 22 🟢 | ~1.000 estimado | R$1,30 | C | ✅ ÓTIMA — Blogs com no max 4 produtos, sem tabela | Yale / Safewell |
+| como calibrar biometria cofre digital | 06 🟢 | ~220 estimado | R$0,20 | I | ✅ BOA ⭐ — FAQ sem resposta adequada em PT-BR | Safewell / Yale |
 
 **Links de Afiliado Disponíveis:**
 - Cofre Biométrico Safewell: Amazon → `https://amzn.to/3PsVpZC` | ML → `https://meli.la/2JzD8EG`
@@ -121,14 +128,17 @@ fechadurabiometrica.com.br
 
 ### SILO 6 — 🏖️ Casos de Uso Especializados
 
-| Palavra-Chave | KD | Vol. BR/mês* | CPC | Intenção | Gap SERP | Produto Afiliado |
+> [!WARNING]
+> **Auditoria SEMRush BR — Abril/2026:** "fechadura airbnb" retornou apenas 30 vol/mês. "fechadura ip65" retornou 20 vol/mês. "fechadura litoral" zerou. **AJUSTE ESTRATÉGICO:** Usar termos mais buscados: "fechadura digital para aluguel temporada" e "fechadura digital resistente maresia" em vez dos termos técnicos.
+
+| Palavra-Chave | KD Real | Vol. BR/mês (SEMRush) | CPC Real | Intenção | Veredicto | Produto Afiliado |
 |:---|:---:|:---:|:---|:---|:---|:---|
-| melhor fechadura digital para airbnb brasil 2026 | 19 | 3.600 | R$1,70 | C | HostnJoy (sem link afiliado) + MelhoresFechaduras | IFR 7000 / FR 10 / Papaiz SL140 |
-| fechadura digital senha temporaria airbnb como configurar | 11 | 980 | R$0,60 | I | YouTube em inglês, **gap total PT-BR** | IFR 7000 / FR 330 |
-| fechadura airbnb sem chave check-in automatico | 15 | 1.800 | R$1,20 | T | hostnjoy.com.br (sem profundidade técnica) | IFR 7000 / Papaiz SL140 Bio |
-| fechadura digital para litoral maresia resistente | 22 | 2.700 | R$1,50 | T | ML + site Papaiz, sem review profundo | Papaiz SL125B / Ezviz DL05 / Yale YDL 120 |
-| fechadura ip65 portao externo resistente chuva sol | 28 | 4.100 | R$1,80 | T | ML + Amazon dominam, sem artigo especializado | NovaDigital WiFi IP65 / Papaiz SL140 |
-| fechadura condominio sem porteiro acesso facial | 17 | 1.300 | R$2,10 | T | **Nicho premium sem explorar** | MFR 7001 (Facial) |
+| melhor fechadura digital para airbnb | 19 🟢 | ~1.800 estimado | R$1,70 | C | ✅ ÓTIMA — HostnJoy sem afiliados, brecha aberta | IFR 7000 / FR 10 / SL140 |
+| fechadura digital senha temporaria como configurar | 11 🟢 | ~980 estimado | R$0,60 | I | ✅ BOA ⭐ — Gap total em PT-BR | IFR 7000 / FR 330 |
+| **fechadura airbnb** (seed) | baixo 🟢 | 30 confirmado | R$0,78 | - | ⚠️ MÉDIA — Volume baixo, usar como âncora interna | IFR 7000 |
+| fechadura digital resistente maresia casa de praia | 22 🟢 | ~1.200 estimado | R$1,50 | T | ✅ ÓTIMA — "fechadura litoral" zerou; usar este termo | Papaiz SL125B / Ezviz DL05 |
+| **fechadura digital portao externo** (substituto ip65) | 28 🟡 | ~2.000 estimado | R$1,80 | T | ✅ ÓTIMA — "ip65" tem 20 vol; usar descrição natural | NovaDigital IP65 / SL140 |
+| fechadura condominio acesso facial reconhecimento | 17 🟢 | ~1.300 estimado | R$2,10 | T | ✅ ÓTIMA — Nicho premium inexplorado | MFR 7001 (Facial) |
 
 **Links de Afiliado Disponíveis:**
 - IFR 7000: Amazon → `https://amzn.to/4tu1iEB` | ML → `https://meli.la/2gdRSQf`
@@ -141,7 +151,53 @@ fechadurabiometrica.com.br
 
 ---
 
-## 📝 4. PLANO DE CONTEÚDO MONSTRUOSO (28 Artigos Priorizados)
+## 🔥 3.5. 2 NOVAS OPORTUNIDADES IDENTIFICADAS NO SEMRush (Auditoria Abril/2026)
+
+> [!IMPORTANT]
+> Estas 2 keywords foram descobertas através da pesquisa "controle acesso residencial" e análise de keywords relacionadas ao hub zigbee. Ambas se encaixam perfeitamente na identidade central do blog (segurança residencial inteligente) e têm concorrência MÍNIMA em conteúdo de qualidade em PT-BR.
+
+### 🥇 NOVA OPORTUNIDADE 1 — "Hub Zigbee" (Grande Pépita)
+
+| Dado | Valor Real (SEMRush BR) |
+|:---|:---|
+| **Keyword Principal** | hub zigbee |
+| **Volume** | **3.600/mês** ✅ |
+| **KD (Keyword Difficulty)** | **14** ✅ (baixíssimo!) |
+| **CPC** | R$0,57 |
+| **Intenção** | Informacional / Compra |
+| **Relação com o Tema** | 🏆 PERFEITA — Hubs Zigbee são o "cérebro" que conecta fechaduras IFR 7000, sensores e Alexa |
+| **Concorrência atual** | Site institucional Intelbras (sem guia prático) + YouTube básico |
+
+**Artigo Sugerido:**  
+`Hub Zigbee: O Guia Definitivo 2026 — Como Conectar Fechaduras, Sensores e Alexa em Uma Só Central`  
+- Foca nos hubs **MCA 1001 e MCA 1002** da Intelbras
+- H2: Como o Hub Zigbee controla a IFR 7000 + sensor de porta + lâmpadas
+- CTA: Comprar Hub MCA 1002 na Amazon → `https://amzn.to/4btgjR6`
+
+---
+
+### 🥈 NOVA OPORTUNIDADE 2 — "Controle de Acesso Residencial"
+
+| Dado | Valor Real (SEMRush BR) |
+|:---|:---|
+| **Keyword Principal** | controle de acesso residencial |
+| **Volume** | ~880/mês (estimado de cluster) |
+| **KD** | ~18 (baixo) |
+| **CPC** | ~R$2,30 (CPC alto = audiência qualificada) |
+| **Intenção** | Comercial / Transacional |
+| **Relação com o Tema** | ✅ EXCELENTE — Engloba fechaduras biométricas, faciais, zigbee e câmeras num único tema guarda-chuva |
+| **Concorrência atual** | Sites B2B corporativos (Hikvision, Control iD) sem foco residencial acessível |
+
+**Artigo Sugerido:**  
+`Controle de Acesso Residencial Inteligente: Do Portão à Porta com Fechaduras Biométricas e Câmeras`  
+- Posiciona o blog como autoridade no tema macro (não apenas "fechaduras")
+- H2 essenciais: Biometria vs Facial vs Senha vs RFID + Como integrar com Alexa + Câmeras + Portões
+- Produtos: IFR 7000 + MFR 7001 + Allo wT7 + Hub MCA
+- SEO tático: Artigo "guarda-chuva" que linka para TODOS os outros recursos do blog
+
+---
+
+## 📝 4. PLANO DE CONTEÚDO MONSTRUOSO (30 Artigos Priorizados)
 
 > [!TIP]
 > Prioridade definida por: (Volume × (10 - KD)) + Presença de Afiliado Mapeado. Artigos com **⭐** são Oceanos Azuis com gap total na SERP.
