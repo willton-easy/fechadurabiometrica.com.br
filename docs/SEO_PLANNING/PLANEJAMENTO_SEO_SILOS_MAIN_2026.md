@@ -55,20 +55,72 @@ Abaixo, a simulação e os resultados das queries focadas baseados em análise d
 | qual a fechadura digital mais segura contra hacker | 11 | 950 | R$ 1,15 | I | TechTudo (Superar detalhando o AES-128 e criptografia zigbee) | Oportunidade de Autoridade |
 | fechadura biometrica com bateria de lithium | 09 | 450 | R$ 0,85 | C | Zero concorrência focada | Long-Tail Oceano Azul |
 
-### Silo 2 & 3 - Diversificação Coesa (Ecossistema)
-| Palavra-Chave (Main & Long-Tail) | KD | Volume BR / Mês | CPC | Intenção | Integração com Fechadura |
+### Silo 2 — 👁️ Olhos da Casa (Videoporteiros + Olho Mágico)
+*Dados reais auditados SEMRush BR — Abril/2026*
+
+| Palavra-Chave | KD Real | Vol. BR/mês | CPC | Intenção | Integração com Fechadura |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| melhor olho magico digital com camera e wifi | 21 | 3.200 | R$ 1,10 | C | Complemento letal para quem não tem IFR 7000. |
-| integrar alexa com fechadura intelbras | 14 | 1.800 | R$ 0,55 | I | Ensina automação; linka para review do Hub Zigbee e Fechadura. |
-| videoporteiro wifi intelbras allo w3 | 25 | 4.100 | R$ 1,20 | T | Usuários de casa querem saber como ele comanda a fechadura do portão. |
-| powerbank para fechadura digital | 08 | 700 | R$ 0,40 | C | Produto cross-sell obrigatório (ticket médio baixo, alta conversão). |
+| **videoporteiro wifi intelbras** | 24 🟢 | 210 confirmado | R$0,42 | T | Complemento direto: Allo wT7 + IFR 7000 na mesma entrada |
+| melhor olho magico digital wifi | 25 🟢 | 110 confirmado | R$4,00 | I/C | CPC R$4 = audiência premium; linka para IFR 7000 |
+| ezviz dp2c vs yale real view | 09 🟢 | ~890 est. | R$0,90 | C | ⭐ Oceano Azul — zero comparativos PT-BR |
+| como integrar videoporteiro com fechadura biometrica | 06 🟢 | ~340 est. | R$0,40 | I | ⭐ Oceano Azul absoluto — tutorial mais rentável do silo |
+| melhor videoporteiro wifi 2026 | 24 🟢 | ~2.000 est. | R$1,20 | C/T | Top 3 = blogs sem fotos reais |
+
+**Afiliados mapeados:** Intelbras Allo wT7, EZVIZ DP2C, Yale Real View Pro — todos Amazon + ML ✅
 
 ---
 
-## 📝 3. Plano de Conteúdo (20 Títulos Otimizados para Execução Imediata)
+### Silo 3 — 🏠 Casa Integrada (Hubs Zigbee + Sensores + Automação de Fechaduras)
+*Dados reais auditados SEMRush BR — Abril/2026*
+
+| Palavra-Chave | KD Real | Vol. BR/mês | CPC | Intenção | Integração com Fechadura |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **hub zigbee** 🏆 | 14 🟢 | **3.600 CONFIRMADO** | R$0,57 | I | Pépita máxima — KD baixo, liga IFR 7000 à Alexa |
+| gateway zigbee | 30 🟡 | 110 confirmado | R$0,68 | I/C | Oceano Azul — nenhum guia prático BR |
+| como integrar alexa com fechadura intelbras ifr 7000 | 08 🟢 | ~520 est. | R$0,40 | I | ⭐ Gap total — YouTube apenas |
+| matter vs zigbee fechadura digital diferenca | 07 🟢 | ~290 est. | R$0,30 | I | ⭐ Respondida só em inglês |
+| apple homekit fechadura brasil | 20 🟢 | 20 confirmado | R$0,83 | C | Público Apple → MFR 7001 |
+
+**Afiliados mapeados:** Hub Intelbras MCA 1001/1002 (Amazon + ML) ✅
+
+---
+
+### Silo 4 — 🔒 Cofres Biométricos
+*Dados reais auditados SEMRush BR — Abril/2026*
+
+| Palavra-Chave | KD Real | Vol. BR/mês | CPC | Intenção | Lógica |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **cofre digital com biometria** 🏆 | **2** 🟢 | 210 confirmado | R$0,99 | I/C | KD 2 = zero resistência |
+| cofre biometrico | 7 🟢 | 140 confirmado | R$1,56 | C | CPC alto = comprador qualificado |
+| cofre safewell vs yale compact | 05 🟢 | ~180 est. | R$0,70 | C | ⭐ Oceano Azul absoluto |
+| melhor cofre biometrico brasil 2026 | 22 🟢 | ~1.000 est. | R$1,30 | C | Blogs fracos sem tabela técnica |
+
+**Afiliados mapeados:** Cofre Safewell (Amazon + ML), Cofre Yale (Amazon + ML) ✅
+
+---
+
+### Silo 5 — 🏖️ Casos de Uso (Airbnb + Litoral + Portão + Controle de Acesso)
+*Dados reais auditados SEMRush BR — Abril/2026*
+
+| Palavra-Chave | KD Real | Vol. BR/mês | CPC | Produto |
+| :--- | :--- | :--- | :--- | :--- |
+| melhor fechadura digital para airbnb | 19 🟢 | ~1.800 est. | R$1,70 | IFR 7000 / FR 10 / SL140 |
+| fechadura digital senha temporaria como configurar | 11 🟢 | ~980 est. | R$0,60 | ⭐ IFR 7000 — Gap total PT-BR |
+| fechadura digital resistente maresia casa de praia | 22 🟢 | ~1.200 est. | R$1,50 | Papaiz SL125B / Ezviz DL05 |
+| fechadura digital portao externo resistente chuva | 28 🟡 | ~2.000 est. | R$1,80 | NovaDigital IP65 / SL140 |
+| controle de acesso residencial inteligente | 18 🟢 | ~880 est. | R$2,30 | ⭐ Guarda-chuva — IFR 7000 + MFR 7001 |
+
+> [!WARNING]
+> "fechadura airbnb" = apenas 30 vol/mês confirmado SEMRush (não 3.600 como estimado antes). Usar os termos descritivos naturais acima.
+
+**Afiliados mapeados:** IFR 7000, Papaiz SL125B, Ezviz DL05, Yale YDL 120, NovaDigital IP65, FR10 — todos Amazon + ML ✅
+
+---
+
+## 📝 3. Plano de Conteúdo Expandido (24 Títulos)
 
 ### CORE (Silo Principal - 70%)
-1. **Guia** | Fechadura Biométrica em Portas de Vidro Blindex: Como Instalar com 3M Sem Furar (H1, H2 sobre VHB, H3 modelos recomendados).
+1. **Guia** | Fechadura Biométrica em Portas de Vidro Blindex: Como Instalar com 3M Sem Furar.
 2. **Review** | Intelbras IFR 7000 vs MFR 7001 Facial: A Batalha das Fechaduras Premium de 2026.
 3. **Lista** | As 5 Melhores Fechaduras Biométricas Para Portas Pivotantes de Madeira Maciça.
 4. **FAQ** | Fechadura Digital Descarregou Completamente: O Que Fazer? (Guia de Powerbanks).
@@ -82,6 +134,18 @@ Abaixo, a simulação e os resultados das queries focadas baseados em análise d
 12. **Comercial** | Fechadura Inteligente com Senha Temporária para Airbnb: Aumente Sua Ocupação.
 13. **Review** | Intelbras FR 10 vs FR 101: Vale a Pena Abandonar a Biometria pelo Preço?
 14. **Guia** | Reconhecimento Facial em Fechaduras: A Morte Iminente da Impressão Digital?
+
+### ECOSSISTEMA (Diversificação - 30%)
+15. **Comparativo** | EZVIZ DP2C vs Yale Real View Pro: Melhor Olho Mágico Digital Wi-Fi 2026. ⭐
+16. **Guia** | Videoporteiro Intelbras Allo wT7 + Fechadura Biométrica: Integração Passo-a-Passo.
+17. **Autoridade** | Hub Zigbee: Guia Definitivo 2026 — Como Conectar IFR 7000, Sensores e Alexa.
+18. **Tutorial** | Alexa + IFR 7000: Como Abrir Sua Fechadura por Comando de Voz. ⭐
+19. **Autoridade** | Matter vs Zigbee: Qual Protocolo Escolher Para Sua Fechadura em 2026? ⭐
+20. **Comparativo** | Cofre Biométrico Safewell 25EK vs Yale Compact: Qual Protege de Verdade? ⭐
+21. **Guia** | Fechadura Digital para Airbnb: ROI Real + Como Configurar Senha Temporária.
+22. **Comercial** | Fechadura Digital à Prova de Maresia: As Melhores para Casa de Praia.
+23. **Autoridade** | Controle de Acesso Residencial: Do Portão à Janela sem Chave em 2026.
+24. **Acessórios** | Melhores Pilhas e Powerbanks de Backup para Fechaduras Digitais.
 
 ### ECCOSSISTEMA (Diversificação - 30%)
 15. **Comercial** | Melhor Olho Mágico Digital com Wi-Fi: Visão Blindada para Condomínios (Ezviz vs Yale).
