@@ -1,21 +1,18 @@
-import { getCollection } from 'astro:content';
+import { fetchPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
 
 export async function GET() {
-  const guias = await getCollection('guias');
-  const reviews = await getCollection('reviews');
-  const comparativos = await getCollection('comparativos');
-
-  const allPosts = [...guias, ...reviews, ...comparativos];
+  const allPosts = await fetchPosts();
 
   const payload = allPosts
-    .filter((post) => !post.data.draft)
+    .filter((post) => !post.draft)
     .map((post) => ({
-      slug: post.slug,
-      title: post.data.title,
-      description: post.data.description || post.data.excerpt || '',
-      image: post.data.image || '',
-      category: post.data.category || '',
-      type: post.collection // 'guias', 'reviews' ou 'comparativos'
+      slug: getPermalink(post.permalink, 'post'), // Usando a URL estruturada final do site
+      title: post.title,
+      description: post.description || post.excerpt || '',
+      image: post.image || '',
+      category: post.category?.title || '',
+      type: post.category?.title || 'artigo' 
     }));
 
   return new Response(JSON.stringify(payload), {

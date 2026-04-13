@@ -42,16 +42,6 @@ import { Icon } from 'astro-icon/components';
   let searchData = [];
   let isDataLoaded = false;
 
-  const searchModal = document.getElementById('search-modal');
-  const searchContainer = document.getElementById('search-container');
-  const searchInput = document.getElementById('search-input');
-  const closeSearchBtn = document.getElementById('close-search-modal');
-  const searchResultsList = document.getElementById('search-results-list');
-  const searchPlaceholder = document.getElementById('search-placeholder');
-
-  // Trigger para abrir o modal
-  const openSearchButtons = document.querySelectorAll('[data-aw-search-toggle]');
-
   async function loadSearchData() {
     if (isDataLoaded) return;
     try {
@@ -64,40 +54,55 @@ import { Icon } from 'astro-icon/components';
   }
 
   function openSearch() {
+    const searchModal = document.getElementById('search-modal');
+    const searchContainer = document.getElementById('search-container');
+    const searchInput = document.getElementById('search-input');
+    
+    if (!searchModal) return;
+
     isSearchModalOpen = true;
     searchModal.classList.remove('hidden');
-    // Animação de fade-in
+    
     setTimeout(() => {
       searchModal.classList.remove('opacity-0');
-      searchContainer.classList.remove('opacity-0', 'scale-95');
-      searchContainer.classList.add('opacity-100', 'scale-100');
-      searchInput.focus();
+      searchContainer?.classList.remove('opacity-0', 'scale-95');
+      searchContainer?.classList.add('opacity-100', 'scale-100');
+      searchInput?.focus();
     }, 10);
     
-    // Bloqueia rolagem da body
     document.body.style.overflow = 'hidden';
-    
-    // Carrega dados em background se ainda não recarregou
     loadSearchData();
   }
 
   function closeSearch() {
+    const searchModal = document.getElementById('search-modal');
+    const searchContainer = document.getElementById('search-container');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchPlaceholder = document.getElementById('search-placeholder');
+
+    if (!searchModal) return;
+
     isSearchModalOpen = false;
     searchModal.classList.add('opacity-0');
-    searchContainer.classList.remove('opacity-100', 'scale-100');
-    searchContainer.classList.add('opacity-0', 'scale-95');
+    searchContainer?.classList.remove('opacity-100', 'scale-100');
+    searchContainer?.classList.add('opacity-0', 'scale-95');
     
     setTimeout(() => {
       searchModal.classList.add('hidden');
-      searchResultsList.innerHTML = '';
-      searchInput.value = '';
-      searchPlaceholder.style.display = 'block';
-      // Restaura rolagem
+      if (searchResultsList) searchResultsList.innerHTML = '';
+      if (searchInput) searchInput.value = '';
+      if (searchPlaceholder) searchPlaceholder.style.display = 'block';
       document.body.style.overflow = '';
     }, 200);
   }
 
   function renderResults(query) {
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchPlaceholder = document.getElementById('search-placeholder');
+    
+    if (!searchResultsList || !searchPlaceholder) return;
+
     if (!query.trim()) {
       searchResultsList.innerHTML = '';
       searchPlaceholder.style.display = 'block';
@@ -107,10 +112,10 @@ import { Icon } from 'astro-icon/components';
     searchPlaceholder.style.display = 'none';
     const lowerQuery = query.toLowerCase();
     
-    const results = searchData.filter(item => 
+    const results = searchData.filter((item: any) => 
       item.title.toLowerCase().includes(lowerQuery) || 
       item.description.toLowerCase().includes(lowerQuery)
-    ).slice(0, 8); // Limita a 8 resultados
+    ).slice(0, 8); 
 
     if (results.length === 0) {
       searchResultsList.innerHTML = `
@@ -121,12 +126,10 @@ import { Icon } from 'astro-icon/components';
       return;
     }
 
-    searchResultsList.innerHTML = results.map(item => {
-      // Pequeno hack para gerar a URL correta no seu sistema basedo no slug/tipo
-      // O AstroWind usa getPermalink, mas na API geramos o slug direto.
+    searchResultsList.innerHTML = results.map((item: any) => {
       return `
         <li>
-          <a href="/${item.slug}" class="flex items-start px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group">
+          <a href="${item.slug}" class="flex items-start px-4 py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group">
             <div class="flex-1 min-w-0">
               <h4 class="text-base font-semibold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">
                 ${item.title}
@@ -146,27 +149,41 @@ import { Icon } from 'astro-icon/components';
     }).join('');
   }
 
-  // Listeners
-  openSearchButtons.forEach(btn => btn.addEventListener('click', openSearch));
-  closeSearchBtn?.addEventListener('click', closeSearch);
-  
-  // Fecha clicando no fundo ESC
-  searchModal?.addEventListener('click', (e) => {
-    if (e.target === searchModal || e.target.parentElement === searchModal) {
-      closeSearch();
-    }
-  });
+  // Como o Astro usa View Transitions (as tags mudam, mas o module fica na memória), 
+  // precisamos religar os event listeners toda vez que a página recarregar pelo Client Router.
+  function setupModalEvents() {
+    const openSearchButtons = document.querySelectorAll('[data-aw-search-toggle]');
+    const closeSearchBtn = document.getElementById('close-search-modal');
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isSearchModalOpen) closeSearch();
-    // Atalho CTRL+K ou CMD+K para abrir a busca
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      openSearch();
-    }
-  });
+    openSearchButtons.forEach(btn => btn.addEventListener('click', openSearch));
+    closeSearchBtn?.addEventListener('click', closeSearch);
+    
+    searchModal?.addEventListener('click', (e) => {
+      if (e.target === searchModal || e.target.parentElement === searchModal) {
+        closeSearch();
+      }
+    });
 
-  searchInput?.addEventListener('input', (e) => {
-    renderResults(e.target.value);
-  });
+    searchInput?.addEventListener('input', (e) => {
+      renderResults((e.target as HTMLInputElement).value);
+    });
+  }
+
+  // Garante a ligação na primeira visita e em visitas subsequentes (View Transitions)
+  document.addEventListener('astro:page-load', setupModalEvents);
+
+  // Lida apenas ALTA-NÍVEL com eventos de documento
+  // Previne listener duplicado definindo no window
+  if (!(window as any).hasSetupSearchKeys) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isSearchModalOpen) closeSearch();
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+    (window as any).hasSetupSearchKeys = true;
+  }
 </script>

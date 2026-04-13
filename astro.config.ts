@@ -58,8 +58,7 @@ export default defineConfig({
     Logger: 1,
   }), astrowind({
     config: './src/config.yaml',
-  }), // CMS visual local — acessível em localhost:4321/keystatic durante npm run dev
-  keystatic(), react()],
+  })],
 
   image: {
     domains: ['cdn.pixabay.com'],
