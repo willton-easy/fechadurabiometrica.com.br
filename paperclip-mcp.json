@@ -20,6 +20,13 @@
         "-y",
         "@modelcontextprotocol/server-vercel"
       ]
+    },
+    "serpapi": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-serpapi"
+      ]
     }
   },
   "agents": {
