@@ -61,9 +61,18 @@ Aqui estão todos os seus links capturados organizados de forma limpa. O assiste
 - [x] Yale YDL 120:
   - **Amazon:** https://amzn.to/40Jo3Ir
   - **Mercado Livre:** https://meli.la/24uAMJ3
-- [x] Intelbras FR10:
+- [x] Intelbras FR 10:
   - **Amazon:** https://amzn.to/3PofK2g
   - **Mercado Livre:** https://meli.la/1ootmUR
+- [x] Intelbras FR 101 (Mais Vendida):
+  - **Amazon:** https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-101/dp/B076HWLP7P?tag=willseg-20
+  - **Mercado Livre:** *(pendente)*
+- [x] Intelbras FR 201:
+  - **Amazon:** https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-201/dp/B076HZ63PL?tag=willseg-20
+  - **Mercado Livre:** *(pendente)*
+- [x] Intelbras FR 220 (Biometria):
+  - **Amazon:** https://www.amazon.com.br/Fechadura-Digital-Intelbras-FR-220/dp/B07DJSHN6D?tag=willseg-20
+  - **Mercado Livre:** *(pendente)*
 
 ## 🏡 6. Fechaduras de Portão Externo (IP65 / Elétrica)
 - [x] Fechadura NovaDigital Wi-Fi IP65:
