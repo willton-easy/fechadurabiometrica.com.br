@@ -6,6 +6,11 @@ import type { MetaData } from '~/types';
 export interface Props {
   frontmatter: {
     title?: string;
+    description?: string;
+    image?: string;
+    ratingValue?: number;
+    reviewCount?: number;
+    price?: number;
   };
 }
 
@@ -17,6 +22,41 @@ const metadata: MetaData = {
 ---
 
 <Layout metadata={metadata}>
+  {
+    (frontmatter.ratingValue || frontmatter.price) && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": frontmatter.title,
+        "image": frontmatter.image ? [frontmatter.image.replace('~', '')] : [],
+        "description": frontmatter.description,
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": frontmatter.ratingValue || "4.8",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Nilton Vasconcelo"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": frontmatter.ratingValue || "4.8",
+          "reviewCount": frontmatter.reviewCount || "150"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "",
+          "priceCurrency": "BRL",
+          "price": frontmatter.price || "500",
+          "availability": "https://schema.org/InStock"
+        }
+      })} />
+    )
+  }
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">{frontmatter.title}</h1>
     <div

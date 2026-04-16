@@ -16,7 +16,7 @@ export const headerData = {
     },
     {
       text: 'Glossário Tech',
-      href: getPermalink('/glossario'),
+      href: '/#glossario',
     },
     {
       text: 'Contato',
@@ -33,7 +33,7 @@ export const footerData = {
       links: [
         { text: 'Blog', href: getPermalink('/blog') },
         { text: 'Especial Porta de Vidro', href: getPermalink('/melhor-fechadura-digital-porta-de-vidro') },
-        { text: 'Dicionário de Tecnologias', href: getPermalink('/glossario') },
+        { text: 'Dicionário de Tecnologias', href: '/#glossario' },
       ],
     },
     {

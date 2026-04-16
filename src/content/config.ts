@@ -62,7 +62,11 @@ const baseSchema = z.object({
   affiliateLink: z.string().optional(),
   priceText: z.string().optional(),
   highlight: z.string().optional(),
-  date: z.date().optional()
+  date: z.date().optional(),
+  schemaType: z.string().optional(),
+  ratingValue: z.number().optional(),
+  reviewCount: z.number().optional(),
+  price: z.number().optional()
 });
 
 export const collections = {

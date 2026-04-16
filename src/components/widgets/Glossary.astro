@@ -1,0 +1,60 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import { glossaryItems } from '~/data/glossary';
+
+const categories = [...new Set(glossaryItems.map(item => item.category))];
+
+const {
+  title = "Enciclopédia Técnica",
+  subtitle = "O dicionário definitivo das fechaduras digitais de 2026",
+  tagline = "Glossário Completo",
+  id = "glossario",
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+    {categories.map((cat) => (
+      <div class="space-y-4">
+        <h3 class="text-xl font-bold text-primary flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">
+          <Icon name="tabler:folder" class="w-5 h-5" />
+          {cat}
+        </h3>
+        
+        <div class="space-y-3">
+          {glossaryItems
+            .filter(item => item.category === cat)
+            .map((item) => (
+              <details class="group border border-slate-200 dark:border-slate-800 rounded-lg bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm transition-all duration-300 open:bg-white dark:open:bg-slate-900 open:shadow-md">
+                <summary class="flex items-center justify-between p-3 cursor-pointer list-none font-medium text-slate-900 dark:text-slate-100 hover:text-primary transition-colors">
+                  <span class="flex items-center gap-2">
+                    {item.icon && <Icon name={item.icon} class="w-4 h-4 text-primary" />}
+                    <span class="text-sm">{item.title}</span>
+                  </span>
+                  <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div class="px-4 pb-4 text-xs text-muted leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-3">
+                  {item.description}
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    ))}
+  </div>
+</WidgetWrapper>
+
+<style>
+  /* Remoção do marcador padrão do details */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
