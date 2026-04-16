@@ -91,7 +91,7 @@ export const glossaryItems: GlossaryItem[] = [
     title: 'Hub / Gateway',
     description: 'A "ponte" que traduz o sinal da fechadura (Zigbee/BT) para o Wi-Fi, permitindo controle mundial via internet.',
     category: 'Conexão',
-    icon: 'tabler:device-hub',
+    icon: 'tabler:network',
   },
   {
     title: 'Firmware OTA (Over-The-Air)',
@@ -233,7 +233,7 @@ export const glossaryItems: GlossaryItem[] = [
     title: 'Criptografia de 128-bit AES',
     description: 'Padrão criptográfico que protege os dados trafegados entre a nuvem e o dispositivo contra hackers.',
     category: 'Segurança',
-    icon: 'tabler:database-lock',
+    icon: 'tabler:lock',
   },
   {
     title: 'Notificação Push em Tempo Real',
@@ -289,7 +289,7 @@ export const glossaryItems: GlossaryItem[] = [
     title: 'Backup Mecânico via USB',
     description: 'Terminal de alimentação externo para carregar a fechadura com um Powerbank caso as pilhas acabem.',
     category: 'Funções',
-    icon: 'tabler:usb-creative',
+    icon: 'tabler:usb',
   },
 
   // --- INSTALAÇÃO E SUPORTE ---
