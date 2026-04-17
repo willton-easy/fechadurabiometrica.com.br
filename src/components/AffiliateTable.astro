@@ -29,9 +29,18 @@ export interface Props {
 const { products, title } = Astro.props;
 
 // Helper: gera URL em diferentes tamanhos a partir da URL base Amazon
-function amazonImgSize(url: string, size: '300' | '500' | '1500') {
-  // Remove qualquer código de tamanho existente e insere o novo
-  return url.replace(/\._AC_[^.]+_\./, `._AC_SL${size}_.`).replace(/\._SL\d+_\./, `._AC_SL${size}_.`);
+function amazonImgSize(url: string, size: string) {
+  if (!url.includes('amazon.com')) return url;
+  
+  // Se a URL já contiver um modificador comum (ex: ._AC_SL1500_.), tenta substituir
+  // Amazon modifiers seguem o padrão ._XXXX_.
+  const pattern = /\._[a-zA-Z0-9]+_\./;
+  if (pattern.test(url)) {
+    return url.replace(pattern, `._AC_SL${size}_.`);
+  }
+  
+  // Se não tiver modificador, insere antes da extensão
+  return url.replace(/(\.[a-z]+)$/, `._AC_SL${size}_$1`);
 }
 ---
 
@@ -64,7 +73,7 @@ function amazonImgSize(url: string, size: '300' | '500' | '1500') {
   {
     products.map((product) => {
       const hdUrl = amazonImgSize(product.image, '1500');
-      const medUrl = amazonImgSize(product.image, '500');
+      const medUrl = amazonImgSize(product.image, '600');
 
       return (
         <div class="product-row flex flex-col md:flex-row items-center gap-4 p-4 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
@@ -84,7 +93,7 @@ function amazonImgSize(url: string, size: '300' | '500' | '1500') {
               <img
                 src={medUrl}
                 alt={product.title}
-                class="w-24 h-24 md:w-28 md:h-28 object-contain rounded-lg border border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform duration-200"
+                class="w-32 h-32 md:w-36 md:h-36 object-contain rounded-lg border border-slate-100 dark:border-slate-700 group-hover:scale-105 transition-transform duration-200"
                 loading="lazy"
               />
               <span class="absolute inset-0 flex items-end justify-center pb-1 opacity-0 group-hover:opacity-100 transition-opacity">
