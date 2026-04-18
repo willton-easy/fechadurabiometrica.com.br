@@ -58,6 +58,6 @@ export const footerData = {
   socialLinks: [],
   footNote: `
     <span class="text-sm">Fechadura Biométrica © ${new Date().getFullYear()} · Todos os direitos reservados.</span><br/>
-    <span class="text-xs text-slate-400">Este site contém links de afiliados. Quando você compra através de um de nossos links, podemos ganhar uma comissão sem nenhum custo extra para você.</span>
+    <span class="text-xs text-slate-500">Este site contém links de afiliados. Quando você compra através de um de nossos links, podemos ganhar uma comissão sem nenhum custo extra para você.</span>
   `,
 };
