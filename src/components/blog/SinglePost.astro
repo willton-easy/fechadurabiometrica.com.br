@@ -88,6 +88,7 @@ const { post, url } = Astro.props;
                   alt={post?.excerpt || ''}
                   loading="eager"
                   decoding="async"
+                  fetchpriority="high"
                 />
               </a>
             ) : (
@@ -100,6 +101,7 @@ const { post, url } = Astro.props;
                 alt={post?.excerpt || ''}
                 loading="eager"
                 decoding="async"
+                fetchpriority="high"
               />
             )}
           </div>
