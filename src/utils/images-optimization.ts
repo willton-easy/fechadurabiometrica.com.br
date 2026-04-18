@@ -342,6 +342,7 @@ export async function getImagesOptimized(
         width: width,
         height: height,
         aspectRatio: aspectRatio,
+        objectFit: (rest as any).objectFit,
         objectPosition: objectPosition,
         layout: layout,
       })}${style ?? ''}`,

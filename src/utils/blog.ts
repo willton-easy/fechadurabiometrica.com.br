@@ -88,6 +88,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     category: category,
     tags: tags,
     author: author,
+    affiliateLink: (data as any).affiliateLink,
 
     draft: draft,
 

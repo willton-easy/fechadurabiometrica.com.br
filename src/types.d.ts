@@ -42,6 +42,8 @@ export interface Post {
 
   /**  */
   readingTime?: number;
+  /**  */
+  affiliateLink?: string;
 }
 
 export interface Taxonomy {
