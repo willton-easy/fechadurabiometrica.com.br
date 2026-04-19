@@ -4,7 +4,7 @@ site:
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: null # orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: 0j-R-haa1TrousLf4z3J-K7992ZqExe2kG3gEoWLT4E # Google Search Console Verification
 
 # Default SEO metadata
 metadata:
