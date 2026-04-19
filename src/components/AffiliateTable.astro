@@ -1,6 +1,7 @@
 ---
 // AffiliateTable.astro — Tabela de afiliados estilo AffiliateX
 // Suporta: imagens com zoom lightbox, logos Amazon + ML, badges, avaliações
+import { getEntry } from 'astro:content';
 import AffiliateButton from '~/components/ui/AffiliateButton.astro';
 
 export interface ProductImage {
@@ -9,28 +10,53 @@ export interface ProductImage {
 }
 
 export interface Product {
-  position: number;
+  position?: number;
   title: string;
-  image: string; // URL principal (ex: ...._AC_SL500_.jpg)
+  image: string;
   badge?: string;
   rating?: number;
   reviewCount?: number;
-  amazonLink: string;
+  amazonLink?: string;
   mercadoLivreLink?: string;
-  // Imagens extras para galeria (miniaturas que expandem)
   extraImages?: string[];
 }
 
 export interface Props {
-  products: Product[];
+  products: (Product | string)[];
   title?: string;
 }
 
-const { products, title } = Astro.props;
+const { products: rawProducts = [], title } = Astro.props;
+
+// Resolvendo produtos que são apenas strings (slugs de reviews)
+const resolvedProducts = await Promise.all(
+  rawProducts.map(async (item, index) => {
+    if (typeof item === 'string') {
+      const entry = await getEntry('reviews', item);
+      if (entry) {
+        return {
+          position: index + 1,
+          title: entry.data.title,
+          image: entry.data.image || '',
+          rating: entry.data.ratingValue,
+          reviewCount: entry.data.reviewCount,
+          amazonLink: entry.data.affiliateLink,
+          badge: entry.data.highlight, 
+          extraImages: [],
+        } as Product;
+      }
+      return null;
+    }
+    const productItem = item as Product;
+    return { ...productItem, position: productItem.position || index + 1 } as Product;
+  })
+);
+
+const products = resolvedProducts.filter((p): p is Product => p !== null);
 
 // Helper: gera URL em diferentes tamanhos a partir da URL base Amazon
 function amazonImgSize(url: string, size: string) {
-  if (!url.includes('amazon.com')) return url;
+  if (!url || !url.includes('amazon.com')) return url || '';
   
   // Se a URL já contiver um modificador comum (ex: ._AC_SL1500_.), tenta substituir
   // Amazon modifiers seguem o padrão ._XXXX_.
