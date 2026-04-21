@@ -1,0 +1,41 @@
+name: Pinterest - Novo Artigo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/**/*.mdx'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      changes: ${{ steps.changes.outputs.changes }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Detectar artigos novos
+        id: changes
+        run: |
+          git diff --name-only ${{ github.event.before }} HEAD | grep -E "src/content.*\.mdx$" > changes.txt
+          echo "changes=$(cat changes.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Mostrar artigos
+        if: steps.changes.outputs.changes != ''
+        run: |
+          echo "📝 Novos artigos detectados:"
+          cat changes.txt
+          echo "---"
+          echo "Aguarde confirmação do usuário para postar no Pinterest"
+
+  notify:
+    needs: prepare
+    if: needs.prepare.outputs.changes != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notificar
+        run: |
+          echo "✅ Artigo novo detectado!"
+          echo "Acesse o projeto para confirmar a postagem no Pinterest"
+          echo "Comando: /pinterest-autopost"
