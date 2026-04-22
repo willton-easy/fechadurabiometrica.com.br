@@ -4,7 +4,7 @@ description: "Comparativo técnico completo entre a Intelbras MFR 7001 (facial 3
 publishDate: 2026-03-05
 category: "Reviews"
 tags: ["intelbras", "samsung", "facial", "biometria", "push-pull", "smart-lock", "premium"]
-image: '~/assets/images/hero_mfr7001_vs_dp609_2026.png'
+image: '~/assets/images/comparativos/hero_mfr7001_vs_dp609_2026.png'
 author: "Redator Elite 2026"
 seoTitle: "Intelbras MFR 7001 vs Samsung DP609 — Comparativo Definitivo [2026]"
 seoDescription: "Comparamos a Intelbras MFR 7001 (facial 3D) com a Samsung SHP-DP609 (push-pull). Qual vale mais em 2026? Análise de preço, bateria, design e segurança."

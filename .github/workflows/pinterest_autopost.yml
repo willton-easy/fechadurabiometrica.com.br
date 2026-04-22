@@ -1,0 +1,32 @@
+name: Pinterest Autopost
+
+on:
+  workflow_dispatch:
+    inputs:
+      lote:
+        description: 'Número do lote (8-12)'
+        required: true
+        default: '8'
+        type: choice
+        options:
+          - '8'
+          - '9'
+          - '10'
+          - '11'
+          - '12'
+
+jobs:
+  pinterest:
+    runs-on: windows-latest
+    steps:
+      - name: Verificar porta Chrome
+        run: |
+          $port = Get-NetTCPConnection -LocalPort 9222 -ErrorAction SilentlyContinue
+          if (!$port) {
+            echo "ERRO: Chrome do Antigravity não está aberto na porta 9222"
+            exit 1
+          }
+          echo "Porta 9222 ativa - Chrome conectado"
+
+      - name: Postar Pins
+        run: node automation/lotes_seo.mjs ${{ inputs.lote }}
