@@ -40,33 +40,28 @@ async function postBatch() {
     for (const pin of PINS) {
       console.log(`📍 Postando: ${pin.title}...`);
       
-      await page.goto('https://www.pinterest.com/pin-builder/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(3000);
+      await page.goto('https://www.pinterest.com/pin-builder/', { waitUntil: 'networkidle' });
+      await page.waitForTimeout(4000);
       
       // Upload
       const fileInput = await page.$('input[type="file"]');
       if (fileInput) {
         await fileInput.setInputFiles(`${SOURCE_DIR}/${pin.img}`);
-        await page.waitForTimeout(4000);
+        await page.waitForTimeout(5000);
       }
       
-      // Preencher Título e Descrição
-      const inputs = await page.$$('input');
-      const textareas = await page.$$('textarea');
+      // Preencher Título - Usando seletor mais específico ou ID
+      await page.fill('input[placeholder*="Adicionar um título"]', pin.title);
       
-      if (inputs.length >= 1) await inputs[0].fill(pin.title);
-      if (textareas.length >= 1) await textareas[0].fill(pin.desc + ' #fechadura #segurança #smarthome');
+      // Preencher Descrição
+      await page.fill('textarea[placeholder*="Conte a todos"]', pin.desc + ' #fechadura #segurança #smarthome');
       
-      // URL de destino
-      const urlInputs = await page.$$('input');
-      if(urlInputs.length >= 3) {
-        await urlInputs[2].fill('https://www.fechadurabiometrica.com.br' + pin.url + '?utm_source=pinterest&utm_medium=autopost');
-      }
+      // Link de Destino
+      await page.fill('input[placeholder*="Adicionar um link"]', 'https://www.fechadurabiometrica.com.br' + pin.url + '?utm_source=pinterest&utm_medium=autopost');
       
-      // Esperar renderizar botão publicar
       await page.waitForTimeout(2000);
       
-      // Publicar (Tentar clicar no botão de publicar)
+      // Publicar
       const publishBtn = await page.$('button[data-test-id="board-dropdown-save-button"]');
       if (publishBtn) {
         await publishBtn.click();
@@ -74,7 +69,7 @@ async function postBatch() {
         await page.click('button:has-text("Publicar")');
       }
       
-      await page.waitForTimeout(5000);
+      await page.waitForTimeout(6000);
       console.log(`   ✅ OK: ${pin.img}`);
     }
     
