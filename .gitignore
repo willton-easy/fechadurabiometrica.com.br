@@ -29,6 +29,7 @@ pnpm-lock.yaml
 
 # Agent Management & Process Artifacts
 .agents/
+!.agents/workflows/
 AGENT_*.md
 SKILLS_*.md
 ESTRATEGIA_*.md
