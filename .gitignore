@@ -52,3 +52,8 @@ pinterest-mcp-server/.env
 # Local credentials
 .env.seopack.local
 *.local
+
+# Automation sensitive data
+automation/pinterest_session/
+automation/temp_pins/
+automation/pins_publicados.json
