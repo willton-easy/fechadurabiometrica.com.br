@@ -30,7 +30,7 @@ const PINS = [
 ];
 
 async function postBatch() {
-  console.log(`🚀 Iniciando postagem de ${PINS.length} pins no Pinterest...`);
+  console.log(`🚀 Iniciando postagem de ${PINS.length} pins no Pinterest com NOVOS SELETORES...`);
   
   try {
     const browser = await chromium.connectOverCDP('http://localhost:9222');
@@ -41,35 +41,43 @@ async function postBatch() {
       console.log(`📍 Postando: ${pin.title}...`);
       
       await page.goto('https://www.pinterest.com/pin-builder/', { waitUntil: 'networkidle' });
-      await page.waitForTimeout(4000);
+      await page.waitForTimeout(5000);
       
-      // Upload
-      const fileInput = await page.$('input[type="file"]');
+      // 1. Upload de Imagem
+      const fileInput = await page.$('input[type="file"][aria-label="Upload de arquivo"]');
       if (fileInput) {
         await fileInput.setInputFiles(`${SOURCE_DIR}/${pin.img}`);
         await page.waitForTimeout(5000);
+      } else {
+        console.log("   ⚠️ Input de arquivo não encontrado pelo seletor ARIA.");
       }
       
-      // Preencher Título - Usando seletor mais específico ou ID
-      await page.fill('input[placeholder*="Adicionar um título"]', pin.title);
+      // 2. Preencher Título
+      const titleSelector = 'textarea[placeholder="Adicione um título"]';
+      await page.waitForSelector(titleSelector, { timeout: 10000 });
+      await page.fill(titleSelector, pin.title);
       
-      // Preencher Descrição
-      await page.fill('textarea[placeholder*="Conte a todos"]', pin.desc + ' #fechadura #segurança #smarthome');
+      // 3. Preencher Descrição (Draft.js - clicar e digitar)
+      const descSelector = 'div[role="combobox"][aria-label="Conte sobre o que é o seu Pin"]';
+      await page.click(descSelector);
+      await page.keyboard.type(pin.desc + ' #fechadura #segurança #smarthome');
       
-      // Link de Destino
-      await page.fill('input[placeholder*="Adicionar um link"]', 'https://www.fechadurabiometrica.com.br' + pin.url + '?utm_source=pinterest&utm_medium=autopost');
+      // 4. Link de Destino
+      const linkSelector = 'textarea[placeholder="Adicione um link de destino"]';
+      await page.fill(linkSelector, 'https://www.fechadurabiometrica.com.br' + pin.url + '?utm_source=pinterest&utm_medium=autopost');
       
       await page.waitForTimeout(2000);
       
-      // Publicar
+      // 5. Publicar
       const publishBtn = await page.$('button[data-test-id="board-dropdown-save-button"]');
       if (publishBtn) {
         await publishBtn.click();
       } else {
+        // Fallback para texto
         await page.click('button:has-text("Publicar")');
       }
       
-      await page.waitForTimeout(6000);
+      await page.waitForTimeout(8000); // Esperar processar o upload e postagem
       console.log(`   ✅ OK: ${pin.img}`);
     }
     
