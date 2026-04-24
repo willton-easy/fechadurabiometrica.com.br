@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import path from 'path';
 
-const SOURCE_DIR = 'C:/Users/willt/AppData/Local/Programs/Antigravity';
+const SOURCE_DIR = 'C:/Users/willt/Videos/fechadura de luxo';
 const AFFILIATE_LINK = 'https://amzn.to/4cpZZku';
 
 const PINS = [
@@ -60,15 +60,18 @@ const PINS = [
 async function postBatch() {
   console.log(`🚀 Iniciando postagem de ${PINS.length} pins no Pinterest...`);
   
-  // Usar launch normal para evitar problemas de permissão com diretórios persistentes
-  const browser = await chromium.launch({ headless: false }); 
-  const context = await browser.newContext({
-    viewport: { width: 1280, height: 800 }
-  });
-  const page = await context.newPage();
+  const userDataDir = path.join(process.cwd(), 'automation', 'pinterest_session');
+  const browser = await chromium.launchPersistentContext(userDataDir, { 
+    headless: false,
+    viewport: { width: 1280, height: 800 },
+    slowMo: 100
+  }); 
+  
+  const page = browser.pages()[0] || await browser.newPage();
   
   try {
-    for (const pin of PINS) {
+    for (let i = 0; i < PINS.length; i++) {
+      const pin = PINS[i];
       console.log(`📍 Processando: ${pin.title}...`);
       
       console.log(`   🌐 Carregando Pin Builder...`);
@@ -153,8 +156,11 @@ async function postBatch() {
     console.log(`🏁 Todos os ${PINS.length} pins foram processados!`);
   } catch (e) {
     console.error(`❌ Erro durante o processo: ${e.message}`);
+    await page.screenshot({ path: `automation/error_pinterest_${Date.now()}.png` });
   } finally {
-    console.log("Processo encerrado. Você pode fechar o navegador.");
+    console.log("Processo encerrado em 30 segundos...");
+    await new Promise(r => setTimeout(r, 30000));
+    await browser.close();
   }
 }
 
