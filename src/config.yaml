@@ -1,6 +1,6 @@
 site:
   name: Fechadura Biométrica
-  site: 'https://fechadurabiometrica.com.br'
+  site: 'https://www.fechadurabiometrica.com.br'
   base: '/'
   trailingSlash: false
 

@@ -26,7 +26,9 @@ export default defineConfig({
 
   integrations: [tailwind({
     applyBaseStyles: false,
-  }), sitemap(), mdx(), icon({
+  }), sitemap({
+    filter: (page) => !page.includes('/tag/'),
+  }), mdx(), icon({
     include: {
       tabler: ['*'],
       'flat-color-icons': [

@@ -161,7 +161,8 @@ import { Icon } from 'astro-icon/components';
     closeSearchBtn?.addEventListener('click', closeSearch);
     
     searchModal?.addEventListener('click', (e) => {
-      if (e.target === searchModal || e.target.parentElement === searchModal) {
+      const target = e.target as HTMLElement;
+      if (target === searchModal || target.parentElement === searchModal) {
         closeSearch();
       }
     });
