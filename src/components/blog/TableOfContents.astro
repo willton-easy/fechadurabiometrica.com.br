@@ -1,0 +1,221 @@
+---
+import type { Post } from '~/types';
+
+export interface Props {
+  headings: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+}
+
+const { headings = [] } = Astro.props;
+
+// Filter only H2 and H3 for a cleaner sidebar
+const filteredHeadings = headings.filter((h) => h.depth > 1 && h.depth < 4);
+---
+
+{filteredHeadings.length > 0 && (
+  <>
+    {/* Desktop Sidebar */}
+    <aside class="toc-sidebar hidden lg:block">
+      <div class="sticky top-24 p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none transition-all duration-300">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-primary dark:text-blue-400 mb-4 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="12" x2="9" y2="12"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>
+          Neste Artigo
+        </h2>
+        
+        <nav class="toc-nav overflow-y-auto max-h-[70vh] pr-2">
+          <ul class="space-y-3">
+            {filteredHeadings.map((heading) => (
+              <li class={`toc-item depth-${heading.depth}`}>
+                <a
+                  href={`#${heading.slug}`}
+                  class="block text-sm text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-blue-400 transition-colors leading-snug"
+                  data-toc-link
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        
+        <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+          <button 
+            id="scrollToTop"
+            class="text-xs font-medium text-slate-400 hover:text-primary dark:hover:text-blue-400 flex items-center gap-2 transition-all group"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-y-1 transition-transform"><path d="m18 15-6-6-6 6"/></svg>
+            Voltar ao topo
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    {/* Mobile Floating Button & Drawer */}
+    <div class="lg:hidden">
+      <button
+        id="mobileTocToggle"
+        class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary dark:bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 border-4 border-white dark:border-slate-800"
+        aria-label="Abrir índice"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="12" x2="9" y2="12"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>
+      </button>
+
+      <div
+        id="mobileTocDrawer"
+        class="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+      >
+        <div
+          class="absolute bottom-0 left-0 right-0 bg-white dark:bg-slate-900 rounded-t-3xl p-8 translate-y-full transition-transform duration-300 max-h-[80vh] overflow-y-auto"
+        >
+          <div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-6"></div>
+          
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Índice do Guia</h2>
+          
+          <nav class="mobile-toc-nav">
+            <ul class="space-y-4">
+              {filteredHeadings.map((heading) => (
+                <li class={`depth-${heading.depth}`}>
+                  <a
+                    href={`#${heading.slug}`}
+                    class="mobile-toc-link block text-lg text-slate-600 dark:text-slate-400 active:text-primary dark:active:text-blue-400 py-2 border-b border-slate-50 dark:border-slate-800"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          
+          <button 
+            id="closeMobileToc"
+            class="mt-8 w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl active:scale-95 transition-transform"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </>
+)}
+
+<style>
+  .toc-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+  }
+
+  .toc-item.depth-3 {
+    padding-left: 1rem;
+    border-left: 1px solid transparent;
+  }
+
+  .toc-item.active a {
+    color: var(--aw-color-primary, #2563eb);
+    font-weight: 600;
+  }
+
+  .dark .toc-item.active a {
+    color: #60a5fa;
+  }
+
+  .mobile-toc-nav .depth-3 {
+    padding-left: 1.5rem;
+  }
+
+  /* Custom Scrollbar for TOC */
+  .toc-nav::-webkit-scrollbar {
+    width: 3px;
+  }
+  .toc-nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .toc-nav::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+  .dark .toc-nav::-webkit-scrollbar-thumb {
+    background: #1e293b;
+  }
+
+  #mobileTocDrawer.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #mobileTocDrawer.open > div {
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  function setupTOC() {
+    // 1. Desktop Active Tracking
+    const links = document.querySelectorAll('[data-toc-link]');
+    const headings = Array.from(document.querySelectorAll('h2, h3'))
+      .filter(h => h.id);
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          links.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${entry.target.id}`) {
+              link.parentElement?.classList.add('active');
+            } else {
+              link.parentElement?.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    headings.forEach((heading) => observer.observe(heading));
+
+    // 2. Scroll to top button
+    const scrollBtn = document.getElementById('scrollToTop');
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 3. Mobile Drawer Logic
+    const toggleBtn = document.getElementById('mobileTocToggle');
+    const drawer = document.getElementById('mobileTocDrawer');
+    const closeBtn = document.getElementById('closeMobileToc');
+    const mobileLinks = document.querySelectorAll('.mobile-toc-link');
+
+    const openDrawer = () => {
+      drawer?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeDrawer = () => {
+      drawer?.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    toggleBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e) => {
+      if (e.target === drawer) closeDrawer();
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+  }
+
+  // Run on load and after swaps
+  setupTOC();
+  document.addEventListener('astro:after-swap', setupTOC);
+</script>

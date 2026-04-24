@@ -44,6 +44,8 @@ export interface Post {
   readingTime?: number;
   /**  */
   affiliateLink?: string;
+  /**  */
+  headings?: Array<{ depth: number; slug: string; text: string }>;
 }
 
 export interface Taxonomy {

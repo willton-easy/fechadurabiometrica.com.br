@@ -8,6 +8,7 @@ import AuthorBio from '~/components/blog/AuthorBio.astro';
 import RelatedPosts from '~/components/blog/RelatedPosts.astro';
 import JsonLdAuthor from '~/components/common/JsonLdAuthor.astro';
 import NewsletterCTA from '~/components/blog/NewsletterCTA.astro';
+import TableOfContents from '~/components/blog/TableOfContents.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
@@ -112,34 +113,43 @@ const { post, url } = Astro.props;
         )
       }
     </header>
-    <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
-    >
-      <slot />
+
+    <div class="flex flex-col lg:flex-row justify-center gap-8 lg:gap-12 max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Main Content -->
+      <div class="w-full lg:max-w-3xl">
+        <div
+          class="prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0 text-justify"
+        >
+          <slot />
+        </div>
+
+        <div class="mt-12 border-t dark:border-slate-800 pt-8">
+          <AuthorBio author={post.author} />
+          <JsonLdAuthor 
+            author={post.author} 
+            title={post.title} 
+            description={post.excerpt} 
+            publishDate={post.publishDate} 
+            image={post.image}
+            url={String(url)}
+          />
+        </div>
+
+        <div class="mt-8">
+          <NewsletterCTA />
+        </div>
+
+        <div class="mt-8 flex justify-between flex-col sm:flex-row border-t dark:border-slate-800 pt-6">
+          <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
+          <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <TableOfContents headings={post.headings} />
     </div>
 
-    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-4">
-      <AuthorBio author={post.author} />
-      <JsonLdAuthor 
-        author={post.author} 
-        title={post.title} 
-        description={post.excerpt} 
-        publishDate={post.publishDate} 
-        image={post.image}
-        url={String(url)}
-      />
-    </div>
-
-    <div class="mx-auto px-6 sm:px-6 max-w-3xl">
-      <NewsletterCTA />
-    </div>
-
-    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
-      <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
-    </div>
-
-    <div class="mt-8 border-t dark:border-slate-700">
+    <div class="mt-16 border-t dark:border-slate-700">
       <RelatedPosts post={post} />
     </div>
   </article>
