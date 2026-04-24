@@ -1,94 +1,84 @@
 ---
 // AffiliateButton.astro
-// Novo Design: Botão Preto Amazon + Botão Azul Mercado Livre
+// Design Premium: Amazon (Black/Yellow) & Mercado Livre (Blue/Yellow)
 
 export interface Props {
   type: 'amazon' | 'mercadolivre';
   href: string;
-  text?: string;
-  class?: string;
 }
 
-const { type, href, text, class: className = '' } = Astro.props;
+const { type, href } = Astro.props;
 
 const isAmazon = type === 'amazon';
 ---
 
-<div class="affiliate-btn-wrapper">
+<div class="affiliate-btn-wrapper my-6 flex justify-center">
   <a
     href={href}
     target="_blank"
     rel="nofollow sponsored noopener"
-    class:list={['affiliate-btn', isAmazon ? 'amazon' : 'mercadolivre', className]}
+    class:list={['affiliate-btn', isAmazon ? 'amazon' : 'mercadolivre']}
   >
     <span class="btn-text">
       {isAmazon ? (
         <>
           <span class="text-white">Ver preço na</span>
-          <span class="text-yellow">Amazon</span>
+          <span class="text-amazon-yellow uppercase font-bold">Amazon</span>
         </>
       ) : (
-        <span class="text-yellow">Preço no Mercado Livre</span>
+        <>
+          <span class="text-white">Ver preço no</span>
+          <span class="text-ml-yellow font-bold">Mercado Livre</span>
+        </>
       )}
     </span>
   </a>
 </div>
 
 <style>
-  .affiliate-btn-wrapper {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .affiliate-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border: 1px solid transparent;
-    min-width: 200px;
-    height: 48px;
-    padding: 0 24px;
-    font-family: "Amazon Ember", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
+    min-width: 260px;
+    height: 52px;
+    padding: 0 32px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.025em;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 9999px; /* Cantos arredondados total */
   }
 
-  /* Amazon - Botão Preto */
+  /* Amazon - Preto padrão com detalhe amarelo */
   .amazon {
-    background: #000000;
-    border-color: #000000;
-    border-radius: 24px;
+    background-color: #000000;
   }
 
   .amazon:hover {
-    background: #1a1a1a;
-    border-color: #1a1a1a;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transform: translateY(-1px);
+    background-color: #232f3e;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Mercado Livre - Botão Azul */
+  /* Mercado Livre - Azul padrão com detalhe amarelo */
   .mercadolivre {
-    background: #2D3277;
-    border-color: #2D3277;
-    border-radius: 24px;
+    background-color: #2D3277;
   }
 
   .mercadolivre:hover {
-    background: #1e2455;
-    border-color: #1e2455;
-    box-shadow: 0 4px 12px rgba(45, 50, 119, 0.4);
-    transform: translateY(-1px);
+    background-color: #1e2255;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(45, 50, 119, 0.3);
   }
 
   .btn-text {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     white-space: nowrap;
   }
 
@@ -96,15 +86,19 @@ const isAmazon = type === 'amazon';
     color: #FFFFFF;
   }
 
-  .text-yellow {
-    color: #FFE600;
-    font-weight: 700;
+  .text-amazon-yellow {
+    color: #FF9900; /* Amarelo Amazon */
+  }
+
+  .text-ml-yellow {
+    color: #FFE600; /* Amarelo Mercado Livre */
   }
 
   @media (max-width: 640px) {
     .affiliate-btn {
       width: 100%;
       min-width: unset;
+      font-size: 14px;
     }
   }
 </style>
