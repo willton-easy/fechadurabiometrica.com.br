@@ -76,6 +76,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <Logo />
       </a>
       <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+          aria-label="Pesquisar"
+          data-aw-search-toggle
+        >
+          <Icon name="tabler:search" class="w-6 h-6" />
+        </button>
         <ToggleMenu />
       </div>
     </div>
@@ -133,14 +141,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div
       class:list={[
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'self-center flex items-center mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
+        'self-center flex items-center mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end bg-white/90 dark:bg-slate-900/90 backdrop-blur-md md:bg-transparent md:dark:bg-transparent border-t md:border-t-0 border-gray-200 dark:border-slate-800',
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <div class="flex items-center">
           <button
             type="button"
-            class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+            class="hidden md:inline-flex text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 items-center"
             aria-label="Pesquisar"
             title="Pressione Ctrl+K para buscar"
             data-aw-search-toggle
