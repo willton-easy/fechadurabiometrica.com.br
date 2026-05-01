@@ -24,4 +24,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://www.fechadurabiometrica.com.br/sitemap-index.xml
+Sitemap: https://fechadurabiometrica.com.br/sitemap-index.xml
