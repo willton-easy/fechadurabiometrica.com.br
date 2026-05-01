@@ -3,24 +3,41 @@
 // Design Premium: Amazon (Black/Yellow) & Mercado Livre (Blue/Yellow)
 
 export interface Props {
-  type: 'amazon' | 'mercadolivre';
-  href: string;
+  type?: 'amazon' | 'mercadolivre';
+  href?: string;
+  url?: string;
+  link?: string;
+  label?: string;
+  text?: string;
+  class?: string;
 }
 
-const { type, href } = Astro.props;
+const { 
+  type = 'amazon', 
+  href, 
+  url, 
+  link, 
+  label, 
+  text,
+  class: className
+} = Astro.props;
 
+const finalHref = href || url || link || '#';
+const finalLabel = label || text;
 const isAmazon = type === 'amazon';
 ---
 
 <div class="affiliate-btn-wrapper my-6 flex justify-center">
   <a
-    href={href}
+    href={finalHref}
     target="_blank"
     rel="nofollow sponsored noopener"
-    class:list={['affiliate-btn', isAmazon ? 'amazon' : 'mercadolivre']}
+    class:list={['affiliate-btn', isAmazon ? 'amazon' : 'mercadolivre', className]}
   >
     <span class="btn-text">
-      {isAmazon ? (
+      {finalLabel ? (
+        <span class="text-white font-bold">{finalLabel}</span>
+      ) : isAmazon ? (
         <>
           <span class="text-white">Ver preço na</span>
           <span class="text-amazon-yellow uppercase font-bold">Amazon</span>

@@ -17,6 +17,8 @@ import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
+import OrganizationSchema from '~/components/common/OrganizationSchema.astro';
+
 export interface Props {
   metadata?: MetaDataType;
 }
@@ -35,6 +37,7 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <OrganizationSchema />
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />

@@ -10,14 +10,18 @@ const title = `Error 404`;
     <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
       <div class="max-w-md text-center">
         <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
+          <span class="sr-only">Erro</span>
           <span class="text-primary">404</span>
         </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
+        <p class="text-3xl font-semibold md:text-3xl">Ops! Esta página sumiu no futuro.</p>
         <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
+          Não se preocupe, a segurança da sua casa continua em dia. Que tal conferir nossos guias mestres para 2026?
         </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
+        <div class="flex flex-col space-y-4">
+          <a rel="noopener noreferrer" href="/melhores-fechaduras-digitais-2026" class="btn btn-primary">Ranking Top 10 Fechaduras 2026</a>
+          <a rel="noopener noreferrer" href="/melhor-fechadura-digital-porta-de-vidro" class="btn">Guia para Portas de Vidro</a>
+          <a rel="noopener noreferrer" href={getHomePermalink()} class="btn btn-ghost">Voltar para a Home</a>
+        </div>
       </div>
     </div>
   </section>

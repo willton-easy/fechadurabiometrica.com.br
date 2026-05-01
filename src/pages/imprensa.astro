@@ -1,0 +1,108 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+
+const metadata = {
+  title: 'Sala de Imprensa - Fechadura Biométrica Authority 2026',
+  description: 'Recursos para jornalistas, ativos de marca e guias técnicos sobre segurança residencial e fechaduras digitais.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Baixar Media Kit',
+        href: '#downloads',
+        icon: 'tabler:download',
+      },
+      { text: 'Contato', href: '#contato' },
+    ]}
+    image={{ src: '~/assets/images/ui/hero-biometric-dossier.jpg', alt: 'Sala de Imprensa Fechadura Biométrica' }}
+  >
+    <Fragment slot="title">
+      Sala de <span class="text-accent dark:text-white highlight">Imprensa</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Bem-vindo ao hub oficial de comunicação da <span class="font-semibold">Fechadura Biométrica</span>. Aqui você encontra ativos de marca, dados de mercado e especialistas para pautas sobre Smart Home e Segurança Digital.
+    </Fragment>
+  </Hero>
+
+  <!-- Features Section: Why us? -->
+  <Features2
+    title="Nossa Autoridade"
+    subtitle="Liderando o debate sobre segurança residencial no Brasil"
+    items={[
+      {
+        title: 'Dados de Mercado',
+        description: 'Acesso a estatísticas exclusivas sobre a adoção de tecnologias biométricas no Brasil.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'Expertise Técnica',
+        description: 'Nossa equipe analisa profundamente hardware e criptografia das principais marcas globais.',
+        icon: 'tabler:device-laptop',
+      },
+      {
+        title: 'Ativos Visuais',
+        description: 'Fotografias em alta resolução e infográficos prontos para publicação.',
+        icon: 'tabler:camera',
+      },
+    ]}
+  />
+
+  <!-- Downloads Section -->
+  <Content
+    id="downloads"
+    isReversed
+    title="Ativos de Marca"
+    items={[
+      {
+        title: 'Logotipos Oficiais',
+        description: 'Versões em PNG (transparente) e SVG para uso em portais e impressos.',
+      },
+      {
+        title: 'Paleta de Cores',
+        description: 'Nossa identidade visual baseada em confiança e modernidade tecnológica.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ui/site-logo.png',
+      alt: 'Logo Fechadura Biométrica',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Identidade Visual</h3>
+      Garanta a aplicação correta da nossa marca utilizando os arquivos oficiais.
+    </Fragment>
+  </Content>
+
+  <!-- Contact Section -->
+  <Steps
+    id="contato"
+    title="Contato para Imprensa"
+    items={[
+      {
+        title: 'E-mail Direto',
+        description: 'imprensa@fechadurabiometrica.com.br',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Tempo de Resposta',
+        description: 'Nossa equipe de PR responde em até 4 horas úteis para solicitações de mídia.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Entrevistas',
+        description: 'Disponibilidade para podcasts, portais e programas de TV sobre tecnologia.',
+        icon: 'tabler:microphone',
+      },
+    ]}
+  />
+</Layout>

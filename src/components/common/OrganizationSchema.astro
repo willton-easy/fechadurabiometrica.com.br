@@ -1,0 +1,39 @@
+---
+import { SITE } from 'astrowind:config';
+import { getCanonical } from '~/utils/permalinks';
+
+const canonical = String(getCanonical(String(Astro.url.pathname)));
+const logoUrl = new URL('~/assets/images/ui/site-logo.png', Astro.site).href;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${Astro.site}#organization`,
+  "name": SITE.name,
+  "url": Astro.site,
+  "logo": {
+    "@type": "ImageObject",
+    "url": logoUrl,
+    "width": 600,
+    "height": 60
+  },
+  "sameAs": [
+    "https://br.pinterest.com/fechadurabiometrica/",
+    "https://www.instagram.com/fechadurabiometrica/",
+    "https://www.youtube.com/@fechadurabiometrica"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "contato@fechadurabiometrica.com.br",
+    "url": `${Astro.site}contato`
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": SITE.name,
+    "description": "Autoridade líder em segurança digital e fechaduras inteligentes no Brasil."
+  }
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
