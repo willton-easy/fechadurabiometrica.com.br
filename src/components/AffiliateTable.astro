@@ -18,6 +18,8 @@ export interface Product {
   reviewCount?: number;
   amazonLink?: string;
   mercadoLivreLink?: string;
+  reviewLink?: string;
+  reviewText?: string;
   extraImages?: string[];
   features?: string[];
   price?: string;
@@ -206,6 +208,14 @@ function amazonImgSize(url: string, size: string) {
             <AffiliateButton type="amazon" href={product.amazonLink} class="w-full md:w-60" />
             {product.mercadoLivreLink && (
               <AffiliateButton type="mercadolivre" href={product.mercadoLivreLink} class="w-full md:w-60" />
+            )}
+            {product.reviewLink && (
+              <a 
+                href={product.reviewLink} 
+                class="text-center text-xs font-semibold text-slate-500 hover:text-primary underline decoration-slate-300 underline-offset-4 transition-colors"
+              >
+                {product.reviewText || 'Ler Review Completo'}
+              </a>
             )}
           </div>
         </div>
