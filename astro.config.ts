@@ -63,7 +63,7 @@ export default defineConfig({
   })],
 
   image: {
-    domains: ['cdn.pixabay.com', 'placehold.co', 'images.unsplash.com'],
+    domains: ['cdn.pixabay.com', 'placehold.co', 'images.unsplash.com', 'intelbras.vteximg.com.br', 'm.media-amazon.com'],
   },
 
   markdown: {
