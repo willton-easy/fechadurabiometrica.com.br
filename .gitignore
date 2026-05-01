@@ -43,18 +43,24 @@ experiment_results.md
 # Playwright
 .playwright-mcp/
 
-# Browser sessions (HIGH SECURITY RISK)
+# Browser sessions (HIGH SECURITY RISK - DO NOT REMOVE)
 .pinterest_session/
 .chrome_stealth_session/
+**/.pinterest_session/
+**/.chrome_stealth_session/
+**/userDataDir/
+**/.session/
 
-# Pinterest MCP Server secrets
+# Automation & Secrets
 pinterest-mcp-server/.env
-
-# Local credentials
 .env.seopack.local
 *.local
+.env*
+!.env.example
 
-# Automation sensitive data
+# Process Artifacts
 automation/pinterest_session/
 automation/temp_pins/
 automation/pins_publicados.json
+scratch/
+temp_pins/
